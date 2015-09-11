@@ -1,0 +1,23 @@
+Here is a list of cites to some papers I have found about hierarchy:
+
+Ball, B., & Newman, M. (2013). Friendship networks and social status. Network Science, 1–7. Retrieved from http://journals.cambridge.org/abstract_S2050124212000045
+
+Boorman, S. A., & White, H. C. (1976). Social Structure from Multiple Networks. II. Role Structures. American Journal of Sociology, 81(6), 1384–1446. Retrieved from http://hbanaszak.mjr.uw.edu.pl/TempTxt/BoormanWhite_1976_SocialStructureFromMultipleNetworks_II.pdf
+
+Corominas-Murtra, B., Goñi, J., Solé, R. V, & Rodríguez-Caso, C. (2013). On the origins of hierarchy in complex networks. Proceedings of the National Academy of Sciences of the United States of America, 110(33), 13316–21. http://doi.org/10.1073/pnas.1300832110
+
+Gupte, M., Shankar, P., Li, J., Muthukrishnan, S., & Iftode, L. (2011). Finding hierarchy in directed online social networks. Proceedings of the 20th International Conference on World Wide Web - WWW ’11, 557. http://doi.org/10.1145/1963405.1963484
+
+Mones, E. (2013). Hierarchy in directed random networks. Physical Review E, 87(2), 022817. http://doi.org/10.1103/PhysRevE.87.022817
+
+Mones, E., Vicsek, L., & Vicsek, T. (2012). Hierarchy measure for complex networks. PloS One, 7(3), e33799. http://doi.org/10.1371/journal.pone.0033799
+
+Nepusz, T., & Vicsek, T. (2012). Controlling edge dynamics in complex networks. Nature Physics, 8(7), 568–573. http://doi.org/10.1038/nphys2327
+
+Nepusz, T., & Vicsek, T. (2013). Hierarchical self-organization of non-cooperating individuals. PloS One, 8(12), e81449. http://doi.org/10.1371/journal.pone.0081449
+
+Pósfai, M., Liu, Y.-Y., Slotine, J.-J., & Barabási, A.-L. (2013). Effect of correlations on network controllability. Scientific Reports, 3, 1067. http://doi.org/10.1038/srep01067
+
+Suchecki, K., & Holyst, J. (2013). Hierarchy depth in directed networks. arXiv Preprint arXiv:1303.2085. Retrieved from http://arxiv.org/abs/1303.2085
+
+White, H. C., Boorman, S. A., & Breiger, R. L. (1976). Social Structure from Multiple Networks . I . Blockmodels of Roles and Positions. American Journal of Sociology, 81(4), 730–780. Retrieved from http://www.bebr.ufl.edu/sites/default/files/White et al. - 1976 - Social Structure from Multiple Networks. I. Blockm.pdf
