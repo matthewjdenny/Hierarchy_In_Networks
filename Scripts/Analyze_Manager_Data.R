@@ -1,13 +1,18 @@
 # analyze manager-to-manager email networks in 17 county governments
 #works on Matt's Computer
 
-# load data
+#preliminaries
 rm(list = ls())
-setwd("./Data")
-load("Manager_Email_Networks.Rdata")
 
-#load packages
-library(igraph)
+#load in functions
+source("./Scripts/calculate_analytical_hierarchy_measures.R")
+
+#load data
+load("./Data/Manager_Email_Networks.Rdata")
+
+
+
+
 
 
 
