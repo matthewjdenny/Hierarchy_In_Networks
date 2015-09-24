@@ -205,6 +205,59 @@ Hierarchy \sep Network \sep Power
 
 \section{A Model of Network Hierarchy}
 
+\subsection{Measures of Hierarchy}
+\begin{enumerate}
+	\item Landau's $h\in[0,1]$ and Kendall's $K\in[0,1]$ are used to compare to linear hierarchies. Used in \cite{animals}, where $i=1...N$ is the number of nodes and $S_i$ is the row sum for each node also referred to as the dominance total: \\
+	\begin{center}
+		$h=\frac{12}{N^3-N}\sum_{i=1}^{N}{[S_i-\frac{N-1}{2}]}$, \\
+		\vspace{5mm}
+		and $d$ is the number of cyclic triads defined as: $d=\frac{N(N-1)(2N-1)}{12}-\frac{1}{2}\sum{S_i^2}$. Then 
+		\\ \vspace{5mm}
+		$K=1-\frac{d}{d_{max}}$, where 
+		
+		$$
+		d_{max} = \left\{ \begin{array}{rl}
+		\frac{1}{24}(N^3-N)&\mbox{ if $N$ is odd} \\
+		\frac{1}{24}(N^3-4N)&\mbox{ if $N$ is even}
+		\end{array} \right.
+		$$
+	\end{center} 
+	
+	\item Triangle transitivity is shown to be higher in dominance relationships in \cite{animals}, but not used as a measure here.
+	
+	\item Treeness $T\in[-1,1]$ is the average of $f(G)$ over the set in $W(G)$, where $W(G)$ is the subset $G_C$ and all of its subsets obtained through a leaf removal algorithm. This measure is defined in \cite{3D}.
+	$$
+	f(G)=\frac{H_f(G_C)-H_b(G_C)}{max\{H_f(G_C),H_b(G_C)\}},
+	$$
+	where $H_f, H_b$ denote the forward and backward path entropies, respectively, where $h_f(v_i)=-\sum{P(\pi_k|v_i)logP(\pi_k|v_i)}$.  
+	
+	\item Feedforwardness $F\in[0,1]$ is the average of path weights $F(\pi_k)$ where cyclic modules that are closer to the top get a higher penalty, and defined by \cite{3D}. Here the paths under consideration are all paths starting at from the top of $G_C$ denoted $\pi_k$. Let $k=1,...M$ be this number of paths then:
+	$$
+	F(G)=\frac{1}{M}\sum_{k=1}^{M}{\frac{|v(\pi_k)|}{\sum{a_i}}},
+	$$
+	where $a_i$ are the weights of each node along the path under consideration (i.e. the number of collapsed nodes from $G$ in the corresponding node of $G_C$), and $v(\pi_k)$ is the number of nodes along the path $\pi_k$.
+	
+	\item Orderability $O\in[0,1]$ is the fraction of nodes that do not belong to any cycle and defined by \cite{3D}:
+	$$
+	O(G)=\frac{|v_i\in V_c\cap V|}{|V|}
+	$$
+	
+	\item Global Reaching Centrality where the graph is unweighted and directed is defined by \cite{GRC} as:
+	$$
+	GRC=\frac{\sum_{i\in V}{[C_R^{max}-C_R(i)]}}{N-1},
+	$$
+	where $C_R(i)$ is the local reaching centrality defined as the proportion of all nodes in $G$ that can be reached along outgoing edges from node $i$.
+	
+	\item Global Reaching Centrality where the graph is weighted and directed is defined by \cite{GRC} using the following version for the reaching centrality:
+	$$
+	C_{R}^{'}(i)=\frac{1}{N-1}\sum_{j: 0<d^{out}_{(i,j)<\infty}}{( \frac{\sum_{k=1}^{d^{out}(i,j)} {w_{i}^{(k)} (j) } }{d^{out}(i,j)} )}
+	$$
+	
+	\item Global Reaching Centrality where the graph is unweighted and undirected is defined by \cite{GRC} using the following version for the reaching centrality:
+	$$
+	C_{R}^{''}(i)=\frac{1}{N-1}\sum_{j:0<d(i,j)<\infty}{\frac{1}{d(i,j)}}
+	$$
+\end{enumerate}
 
 \section{Data}
 
@@ -226,7 +279,22 @@ Hierarchy \sep Network \sep Power
 %% For references without a BibTeX database:
 
 % \begin{thebibliography}{00}
+\begin{thebibliography}{9}
+	\bibitem{animals} 
+	Shizuka, D. and McDonald, D. B. (2012),
+	\textit{A social network perspective on measurements of dominance hierarchies}. 
+	Animal Behavior: 83, 925-934.
+	
+	\bibitem{3D} 
+	Murtra, B., Goni, J., and Caso, C. (2013),
+	\textit{On the origins of hierarchy in complex networks}. 
+	PNAS: 110, 33, 13316-13321.
 
+	\bibitem{GRC} 
+	Mones, E., Vicsek, L., and Vicsek, T. (2012),
+	\textit{Hierarchy Measure for Complex Networks}. 
+	Plos ONE: 7, 3, 1-10.
+\end{thebibliography}
 %% \bibitem must have the following form:
 %%   \bibitem{key}...
 %%
