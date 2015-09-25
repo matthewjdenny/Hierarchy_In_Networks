@@ -257,6 +257,15 @@ Hierarchy \sep Network \sep Power
 	$$
 	C_{R}^{''}(i)=\frac{1}{N-1}\sum_{j:0<d(i,j)<\infty}{\frac{1}{d(i,j)}}
 	$$
+	
+	\item Control Centrality in a weighted and directed graph, defined by \cite{Liu12}, identifies the minimum number of nodes need to drive an entire network to a given final state. Consider a directed, weighted network:
+	$$
+	\bm{x}(t) = \bm{Ax}(t) + \bm{Bu}(t)
+	$$
+	which is the state of each node at time t, and also denoted as \begin{math}(\bm{A},\bm{B})\end{math}. The components of this controllability matrix are: $\bm{A}\in \mathbb{R}^{N\times N}$, where each element gives the strength that node $j$ can affect node $i$; and $\bm{B}\in\mathbb{R}^{N\times M}$, where each element is the strength between the input signal $u_{j}(t)$ and node $i$, and M contains independent signals imposed by an outside controller. Defining $\bm{C} = (\bm{A}$,$\bm{B})$, the control centrality of node $i$ is:
+	$$
+	C_{c}(i) \equiv rank_{g}(\bm{C}^{i})
+	$$
 \end{enumerate}
 
 \section{Data}
@@ -294,6 +303,12 @@ Hierarchy \sep Network \sep Power
 	Mones, E., Vicsek, L., and Vicsek, T. (2012),
 	\textit{Hierarchy Measure for Complex Networks}. 
 	Plos ONE: 7, 3, 1-10.
+	
+	\bibitem{Liu12}
+	Liu, Y. Slotine, J., and Barab{\'a}si, A (2012).
+	\textit{Control centrality and hierarchical structure in complex networks}.
+	Plos ONE 7, 9.
+	
 \end{thebibliography}
 %% \bibitem must have the following form:
 %%   \bibitem{key}...
