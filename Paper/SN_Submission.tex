@@ -207,11 +207,11 @@ Hierarchy \sep Network \sep Power
 
 \subsection{Measures of Hierarchy}
 \begin{enumerate}
-	\item Landau's $h\in[0,1]$ and Kendall's $K\in[0,1]$ are used to compare to linear hierarchies. Used in \cite{animals}, where $i=1...N$ is the number of nodes and $S_i$ is the row sum for each node also referred to as the dominance total: \\
+	\item Landau's $h\in[0,1]$ and Kendall's $K\in[0,1]$ are both used to compare a network to a perfect linear hierarchy in \cite{animals}, where $i=1...N$ is the number of nodes and $S_i$ is the row sum for each node also referred to as the dominance total: \\
 	\begin{center}
 		$h=\frac{12}{N^3-N}\sum_{i=1}^{N}{[S_i-\frac{N-1}{2}]}$, \\
 		\vspace{5mm}
-		and $d$ is the number of cyclic triads defined as: $d=\frac{N(N-1)(2N-1)}{12}-\frac{1}{2}\sum{S_i^2}$. Then 
+		IF we let $d$ be the number of cyclic triads defined as: $d=\frac{N(N-1)(2N-1)}{12}-\frac{1}{2}\sum{S_i^2}$. Then 
 		\\ \vspace{5mm}
 		$K=1-\frac{d}{d_{max}}$, where 
 		
