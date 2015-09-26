@@ -205,69 +205,81 @@ Hierarchy \sep Network \sep Power
 
 \section{A Model of Network Hierarchy}
 
+\subsection{Notation}
+Given a graph $G=(V,E)$, it is comprised of a set of vertexes $V=\{v_i\}={v_1,...v_N}$ and edges $E=\{e_j\}=e_1,...e_M$. We define the set of paths through the graph as $\{\pi_{k}\}=\pi_1,...\pi_P$. \\ Need to explain the collapsed graph for 3-5 in below...\\Need to define d in 6 \\need to know what m is in 7 \\
 \subsection{Measures of Hierarchy}
 \begin{enumerate}
-	\item Landau's $h\in[0,1]$ and Kendall's $K\in[0,1]$ are both used to compare a network to a perfect linear hierarchy in \cite{animals}, where $i=1...N$ is the number of nodes and $S_i$ is the row sum for each node also referred to as the dominance total: \\
-	\begin{center}
-		$h=\frac{12}{N^3-N}\sum_{i=1}^{N}{[S_i-\frac{N-1}{2}]}$, \\
-		\vspace{5mm}
-		IF we let $d$ be the number of cyclic triads defined as: $d=\frac{N(N-1)(2N-1)}{12}-\frac{1}{2}\sum{S_i^2}$. Then 
-		\\ \vspace{5mm}
-		$K=1-\frac{d}{d_{max}}$, where 
-		
-		$$
-		d_{max} = \left\{ \begin{array}{rl}
-		\frac{1}{24}(N^3-N)&\mbox{ if $N$ is odd} \\
-		\frac{1}{24}(N^3-4N)&\mbox{ if $N$ is even}
-		\end{array} \right.
-		$$
-	\end{center} 
+	\item Landau's $h\in[0,1]$ is used to compare a directed network to a perfect linear hierarchy in \cite{animals}, where $S_i$ is the row sum for each node also referred to as the dominance total: 
+	$$
+	h=\frac{12}{N^3-N}\sum_{i=1}^{N}{[S_i-\frac{N-1}{2}]}
+	$$
+	\item Kendall's $K\in[0,1]$ is also used in \cite{animals} to compare a directed network to a perfect linear hierarchy. Let $d$ be the number of cyclic triad defined as: $d=\frac{N(N-1)(2N-1)}{12}-\frac{1}{2}\sum{S_i^2}$. Then: 
+	$$
+	K=1-\frac{d}{d_{max}},
+	$$ 
+	where $d_{max} = \left\{ \begin{array}{rl}
+	\frac{1}{24}(N^3-N)&\mbox{ if $N$ is odd} \\
+	\frac{1}{24}(N^3-4N)&\mbox{ if $N$ is even}
+	\end{array} \right.$
 	
-	\item Triangle transitivity is shown to be higher in dominance relationships in \cite{animals}, but not used as a measure here.
-	
-	\item Treeness $T\in[-1,1]$ is the average of $f(G)$ over the set in $W(G)$, where $W(G)$ is the subset $G_C$ and all of its subsets obtained through a leaf removal algorithm. This measure is defined in \cite{3D}.
+	\item Treeness $T\in[-1,1]$ tries to capture how pyramidal the structure is and how unambiguous the chain of command is in the directed network. Mathematically, it is the average of $f(G)$ over the set in $W(G)$, where $W(G)$ is the subset $G_C$ and all of its subsets obtained through a leaf removal algorithm. This measure is defined in \cite{3D} as:
 	$$
 	f(G)=\frac{H_f(G_C)-H_b(G_C)}{max\{H_f(G_C),H_b(G_C)\}},
 	$$
-	where $H_f, H_b$ denote the forward and backward path entropies, respectively, where $h_f(v_i)=-\sum{P(\pi_k|v_i)logP(\pi_k|v_i)}$.  
+	where $H_f, H_b$ denote the forward and backward path entropies, respectively. Path entropy is defined to be:  $h_f(v_i)=-\sum{P(\pi_k|v_i)logP(\pi_k|v_i)}$.  
 	
-	\item Feedforwardness $F\in[0,1]$ is the average of path weights $F(\pi_k)$ where cyclic modules that are closer to the top get a higher penalty, and defined by \cite{3D}. Here the paths under consideration are all paths starting at from the top of $G_C$ denoted $\pi_k$. Let $k=1,...M$ be this number of paths then:
+	\item Feedforwardness $F\in[0,1]$ tries to penalize cycles near the top of the directed network. Mathematically, it is the average of path weights $F(\pi_k)$ where cyclic modules that are closer to the top get a higher penalty, and defined by \cite{3D}. Here the paths under consideration consist of the subset starting from the top node of $G_C$. If there are $p$ such paths then:
 	$$
-	F(G)=\frac{1}{M}\sum_{k=1}^{M}{\frac{|v(\pi_k)|}{\sum{a_i}}},
+	F(G)=\frac{1}{p}\sum_{k=1}^{p}{\frac{|v(\pi_k)|}{\sum{a_i}}},
 	$$
 	where $a_i$ are the weights of each node along the path under consideration (i.e. the number of collapsed nodes from $G$ in the corresponding node of $G_C$), and $v(\pi_k)$ is the number of nodes along the path $\pi_k$.
 	
-	\item Orderability $O\in[0,1]$ is the fraction of nodes that do not belong to any cycle and defined by \cite{3D}:
+	\item Orderability $O\in[0,1]$ defines how orderable the directed network is. Mathematically, it is the fraction of nodes that do not belong to any cycle and defined by \cite{3D}:
 	$$
 	O(G)=\frac{|v_i\in V_c\cap V|}{|V|}
 	$$
 	
-	\item Global Reaching Centrality where the graph is unweighted and directed is defined by \cite{GRC} as:
+	\item Global Reaching Centrality, based on the $m$-reach centrality measure is adapted in \cite{GRC} to be a simple measure of hierarchy for any graph:
 	$$
 	GRC=\frac{\sum_{i\in V}{[C_R^{max}-C_R(i)]}}{N-1},
 	$$
-	where $C_R(i)$ is the local reaching centrality defined as the proportion of all nodes in $G$ that can be reached along outgoing edges from node $i$.
+	\begin{enumerate}
+		\item When the graph is unweighted and directed, the $C_R(i)$ is the local reaching centrality defined as the proportion of all nodes in $G$ that can be reached along outgoing edges from node $i$.
+		
+		\item When the graph is weighted and directed, the following version for the reaching centrality as defined in \cite{GRC} is used:
+		$$
+		C_{R}^{'}(i)=\frac{1}{N-1}\sum_{j: 0<d^{out}_{(i,j)<\infty}}{( \frac{\sum_{k=1}^{d^{out}(i,j)} {w_{i}^{(k)} (j) } }{d^{out}(i,j)} )}
+		$$
+		
+		\item When the graph is unweighted and undirected, the following version for the reaching centrality as defined by \cite{GRC} is used:
+		$$
+		C_{R}^{''}(i)=\frac{1}{N-1}\sum_{j:0<d(i,j)<\infty}{\frac{1}{d(i,j)}}
+		$$
+	\end{enumerate}
+	\item For social networks, \cite{online} defines hierarchy $h(G)\in[0,1]$ from inferred nodal rankings $r(v)$. Mathematically, it is defined as:
+	$$
+	h(G)=1-\frac{1}{m}A(G),
+	$$ 
+	where $A(G)=\sum_{(v_i,v_j)\in E} {max(r(v_i)-r(v_j)+1,0}$ is the total 'agony'. Since the rankings are not known, they are found by minimizing the total agony over all possible rankings $r$.
 	
-	\item Global Reaching Centrality where the graph is weighted and directed is defined by \cite{GRC} using the following version for the reaching centrality:
+	\item Rooted Depth in directed networks is defined in \cite{depth}, where a root is a node that has only incoming edges. Given $r$ roots in a network, the each node has a local root depth equal to the average length of the shortest path between itself and all roots. Let $N_{r}$ be the number of node, root pairs in the network. Then the global root depth is defined as:
 	$$
-	C_{R}^{'}(i)=\frac{1}{N-1}\sum_{j: 0<d^{out}_{(i,j)<\infty}}{( \frac{\sum_{k=1}^{d^{out}(i,j)} {w_{i}^{(k)} (j) } }{d^{out}(i,j)} )}
+	D=\frac{1}{N_{r}}\sum_{i=1}^{N_r}{l_{ri}},	
+	$$
+	where $l$ is the length of the shortest path between root $r$ and node $i$.
+	
+	\item Relative Depth in directed networks is defined in \cite{depth} by first collapsing the network into $G_C$. Then the main root must be found, which lies on the end of the longest path through the network. From here, each vertex is given a relative depth $d$ equal to the path length between itself and the main root. Let $L=1,...l$ be the set of leaves and $R=1,...r$ be the set of roots. Then the global relative depth is found by:
+	$$
+	D=\frac{1}{l}\sum_{i=1}^{l}{d_i}-\frac{1}{r}\sum_{i=1}^{r}{d_i}
 	$$
 	
-	\item Global Reaching Centrality where the graph is unweighted and undirected is defined by \cite{GRC} using the following version for the reaching centrality:
-	$$
-	C_{R}^{''}(i)=\frac{1}{N-1}\sum_{j:0<d(i,j)<\infty}{\frac{1}{d(i,j)}}
-	$$
+	\item Betweenness Centrality
 	
-	\item Control Centrality in a weighted and directed graph, defined by \cite{Liu12}, identifies the minimum number of nodes need to drive an entire network to a given final state. Consider a directed, weighted network:
-	$$
-	\bm{x}(t) = \bm{Ax}(t) + \bm{Bu}(t)
-	$$
-	which is the state of each node at time t, and also denoted as \begin{math}(\bm{A},\bm{B})\end{math}. The components of this controllability matrix are: $\bm{A}\in \mathbb{R}^{N\times N}$, where each element gives the strength that node $j$ can affect node $i$; and $\bm{B}\in\mathbb{R}^{N\times M}$, where each element is the strength between the input signal $u_{j}(t)$ and node $i$, and M contains independent signals imposed by an outside controller. Defining $\bm{C} = (\bm{A}$,$\bm{B})$, the control centrality of node $i$ is:
-	$$
-	C_{c}(i) \equiv rank_{g}(\bm{C}^{i})
-	$$
-\end{enumerate}
-
+	\item Eigenvector 
+	
+	\item Nodal Degree
+	
+	\item Closeness Centrality 
 \section{Data}
 
 \begin{enumerate}
@@ -363,6 +375,16 @@ Hierarchy \sep Network \sep Power
 	\textit{Hierarchy Measure for Complex Networks}. 
 	Plos ONE: 7, 3, 1-10.
 	
+		\bibitem{online} 
+		Gupte, M., Shankar, P., Li, J., Muthukrishnan, S., and Iftode, L. (2011)
+		\textit{Finding Hierarchy in Directed Online Social Networks}. 
+		International World Wide Web Conference Committee (IW3C2).
+		
+		\bibitem{depth} 
+		Suchecki, K. and Holyst, J. (2013),
+		\textit{Hierarchy depth in directed networks}. 
+		Physica A: preprint.
+		
 	\bibitem{Liu12}
 	Liu, Y., Slotine, J., and Barab{\'a}si, A (2012).
 	\textit{Control centrality and hierarchical structure in complex networks}.
