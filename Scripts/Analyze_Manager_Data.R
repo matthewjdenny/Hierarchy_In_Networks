@@ -8,7 +8,7 @@ rm(list = ls())
 source("./Scripts/calculate_analytical_hierarchy_measures.R")
 
 #load data
-load("./Data/Manager_Email_Networks.Rdata")
+load("./Data/Network_Data.Rdata")
 
 # calculate measures for all networks
 Measures <- vector(length = length(Manager_Email_Networks), mode = "list")
