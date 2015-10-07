@@ -11,3 +11,9 @@
 
 *.lb
 .Rproj.user
+
+*.nav
+
+*.snm
+
+*.toc
