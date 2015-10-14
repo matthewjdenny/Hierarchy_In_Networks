@@ -1,0 +1,103 @@
+dl n 74 format = el1
+matrix label:
+planned
+comment = "netnum 1=trusted prior; 2=various interaction; 3=planned meetings"
+labels:
+"Hani Hanjour"
+"Majed Moqed"
+"Nawaf Alhazmi"
+"Salem Alhazmi*"
+"Khalid Al-Mihdhar"
+"Mohamed Atta"
+"Waleed Alshehri"
+"Wail Alshehri"
+"Satam Suqami"
+"Abdul Aziz Al-Omari*"
+"Marwan Al-Shehhi"
+"Fayez Ahmed"
+"Ahmed Alghamdi"
+"Hamza Alghamdi"
+"Mohand Alshehri*"
+"Ziad Jarrah"
+"Ahmed Alnami"
+"Ahmed Al Haznawi"
+"Saeed Alghamdi*"
+"Abdussattar Shaikh"
+"Zacarias Moussaoui"
+"Mustafa Ahmed al-Hisawi"
+"Nabil al-Marabh"
+"Lotfi Raissi"
+"Said Bahaji"
+"Raed Hijazi"
+"Mamoun Darkazanli"
+"Mohamed Abdi"
+"Ramzi Bin al-Shibh"
+"Kamel Daoudi"
+"Mamduh Mahmud Salim"
+"Mohammed Jaweed Azmath"
+"Ayub Ali Khan"
+"Faisal Al Salmi"
+"Bandar Alhazmi"
+"Rayed Mohammed Abdullah"
+"Youssef Hmimssa"
+"Nabil Almarabh"
+"Raed Hijazi"
+"Zakariya Essabar"
+"Essid Sami Ben Khemais"
+"Osama Awadallah"
+"Karim Koubriti"
+"Ahmen Hannan"
+"Farouk Ali-Hamoud"
+"Haydar Abu Doha"
+"Mohamed Bensakhria"
+"Tarek Maaroufi"
+"Lased Ben Heni"
+"Mehdi Khammoun"
+"Essoussi Laaroussi"
+"Nizar Trabelsi"
+"Djamal Beghal"
+"Mohammad Pervez"
+"Adel F. Badri"
+"Abu Qatada"
+"Jerome Courtaillier"
+"David Courtaillier"
+"Usman Bandukra"
+"Ahmed Khalil Ibrahim Samir Al-Ani"
+"Jean-Marc Grandvisir"
+"Abu Zubeida"
+"Yasser al-Siri"
+"Agus Budiman"
+"Mohammed Belfas"
+"Mounir El Motassadeq "
+"Abdelghani Mzoudi"
+"Samir Kishk"
+"Fahid al Shakri"
+"Seifallah ben Hassine"
+"Ahmed Ressam"
+"Madjid Sahoune"
+"Imad Eddin Barakat Yarkas"
+"Abu Walid"
+labels embedded
+data:
+"Hani Hanjour"	"Mohamed Atta"	3
+"Hani Hanjour"	"Marwan Al-Shehhi"	3
+"Hani Hanjour"	"Ziad Jarrah"	3
+"Nawaf Alhazmi"	"Mohamed Atta"	3
+"Salem Alhazmi*"	"Marwan Al-Shehhi"	3
+"Salem Alhazmi*"	"Ziad Jarrah"	3
+"Mohamed Atta"	"Hani Hanjour"	3
+"Mohamed Atta"	"Nawaf Alhazmi"	3
+"Mohamed Atta"	"Essid Sami Ben Khemais"	1
+"Mohamed Atta"	"Agus Budiman"	1
+"Marwan Al-Shehhi"	"Hani Hanjour"	3
+"Marwan Al-Shehhi"	"Salem Alhazmi*"	3
+"Ziad Jarrah"	"Hani Hanjour"	3
+"Ziad Jarrah"	"Salem Alhazmi*"	3
+"Ramzi Bin al-Shibh"	"Agus Budiman"	1
+"Essid Sami Ben Khemais"	"Mohamed Atta"	1
+"Essid Sami Ben Khemais"	"Madjid Sahoune"	1
+"Djamal Beghal"	"Abu Zubeida"	1
+"Abu Zubeida"	"Djamal Beghal"	1
+"Agus Budiman"	"Mohamed Atta"	1
+"Agus Budiman"	"Ramzi Bin al-Shibh"	1
+"Madjid Sahoune"	"Essid Sami Ben Khemais"	1
