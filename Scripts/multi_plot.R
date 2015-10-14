@@ -3,7 +3,10 @@ multi_plot <- function(data,
                        pdf_name = NULL,
                        output_pdf = F,
                        plot_columns = 1:ncol(data),
-                       legend_location = "bottomleft"){
+                       legend_location = "bottomleft",
+                       xlabel = "Network",
+                       ylabel = "Score",
+                       category = "Measure"){
 
     UMASS_BLUE <- rgb(51,51,153,195,maxColorValue = 255)
     UMASS_RED <- rgb(153,0,51,195,maxColorValue = 255)
@@ -26,13 +29,18 @@ multi_plot <- function(data,
         pdf(file = paste("./Output/",pdf_name,".pdf",sep = ""),height=5, width=8, family="Times", pointsize=13.5)
         par(las=2,mar=c(6,5,.5,.5),cex.lab=.5,xpd=TRUE)
 
-        plot(data[,plot_columns[1]],ylim=c(min(data[,plot_columns],0),max(data[,plot_columns],1)),lwd=-1,col = "white",type="l",xaxt= "n",xlab="Network",ylab="Score", main = "",cex.axis = 0.5)
-        abline(v=1:nrow(data),lwd=0.5,col="grey80",lty=3)
+        plot(data[,plot_columns[1]],ylim=c(min(data[,plot_columns],0),max(data[,plot_columns],1)),lwd=-1,col = "white",type="l",xaxt= "n",xlab=xlabel,ylab=ylabel, main = "",cex.axis = 0.5)
+
+        for(i in 1:nrow(data)){
+            segments(x0=i,y0=min(data[,plot_columns],0),x1=i,y1=max(data[,plot_columns],1),lwd=0.5,col="grey80",lty=3)
+        }
+
+        # abline(v=1:nrow(data),ylim=c(min(data[,plot_columns],0),max(data[,plot_columns],1)),lwd=0.5,col="grey80",lty=3)
         col_names <- NULL
         col_colors <- NULL
         col_shapes <- NULL
         for(i in 1:length(plot_columns)){
-            points(data[,plot_columns[i]] ~ jitter(1:29,0.3),
+            points(data[,plot_columns[i]] ~ jitter(1:nrow(data),0.3),
                    pch=14+i,
                    col=plot_colors[i],
                    bg=plot_colors[i])
@@ -42,18 +50,22 @@ multi_plot <- function(data,
         }
         axis(1, col='black', at=1:nrow(data), labels=rownames(data),lwd= 1, cex.axis = 0.5)
 
-        legend("bottomleft",
+        legend(legend_location,
                legend=col_names,
                pch=col_shapes ,
                col = col_colors,
-               title="Measure",
+               title=category,
                cex = 0.5)
         dev.off()
     }else{
         par(las=2,mar=c(6,5,.5,.5),cex.lab=.5,xpd=TRUE)
 
-        plot(data[,plot_columns[1]],ylim=c(min(data,0),max(data,1)),lwd=0,type="l",xaxt= "n",xlab="Network",ylab="Score", main = "",cex.axis = 0.5)
-        abline(v=1:nrow(data),lwd=0.5,col="grey80",lty=3)
+        plot(data[,plot_columns[1]],ylim=c(min(data[,plot_columns],0),max(data[,plot_columns],1)),lwd=0,type="l",xaxt= "n",xlab=xlabel,ylab=ylabel, main = "",cex.axis = 0.5)
+        for(i in 1:nrow(data)){
+            segments(x0=i,y0=min(data[,plot_columns],0),x1=i,y1=max(data[,plot_columns],1),lwd=0.5,col="grey80",lty=3)
+        }
+
+        # abline(v=1:nrow(data),ylim=c(min(data[,plot_columns],0),max(data[,plot_columns],1)),lwd=0.5,col="grey80",lty=3)
         col_names <- NULL
         col_colors <- NULL
         col_shapes <- NULL
@@ -69,8 +81,7 @@ multi_plot <- function(data,
                legend=col_names,
                pch=col_shapes ,
                col = col_colors,
-               title="Measure",
+               title=category,
                cex = 0.5)
-        dev.off()
     }
 }

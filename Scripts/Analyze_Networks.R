@@ -37,7 +37,7 @@ save(global_measures, file = "./Data/global_hierarchy_measures.Rdata")
 
 multi_plot(data = global_measures,
            pdf_name = "Global_Measures",
-           output_pdf = T,
+           output_pdf = F,
            2:4)
 
 
