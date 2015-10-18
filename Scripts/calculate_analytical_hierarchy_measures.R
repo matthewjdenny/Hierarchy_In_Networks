@@ -28,3 +28,113 @@ calculate_analytical_hierarhy_measures <- function(sociomatrix,
     return_list <- list(global = global, local = local)
     return(return_list)
 }
+
+#######################################################################################
+#Landau's h-outputs global stat only works for directed graphs
+
+landau <- function(matrix,directed=TRUE){
+  
+  if(directed==FALSE){
+    print("error: this measure may only be used with directed networks")
+    break;
+  }
+  
+  N=dim(matrix)[1]
+  S=apply(matrix,1,sum)
+  sum(S-((N-1)/2))
+  h=12/(N^3-N) * sum(S-((N-1)/2))
+  results=list(global=h,local=rep(NA,N))
+  return(results)
+}
+
+#######################################################################################
+#Kendall's K-outputs global stat only works for directed graphs
+ 
+kendall <- function(matrix,directed=TRUE){
+  
+  if(directed==FALSE){
+    print("error: this measure may only be used with directed networks")
+    break;
+  }
+  
+  N=dim(matrix)[1]
+  S=apply(matrix,1,sum)
+  d=(N*(N-1)*(2*N-1))/12-(0.5*sum(S^2))
+  
+  if((N%%2)==0){
+    #even
+    d_max=(1/24)*(N^3-4*N)
+  } else{ 
+    #odd
+    d_max=(1/24)*(N^3-N) 
+      }
+  
+  K=1-(d/d_max)
+  results=list(global=K,local=rep(NA,N))
+  return(results)
+}
+
+#######################################################################################
+#m reach degree-requires the keyplayer package in R; outputs local stats
+
+m_degree <- function(matrix,directed=TRUE){
+  require("keyplayer")
+  l=mreach.degree(matrix,cmode="outdegree")
+  results=list(global=NA,local=l)
+  return(results)
+}
+#######################################################################################
+#m reach closeness-requires the keyplayer package in R; outputs local stats
+
+m_close <- function(matrix,directed=TRUE){
+  require("keyplayer")
+  l=mreach.closeness(matrix,cmode="outdegree")
+  results=list(global=NA,local=l)
+  return(results)
+}
+#######################################################################################
+#GRC-requires the keyplayer package in R; outputs global and local stats
+
+GRC <- function(matrix,directed=TRUE){
+  require("keyplayer")
+  N=dim(matrix)[1]
+  
+  if(directed==TRUE){
+    C=mreach.degree(matrix,cmode="outdegree")
+  }
+  
+  if(directed==FALSE){
+    C=mreach.degree(matrix,cmode="all")[,3]
+  }
+  
+  C_max=max(C)
+  GRC=(sum(C_max-C))/(N-1)
+  results=list(global=GRC,local=C)
+  return(results)
+}
+
+#######################################################################################
+#Rooted Depth-requires the igraph package in R; outputs global and local stats
+
+D_root <- function(matrix,directed=TRUE){
+  require(igraph)
+  
+  if(directed==FALSE){
+    print("error: this measure may only be used with directed networks")
+    break;
+  }
+  
+  roots=which(apply(matrix,1,sum)==0)
+  if(length(roots)==0){
+    print("error:There are no roots in your network")
+    break;
+  }
+  
+  N=dim(matrix)[1]
+  graph=graph_from_adjacency_matrix(matrix,mode="directed") 
+  paths=as.matrix(shortest.paths(graph,v=roots))
+  l=apply(paths,2,mean)
+  D_root=mean(as.vector(paths))
+  results=list(global=D_root,local=l)
+  return(results)
+}
