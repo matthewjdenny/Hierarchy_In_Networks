@@ -303,6 +303,19 @@ Given a graph $G=(V,E)$, it is comprised of a set of vertexes $V=\{v_i\}={v_1,..
 	\item Nodal Degree
 	
 	\item Closeness Centrality 
+	
+	$$
+	C_{R}^{''}(i)=\frac{1}{N-1}\sum_{j:0<d(i,j)<\infty}{\frac{1}{d(i,j)}}
+	$$
+	
+	\item Control Centrality in a weighted and directed graph, defined by \cite{Liu12}, identifies the minimum number of nodes need to drive an entire network to a given final state. Consider a directed, weighted network:
+	$$
+	\bm{x}(t) = \bm{Ax}(t) + \bm{Bu}(t)
+	$$
+	which is the state of each node at time t, and also denoted as \begin{math}(\bm{A},\bm{B})\end{math}. The components of this controllability matrix are: $\bm{A}\in \mathbb{R}^{N\times N}$, where each element gives the strength that node $j$ can affect node $i$; and $\bm{B}\in\mathbb{R}^{N\times M}$, where each element is the strength between the input signal $u_{j}(t)$ and node $i$, and M contains independent signals imposed by an outside controller. Defining $\bm{C} = (\bm{A}$,$\bm{B})$, the control centr...(line truncated)...
+	$$
+	C_{c}(i) \equiv rank_{g}(\bm{C}^{i})
+	$$
 \section{Data}
 
 \begin{flushleft}
@@ -316,21 +329,23 @@ Given a graph $G=(V,E)$, it is comprised of a set of vertexes $V=\{v_i\}={v_1,..
 
 \begin{enumerate}
 
-    \item Adolescent Health: survey asked students to list 5 male and female friends. \cite{AdHealth}
-    
-    \item Residence Hall: friendships between 217 students in Australian National University. \cite{Res}
-    
-    \item Taro Exchange: gift--giving relationships between households in a Papaun village. \cite{Taro}
-
-    \item Highschool: friendship relationship between boys at a small Indiana high school in 1957-1958. \cite{HS}
-    
-    \item Dutch College: friendships between 32 university freshmen. \cite{Dutch}
-    
-    \item Monks: preference ratings between monks in a cloister during a crisis. \cite{monks}
-    
-    \item Physicians: innovation spread between 246 physicians in Illinois. \cite{docs}
-    
-    \item Seventh graders: activity specific proximity rankings for 29 middle school students in Victoria \cite{sevies}.
+    \begin{enumerate}
+    	
+    	\item Adolescent Health: survey asked students to list 5 male and female friends. \cite{AdHealth}
+    	
+    	\item Residence Hall: friendships between 217 students in Australian National University. \cite{Res}
+    	
+    	\item Taro Exchange: gift--giving relationships between households in a Papaun village. \cite{Taro}
+    	
+    	\item Highschool: friendship relationship between boys at a small Indiana high school in 1957-1958. \cite{HS}
+    	
+    	\item Dutch College: friendships between 32 university freshmen. \cite{Dutch}
+    	
+    	\item Monks: preference ratings between monks in a cloister during a crisis. \cite{monks}
+    	
+    	\item Physicians: innovation spread between 246 physicians in Illinois. \cite{docs}
+    	
+    	\item Seventh graders: activity specific proximity rankings for 29 middle school students in Victoria \cite{sevies}.
     
     \item Prosper loans: loans between users of prosper.com \cite{prosper}.
     
