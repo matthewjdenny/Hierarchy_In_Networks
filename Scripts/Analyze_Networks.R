@@ -49,6 +49,17 @@ multi_plot(data = measure_scores,
            pdf_name = "Measure_Scores",
            output_pdf = F)
 
+# calculate some descriptive statistics
+desc_stats <- matrix(0,nrow = length(Network_Data), ncol = 2)
+for(i in 1:length(Network_Data)){
+    desc_stats[i,1] <- sum(Network_Data[[i]]$sociomatrix)
+    desc_stats[i,2] <- nrow(Network_Data[[i]]$sociomatrix)
+}
+mean(desc_stats[1:17,1])
+mean(desc_stats[1:17,2])
+mean(desc_stats[18:35,1])
+mean(desc_stats[18:35,2])
+
 
 
 
