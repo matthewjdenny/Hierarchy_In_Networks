@@ -4,6 +4,7 @@ calculate_analytical_hierarhy_measures <- function(sociomatrix,
                                                    mode = "directed"){
     #statistics using igraph
     require(igraph)
+    adjacency <- sociomatrix
     sociomatrix <- graph.adjacency(sociomatrix, mode = mode)
 
     isDirected <- FALSE
@@ -18,10 +19,10 @@ calculate_analytical_hierarhy_measures <- function(sociomatrix,
     global$betweenness_centralization <-  centralization.betweenness (sociomatrix, directed = isDirected)$centralization
     global$eigenvector_centralization <- centralization.evcent (sociomatrix, directed = isDirected)$centralization
     if(isDirected){
-        global$landau <- landau(sociomatrix)$global
-        global$kendal <- kendal(sociomatrix)$global
-        global$GRC <- GRC(sociomatrix)$global
-        global$D_root <- D_root(sociomatrix)$global
+        global$landau <- landau(adjacency)$global
+        global$kendall <- kendall(adjacency)$global
+        global$GRC <- GRC(adjacency)$global
+        global$D_root <- D_root(adjacency)$global
     }
 
     #calculate local scores
@@ -36,14 +37,18 @@ calculate_analytical_hierarhy_measures <- function(sociomatrix,
     local$eigenvector_centrality$rank <- order(local$eigenvector_centrality$score, decreasing = T)
 
     if(isDirected){
-        local$m_degree$score <- m_degree(sociomatrix)$local
+        local$m_degree$score <- m_degree(adjacency)$local
         local$m_degree$rank <- order(local$m_degree$score, decreasing = T)
-        local$m_close$score <- m_close(sociomatrix)$local
+        local$m_close$score <- m_close(adjacency)$local
         local$m_close$rank <- order(local$m_close$score, decreasing = T)
-        local$GRC$score <- GRC(sociomatrix)$local
+        local$GRC$score <- GRC(adjacency)$local
         local$GRC$rank <- order(local$GRC$score, decreasing = T)
-        local$D_root$score <- D_root(sociomatrix)$local
-        local$D_root$rank <- order(local$D_root$score, decreasing = T)
+        local$D_root$score <- D_root(adjacency)$local
+        if(!is.na(local$D_root$score[1])){
+            local$D_root$rank <- order(local$D_root$score, decreasing = T)
+        }else{
+            local$D_root$rank <- NA
+        }
     }
 
 
@@ -56,13 +61,12 @@ calculate_analytical_hierarhy_measures <- function(sociomatrix,
 #Landau's h-outputs global stat only works for directed graphs
 
 landau <- function(matrix,directed=TRUE){
-
   if(directed==FALSE){
     print("error: this measure may only be used with directed networks")
     break;
   }
 
-  N=dim(matrix)[1]
+  N=nrow(matrix)
   S=apply(matrix,1,sum)
   sum(S-((N-1)/2))
   h=12/(N^3-N) * sum(S-((N-1)/2))
@@ -80,7 +84,7 @@ kendall <- function(matrix,directed=TRUE){
     break;
   }
 
-  N=dim(matrix)[1]
+  N=nrow(matrix)
   S=apply(matrix,1,sum)
   d=(N*(N-1)*(2*N-1))/12-(0.5*sum(S^2))
 
@@ -149,15 +153,16 @@ D_root <- function(matrix,directed=TRUE){
 
   roots=which(apply(matrix,1,sum)==0)
   if(length(roots)==0){
-    print("error:There are no roots in your network")
-    break;
+    print("There are no roots in your network. Cannot calculate measure.")
+    results=list(global=NA,local=NA)
+    return(results)
+  }else{
+      N=dim(matrix)[1]
+      graph=graph_from_adjacency_matrix(matrix,mode="directed")
+      paths=as.matrix(shortest.paths(graph,v=roots))
+      l=apply(paths,2,mean)
+      D_root=mean(as.vector(paths))
+      results=list(global=D_root,local=l)
+      return(results)
   }
-
-  N=dim(matrix)[1]
-  graph=graph_from_adjacency_matrix(matrix,mode="directed")
-  paths=as.matrix(shortest.paths(graph,v=roots))
-  l=apply(paths,2,mean)
-  D_root=mean(as.vector(paths))
-  results=list(global=D_root,local=l)
-  return(results)
 }
