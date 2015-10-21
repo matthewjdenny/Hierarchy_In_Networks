@@ -161,8 +161,12 @@ D_root <- function(matrix,directed=TRUE){
       graph=graph_from_adjacency_matrix(matrix,mode="directed")
       paths=as.matrix(shortest.paths(graph,v=roots))
       l=apply(paths,2,mean)
-      D_root=mean(as.vector(paths))
-      results=list(global=D_root,local=l)
+      global_val =mean(as.vector(paths))
+      if(is.finite(global_val)){
+          results=list(global=global_val,local=l)
+      }else{
+          results=list(global=NA,local=l)
+      }
       return(results)
   }
 }
