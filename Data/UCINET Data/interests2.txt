@@ -1,0 +1,51 @@
+dl nr 51 nc 25 format = nodelist2										
+row labels embedded										
+col labels embedded										
+data:										
+Allata		organizational	student	communities						
+Baer		organizational	faculty	hi-bio-tech	strategy					
+Baker		organizational	faculty	entrepreneurship						
+Bercuwitz										
+Branzei		organizational	faculty	entrepreneurship	environment	international	cognitive	governance	strategy	
+Brooks	individual		faculty	friendship	formal-informal					
+Brower										
+Bruton	individual		faculty	entrepreneurship	funding	friendship				
+Bunderson	individual		faculty	culture	errors	friendship				
+Choi		organizational	faculty	government						
+Day	individual	organizational	faculty	teams	learning	social-capital	Action-Learning			
+Edelman	individual	organizational	faculty	teams	learning	hi-bio-tech				
+Edwards			corporate							
+Faraj		organizational	faculty	social-capital						
+Flores	individual		faculty	international						
+Foster										
+Hite		organizational	faculty	strategy	entrepreneurship	funding	education			
+Human	individual	organizational		new-ventures	entrepreneurship					
+Kelly										
+Lemieux-Charles		organizational	faculty	service-delivery						
+LiH	individual		faculty	entrepreneurship	Asia	competencies	international			
+LiS		organizational	student	social-capital						
+Martin		organizational	faculty	competencies						
+Mattingly			student							
+Mecham										
+Mitiku										
+Nathan		organizational	faculty							
+Nolan			student							
+O'Connor	individual	organizational	corporate	teams	Action-Learning	leadership				
+Parthiban	individual		faculty	Asia	international	governance				
+Poppo	individual	organizational	faculty	culture	leadership					
+Rajan		organizational	faculty	learning						
+Rindova										
+Rogan	individual	organizational	faculty	MA						
+Rubinstein										
+Schibler		organizational	student	culture	leadership					
+Shanshan										
+Standish-Kuon	individual		faculty	teams	innovation	entrepreneurship				
+Taylor										
+Thompson										
+Van-Valey		organizational	faculty	academic						
+West	individual	organizational	faculty	entrepreneurship	TMT					
+Williams										
+Woodlief	individual		corporate	academic	careers	social-capital				
+Yeung	individual	organizational	faculty	TMT	strategy					
+Zell		organizational	faculty	academic	innovation	change				
+Zyglidopoulos										

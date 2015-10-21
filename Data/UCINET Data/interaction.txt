@@ -1,0 +1,319 @@
+dl n 74 format = el1
+matrix label:
+interaction
+comment = "netnum 1=trusted prior; 2=various interaction; 3=planned meetings"
+labels:
+"Hani Hanjour"
+"Majed Moqed"
+"Nawaf Alhazmi"
+"Salem Alhazmi*"
+"Khalid Al-Mihdhar"
+"Mohamed Atta"
+"Waleed Alshehri"
+"Wail Alshehri"
+"Satam Suqami"
+"Abdul Aziz Al-Omari*"
+"Marwan Al-Shehhi"
+"Fayez Ahmed"
+"Ahmed Alghamdi"
+"Hamza Alghamdi"
+"Mohand Alshehri*"
+"Ziad Jarrah"
+"Ahmed Alnami"
+"Ahmed Al Haznawi"
+"Saeed Alghamdi*"
+"Abdussattar Shaikh"
+"Zacarias Moussaoui"
+"Mustafa Ahmed al-Hisawi"
+"Nabil al-Marabh"
+"Lotfi Raissi"
+"Said Bahaji"
+"Raed Hijazi"
+"Mamoun Darkazanli"
+"Mohamed Abdi"
+"Ramzi Bin al-Shibh"
+"Kamel Daoudi"
+"Mamduh Mahmud Salim"
+"Mohammed Jaweed Azmath"
+"Ayub Ali Khan"
+"Faisal Al Salmi"
+"Bandar Alhazmi"
+"Rayed Mohammed Abdullah"
+"Youssef Hmimssa"
+"Nabil Almarabh"
+"Raed Hijazi"
+"Zakariya Essabar"
+"Essid Sami Ben Khemais"
+"Osama Awadallah"
+"Karim Koubriti"
+"Ahmen Hannan"
+"Farouk Ali-Hamoud"
+"Haydar Abu Doha"
+"Mohamed Bensakhria"
+"Tarek Maaroufi"
+"Lased Ben Heni"
+"Mehdi Khammoun"
+"Essoussi Laaroussi"
+"Nizar Trabelsi"
+"Djamal Beghal"
+"Mohammad Pervez"
+"Adel F. Badri"
+"Abu Qatada"
+"Jerome Courtaillier"
+"David Courtaillier"
+"Usman Bandukra"
+"Ahmed Khalil Ibrahim Samir Al-Ani"
+"Jean-Marc Grandvisir"
+"Abu Zubeida"
+"Yasser al-Siri"
+"Agus Budiman"
+"Mohammed Belfas"
+"Mounir El Motassadeq "
+"Abdelghani Mzoudi"
+"Samir Kishk"
+"Fahid al Shakri"
+"Seifallah ben Hassine"
+"Ahmed Ressam"
+"Madjid Sahoune"
+"Imad Eddin Barakat Yarkas"
+"Abu Walid"
+labels embedded
+data:
+"Hani Hanjour"	"Majed Moqed"	1
+"Hani Hanjour"	"Nawaf Alhazmi"	1
+"Hani Hanjour"	"Salem Alhazmi*"	1
+"Hani Hanjour"	"Khalid Al-Mihdhar"	1
+"Hani Hanjour"	"Mohamed Atta"	3
+"Hani Hanjour"	"Abdul Aziz Al-Omari*"	1
+"Hani Hanjour"	"Ahmed Alghamdi"	1
+"Hani Hanjour"	"Faisal Al Salmi"	1
+"Hani Hanjour"	"Bandar Alhazmi"	1
+"Hani Hanjour"	"Rayed Mohammed Abdullah"	1
+"Majed Moqed"	"Hani Hanjour"	1
+"Majed Moqed"	"Nawaf Alhazmi"	1
+"Majed Moqed"	"Salem Alhazmi*"	1
+"Majed Moqed"	"Khalid Al-Mihdhar"	1
+"Nawaf Alhazmi"	"Hani Hanjour"	1
+"Nawaf Alhazmi"	"Majed Moqed"	1
+"Nawaf Alhazmi"	"Salem Alhazmi*"	1
+"Nawaf Alhazmi"	"Khalid Al-Mihdhar"	1
+"Nawaf Alhazmi"	"Mohamed Abdi"	3
+"Salem Alhazmi*"	"Hani Hanjour"	1
+"Salem Alhazmi*"	"Majed Moqed"	1
+"Salem Alhazmi*"	"Nawaf Alhazmi"	1
+"Salem Alhazmi*"	"Khalid Al-Mihdhar"	1
+"Salem Alhazmi*"	"Abdul Aziz Al-Omari*"	1
+"Salem Alhazmi*"	"Ahmed Alghamdi"	1
+"Khalid Al-Mihdhar"	"Hani Hanjour"	1
+"Khalid Al-Mihdhar"	"Majed Moqed"	1
+"Khalid Al-Mihdhar"	"Nawaf Alhazmi"	1
+"Khalid Al-Mihdhar"	"Salem Alhazmi*"	1
+"Mohamed Atta"	"Hani Hanjour"	3
+"Mohamed Atta"	"Wail Alshehri"	1
+"Mohamed Atta"	"Satam Suqami"	1
+"Mohamed Atta"	"Abdul Aziz Al-Omari*"	1
+"Mohamed Atta"	"Marwan Al-Shehhi"	1
+"Mohamed Atta"	"Fayez Ahmed"	1
+"Mohamed Atta"	"Ziad Jarrah"	1
+"Mohamed Atta"	"Ahmed Al Haznawi"	1
+"Mohamed Atta"	"Zacarias Moussaoui"	1
+"Mohamed Atta"	"Mustafa Ahmed al-Hisawi"	1
+"Mohamed Atta"	"Mamoun Darkazanli"	3
+"Mohamed Atta"	"Essid Sami Ben Khemais"	1
+"Mohamed Atta"	"Ahmed Khalil Ibrahim Samir Al-Ani"	1
+"Mohamed Atta"	"Agus Budiman"	3
+"Mohamed Atta"	"Mounir El Motassadeq "	3
+"Mohamed Atta"	"Abdelghani Mzoudi"	1
+"Mohamed Atta"	"Imad Eddin Barakat Yarkas"	1
+"Waleed Alshehri"	"Wail Alshehri"	1
+"Waleed Alshehri"	"Satam Suqami"	1
+"Waleed Alshehri"	"Abdul Aziz Al-Omari*"	1
+"Waleed Alshehri"	"Marwan Al-Shehhi"	1
+"Waleed Alshehri"	"Fayez Ahmed"	1
+"Waleed Alshehri"	"Mustafa Ahmed al-Hisawi"	1
+"Wail Alshehri"	"Mohamed Atta"	1
+"Wail Alshehri"	"Waleed Alshehri"	1
+"Wail Alshehri"	"Satam Suqami"	1
+"Wail Alshehri"	"Abdul Aziz Al-Omari*"	1
+"Wail Alshehri"	"Marwan Al-Shehhi"	1
+"Wail Alshehri"	"Fayez Ahmed"	1
+"Satam Suqami"	"Mohamed Atta"	1
+"Satam Suqami"	"Waleed Alshehri"	1
+"Satam Suqami"	"Wail Alshehri"	1
+"Satam Suqami"	"Abdul Aziz Al-Omari*"	1
+"Satam Suqami"	"Marwan Al-Shehhi"	1
+"Satam Suqami"	"Fayez Ahmed"	1
+"Satam Suqami"	"Nabil al-Marabh"	3
+"Satam Suqami"	"Raed Hijazi"	3
+"Abdul Aziz Al-Omari*"	"Hani Hanjour"	1
+"Abdul Aziz Al-Omari*"	"Salem Alhazmi*"	1
+"Abdul Aziz Al-Omari*"	"Mohamed Atta"	1
+"Abdul Aziz Al-Omari*"	"Waleed Alshehri"	1
+"Abdul Aziz Al-Omari*"	"Wail Alshehri"	1
+"Abdul Aziz Al-Omari*"	"Satam Suqami"	1
+"Abdul Aziz Al-Omari*"	"Marwan Al-Shehhi"	1
+"Abdul Aziz Al-Omari*"	"Fayez Ahmed"	1
+"Abdul Aziz Al-Omari*"	"Ahmed Alghamdi"	1
+"Marwan Al-Shehhi"	"Mohamed Atta"	1
+"Marwan Al-Shehhi"	"Waleed Alshehri"	1
+"Marwan Al-Shehhi"	"Wail Alshehri"	1
+"Marwan Al-Shehhi"	"Satam Suqami"	1
+"Marwan Al-Shehhi"	"Abdul Aziz Al-Omari*"	1
+"Marwan Al-Shehhi"	"Fayez Ahmed"	1
+"Marwan Al-Shehhi"	"Hamza Alghamdi"	1
+"Marwan Al-Shehhi"	"Ziad Jarrah"	1
+"Marwan Al-Shehhi"	"Mustafa Ahmed al-Hisawi"	1
+"Marwan Al-Shehhi"	"Mamoun Darkazanli"	3
+"Marwan Al-Shehhi"	"Agus Budiman"	1
+"Marwan Al-Shehhi"	"Mounir El Motassadeq "	3
+"Fayez Ahmed"	"Mohamed Atta"	1
+"Fayez Ahmed"	"Waleed Alshehri"	1
+"Fayez Ahmed"	"Wail Alshehri"	1
+"Fayez Ahmed"	"Satam Suqami"	1
+"Fayez Ahmed"	"Abdul Aziz Al-Omari*"	1
+"Fayez Ahmed"	"Marwan Al-Shehhi"	1
+"Fayez Ahmed"	"Mohand Alshehri*"	1
+"Fayez Ahmed"	"Mustafa Ahmed al-Hisawi"	3
+"Ahmed Alghamdi"	"Hani Hanjour"	1
+"Ahmed Alghamdi"	"Salem Alhazmi*"	1
+"Ahmed Alghamdi"	"Abdul Aziz Al-Omari*"	1
+"Ahmed Alghamdi"	"Hamza Alghamdi"	1
+"Ahmed Alghamdi"	"Nabil al-Marabh"	3
+"Hamza Alghamdi"	"Marwan Al-Shehhi"	1
+"Hamza Alghamdi"	"Ahmed Alghamdi"	1
+"Mohand Alshehri*"	"Fayez Ahmed"	1
+"Ziad Jarrah"	"Mohamed Atta"	1
+"Ziad Jarrah"	"Marwan Al-Shehhi"	1
+"Ziad Jarrah"	"Ahmed Al Haznawi"	1
+"Ziad Jarrah"	"Agus Budiman"	1
+"Ahmed Al Haznawi"	"Mohamed Atta"	1
+"Ahmed Al Haznawi"	"Ziad Jarrah"	1
+"Saeed Alghamdi*"	"Nabil al-Marabh"	3
+"Saeed Alghamdi*"	"Raed Hijazi"	3
+"Zacarias Moussaoui"	"Mohamed Atta"	1
+"Zacarias Moussaoui"	"Ramzi Bin al-Shibh"	3
+"Zacarias Moussaoui"	"Kamel Daoudi"	1
+"Zacarias Moussaoui"	"Djamal Beghal"	1
+"Zacarias Moussaoui"	"Abu Qatada"	3
+"Mustafa Ahmed al-Hisawi"	"Mohamed Atta"	1
+"Mustafa Ahmed al-Hisawi"	"Waleed Alshehri"	1
+"Mustafa Ahmed al-Hisawi"	"Marwan Al-Shehhi"	1
+"Mustafa Ahmed al-Hisawi"	"Fayez Ahmed"	3
+"Nabil al-Marabh"	"Satam Suqami"	3
+"Nabil al-Marabh"	"Ahmed Alghamdi"	3
+"Nabil al-Marabh"	"Saeed Alghamdi*"	3
+"Nabil al-Marabh"	"Raed Hijazi"	3
+"Said Bahaji"	"Mamoun Darkazanli"	5
+"Said Bahaji"	"Ramzi Bin al-Shibh"	3
+"Said Bahaji"	"Mounir El Motassadeq "	1
+"Raed Hijazi"	"Satam Suqami"	3
+"Raed Hijazi"	"Saeed Alghamdi*"	3
+"Raed Hijazi"	"Nabil al-Marabh"	3
+"Mamoun Darkazanli"	"Mohamed Atta"	3
+"Mamoun Darkazanli"	"Marwan Al-Shehhi"	3
+"Mamoun Darkazanli"	"Said Bahaji"	5
+"Mamoun Darkazanli"	"Mamduh Mahmud Salim"	3
+"Mohamed Abdi"	"Nawaf Alhazmi"	3
+"Ramzi Bin al-Shibh"	"Zacarias Moussaoui"	3
+"Ramzi Bin al-Shibh"	"Said Bahaji"	3
+"Ramzi Bin al-Shibh"	"Mohammed Belfas"	1
+"Ramzi Bin al-Shibh"	"Mounir El Motassadeq "	3
+"Ramzi Bin al-Shibh"	"Imad Eddin Barakat Yarkas"	1
+"Kamel Daoudi"	"Zacarias Moussaoui"	1
+"Kamel Daoudi"	"Djamal Beghal"	5
+"Kamel Daoudi"	"Jerome Courtaillier"	1
+"Kamel Daoudi"	"Abu Walid"	1
+"Mamduh Mahmud Salim"	"Mamoun Darkazanli"	3
+"Mohammed Jaweed Azmath"	"Ayub Ali Khan"	3
+"Mohammed Jaweed Azmath"	"Usman Bandukra"	3
+"Ayub Ali Khan"	"Mohammed Jaweed Azmath"	3
+"Ayub Ali Khan"	"Usman Bandukra"	3
+"Faisal Al Salmi"	"Hani Hanjour"	1
+"Faisal Al Salmi"	"Rayed Mohammed Abdullah"	1
+"Bandar Alhazmi"	"Hani Hanjour"	1
+"Bandar Alhazmi"	"Rayed Mohammed Abdullah"	1
+"Rayed Mohammed Abdullah"	"Hani Hanjour"	1
+"Rayed Mohammed Abdullah"	"Faisal Al Salmi"	1
+"Rayed Mohammed Abdullah"	"Bandar Alhazmi"	1
+"Nabil Almarabh"	"Raed Hijazi"	1
+"Raed Hijazi"	"Nabil Almarabh"	1
+"Essid Sami Ben Khemais"	"Mohamed Atta"	1
+"Essid Sami Ben Khemais"	"Haydar Abu Doha"	1
+"Essid Sami Ben Khemais"	"Mohamed Bensakhria"	1
+"Essid Sami Ben Khemais"	"Tarek Maaroufi"	5
+"Essid Sami Ben Khemais"	"Lased Ben Heni"	1
+"Essid Sami Ben Khemais"	"Mehdi Khammoun"	5
+"Essid Sami Ben Khemais"	"Essoussi Laaroussi"	3
+"Essid Sami Ben Khemais"	"Samir Kishk"	3
+"Essid Sami Ben Khemais"	"Fahid al Shakri"	3
+"Essid Sami Ben Khemais"	"Seifallah ben Hassine"	3
+"Karim Koubriti"	"Ahmen Hannan"	3
+"Ahmen Hannan"	"Karim Koubriti"	3
+"Haydar Abu Doha"	"Essid Sami Ben Khemais"	1
+"Haydar Abu Doha"	"Mehdi Khammoun"	1
+"Haydar Abu Doha"	"Ahmed Ressam"	1
+"Mohamed Bensakhria"	"Essid Sami Ben Khemais"	1
+"Mohamed Bensakhria"	"Tarek Maaroufi"	1
+"Mohamed Bensakhria"	"Lased Ben Heni"	1
+"Mohamed Bensakhria"	"Mehdi Khammoun"	1
+"Tarek Maaroufi"	"Essid Sami Ben Khemais"	5
+"Tarek Maaroufi"	"Mohamed Bensakhria"	1
+"Tarek Maaroufi"	"Essoussi Laaroussi"	3
+"Tarek Maaroufi"	"Abu Qatada"	3
+"Tarek Maaroufi"	"Seifallah ben Hassine"	5
+"Tarek Maaroufi"	"Imad Eddin Barakat Yarkas"	3
+"Lased Ben Heni"	"Essid Sami Ben Khemais"	1
+"Lased Ben Heni"	"Mohamed Bensakhria"	1
+"Mehdi Khammoun"	"Essid Sami Ben Khemais"	5
+"Mehdi Khammoun"	"Haydar Abu Doha"	1
+"Mehdi Khammoun"	"Mohamed Bensakhria"	1
+"Essoussi Laaroussi"	"Essid Sami Ben Khemais"	3
+"Essoussi Laaroussi"	"Tarek Maaroufi"	3
+"Nizar Trabelsi"	"Djamal Beghal"	5
+"Djamal Beghal"	"Zacarias Moussaoui"	1
+"Djamal Beghal"	"Kamel Daoudi"	5
+"Djamal Beghal"	"Nizar Trabelsi"	5
+"Djamal Beghal"	"Abu Qatada"	3
+"Djamal Beghal"	"Jerome Courtaillier"	1
+"Djamal Beghal"	"Jean-Marc Grandvisir"	3
+"Djamal Beghal"	"Abu Zubeida"	1
+"Djamal Beghal"	"Abu Walid"	1
+"Mohammad Pervez"	"Usman Bandukra"	5
+"Mohammad Pervez"	"Usman Bandukra"	3
+"Abu Qatada"	"Zacarias Moussaoui"	3
+"Abu Qatada"	"Tarek Maaroufi"	3
+"Abu Qatada"	"Djamal Beghal"	3
+"Abu Qatada"	"Imad Eddin Barakat Yarkas"	3
+"Abu Qatada"	"Abu Walid"	5
+"Jerome Courtaillier"	"Kamel Daoudi"	1
+"Jerome Courtaillier"	"Djamal Beghal"	1
+"Usman Bandukra"	"Mohammed Jaweed Azmath"	3
+"Usman Bandukra"	"Ayub Ali Khan"	3
+"Usman Bandukra"	"Mohammad Pervez"	5
+"Usman Bandukra"	"Mohammad Pervez"	3
+"Ahmed Khalil Ibrahim Samir Al-Ani"	"Mohamed Atta"	1
+"Jean-Marc Grandvisir"	"Djamal Beghal"	3
+"Abu Zubeida"	"Djamal Beghal"	1
+"Agus Budiman"	"Mohamed Atta"	3
+"Agus Budiman"	"Marwan Al-Shehhi"	1
+"Agus Budiman"	"Ziad Jarrah"	1
+"Agus Budiman"	"Mohammed Belfas"	3
+"Mohammed Belfas"	"Ramzi Bin al-Shibh"	1
+"Mohammed Belfas"	"Agus Budiman"	3
+"Mounir El Motassadeq "	"Mohamed Atta"	3
+"Mounir El Motassadeq "	"Marwan Al-Shehhi"	3
+"Mounir El Motassadeq "	"Said Bahaji"	1
+"Mounir El Motassadeq "	"Ramzi Bin al-Shibh"	3
+"Abdelghani Mzoudi"	"Mohamed Atta"	1
+"Samir Kishk"	"Essid Sami Ben Khemais"	3
+"Fahid al Shakri"	"Essid Sami Ben Khemais"	3
+"Seifallah ben Hassine"	"Essid Sami Ben Khemais"	3
+"Seifallah ben Hassine"	"Tarek Maaroufi"	5
+"Ahmed Ressam"	"Haydar Abu Doha"	1
+"Imad Eddin Barakat Yarkas"	"Mohamed Atta"	1
+"Imad Eddin Barakat Yarkas"	"Ramzi Bin al-Shibh"	1
+"Imad Eddin Barakat Yarkas"	"Tarek Maaroufi"	3
+"Imad Eddin Barakat Yarkas"	"Abu Qatada"	3
+"Abu Walid"	"Kamel Daoudi"	1
+"Abu Walid"	"Djamal Beghal"	1
+"Abu Walid"	"Abu Qatada"	5
