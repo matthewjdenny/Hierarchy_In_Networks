@@ -8,6 +8,7 @@ load("./Data/Network_Data.Rdata")
 load("./Data/Influence_Network_Data_97_108.Rdata")
 load("./Data/Manager_Email_Networks.Rdata")
 
+#creating list with only sociomatricies
 d1=length(Network_Data);d2=length(Influence_Network_Data_97_108);d3=length(Manager_Email_Networks)
 D=d1+d2+d3
 
@@ -17,6 +18,7 @@ for(i in 1:d1){socio_all[[i]]=Network_Data[[i]]$sociomatrix}
 for(i in (d1+1):(d1+d2)){socio_all[[i]]=Influence_Network_Data_97_108[[i-d1]]$network}
 for(i in (d1+d2+1):D){socio_all[[i]]=Manager_Email_Networks[[i-(d1+d2)]]$sociomatrix}
 
+#Calculating global measures for all data
 save_G=matrix(nrow=D,ncol=10)
 save_LR=list()
 save_L=list()
@@ -35,14 +37,16 @@ colnames(save_G)=c("landau","kendall","m_degree","m_close","GRC","D_root","degre
                    "closeness","betweenness","eigenvector")
 pairs(save_G[,-c(3,4,6)])
 
+
+#Calculating both ranls and actual scores for the all local measures
 for (i in 1:D){
   s=matrix(nrow=dim(socio_all[[i]])[1],ncol=10)
-  s[,1]=landau(socio_all[[i]])$local
-  s[,2]=kendall(socio_all[[i]])$local
+  s[,1]=rep(-1,dim(socio_all[[i]])[1])
+  s[,2]=rep(-1,dim(socio_all[[i]])[1])
   s[,3]=rank(as.numeric(m_degree(socio_all[[i]])$local))
   s[,4]=rank(as.numeric(m_close(socio_all[[i]])$local))
   s[,5]=rank(as.numeric(GRC(socio_all[[i]])$local))
-  s[,6]=rank(as.numeric(D_root(socio_all[[i]])$local))
+  s[,6]=rep(-1,dim(socio_all[[i]])[1])
   s[,7]=as.numeric(calculate_analytical_hierarhy_measures(
       socio_all[[i]])$local$degree_centrality$rank)
   s[,8]=as.numeric(calculate_analytical_hierarhy_measures(
@@ -53,6 +57,17 @@ for (i in 1:D){
       socio_all[[i]])$local$eigenvector_centrality$rank)
   save_LR[[i]]=s
 }
+
+count=rep(0,29)
+for(i in 1:29){
+    leader=which(Network_Data[[i]]$leader==1)
+    for (j in 1:10){
+        if (which(save_LR[[i]][,j]==1)==integer(0)) log=leader+1
+        if(which(save_LR[[i]][,j]!=integer(0))  log=which(save_LR[[i]][,j]
+        if (leader==log) count[1]=count[1]+1
+    }
+}
+
 
 for (i in 1:D){
   s=matrix(nrow=dim(socio_all[[i]])[1],ncol=10)
@@ -76,4 +91,9 @@ for (i in 1:D){
 pairs(save_L[[6]][,-c(1,2)],cex.labels=2,labels=c("landau","kendall",
                                                   "m_degree","m_close","GRC","D_root","degree","closeness","betweenness",
                                                   "eigenvector"))
+
+
+
+
+
 
