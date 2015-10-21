@@ -1,15 +1,20 @@
 library(ggbiplot)
 
-global_measures <- load("~/Dropbox/projects/work/soda502_hierarchy/Hierarchy_In_Networks/Data/global_hierarchy_measures.Rdata")
+library(devtools)
+install_github("vqv/ggbiplot")
 
-# on Matt's computer
+# global_measures <- load("~/Dropbox/projects/work/soda502_hierarchy/Hierarchy_In_Networks/Data/global_hierarchy_measures.Rdata")
+
+# on Matt's computer or any computer where you have opened the RStudio project
 load("./Data/global_hierarchy_measures.Rdata")
 
-pca <- with(global_measures, prcomp(~degree_centralization + closeness_centralization +
-                betweenness_centralization + eigenvector_centralization,
-              scale = TRUE,
-              center = TRUE))
+# updated to new
+# pca <- with(global_measures, prcomp(~degree_centralization + closeness_centralization +
+#                 betweenness_centralization + eigenvector_centralization,
+#               scale = TRUE,
+#               center = TRUE))
 
+# pca with all measures except D_root which was mostly NA.
 pca <- with(global_measures, prcomp(~degree_centralization +
                                     closeness_centralization +
                                     betweenness_centralization +
@@ -27,3 +32,5 @@ pca.g <- ggbiplot(pca, choices = c(1,2),
                   var.scale = 1,
                   ellipse = TRUE,
                   circle = TRUE)
+
+pca.g
