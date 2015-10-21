@@ -34,21 +34,21 @@ rownames(global_measures) <- names(Network_Data)
 
 save(global_measures, file = "./Data/global_hierarchy_measures.Rdata")
 
-
 multi_plot(data = global_measures,
            pdf_name = "Global_Measures",
            output_pdf = F,
            c(2:5,7))
 
 
-#now score against
-measure_scores <- score_leadership_rank(Network_Data = Network_Data,
-                                        Measures = Measures)
+#now score against their leadership rank
+measure_scores <- score_leadership_rank(
+    Network_Data = Network_Data,
+    Measures = Measures)
 
 multi_plot(data = measure_scores,
            pdf_name = "Measure_Scores",
            output_pdf = F)
 
-colMeans(measure_scores[1:17,])
-colMeans(measure_scores[1:29,])
+
+
 
