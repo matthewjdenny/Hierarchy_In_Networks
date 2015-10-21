@@ -60,3 +60,32 @@ for(i in 18:length(Network_Data)){
 }
 Network_Data <- append(Manager_Email_Networks,Influence_Network_Data_97_108)
 save(Network_Data,file = "./Data/Network_Data.Rdata")
+
+# load in cosponsorship data and transform to sociomatrices
+load("~/Dropbox/Research/Senate_Influence/Data/Master_List.Rdata")
+Cosponsorship_Data <- vector(mode = "list", length = 18)
+for(i in 1:18){
+    print(i)
+    index <- 10*(i-1) + 1
+    temp <- Master_List[[index]]
+    sociomatrix <- matrix(0,nrow(temp),nrow(temp))
+    for(j in 1:ncol(temp)){
+        sponsor <- which(temp[,j] == 1)
+        if(length(sponsor) == 1){
+            cosponsors <- which(temp[,j] == 2)
+            if(length(cosponsors) > 0){
+                sociomatrix[cosponsors,sponsor] <- sociomatrix[cosponsors,sponsor] + 1
+            }
+        }
+    }
+    Cosponsorship_Data[[i]] <- list(sociomatrix = sociomatrix,
+                                    mode = "directed",
+                                    weighted = TRUE,
+                                    type = "cosponsorship")
+}
+nms <- paste0("Congress_",93:110,sep = "")
+names(Cosponsorship_Data) <- nms
+load("./Data/Network_Data.Rdata")
+# now we are going to get rid of influence networks
+Network_Data <- append(Network_Data[1:17],Cosponsorship_Data)
+save(Network_Data,file = "./Data/Network_Data.Rdata")
