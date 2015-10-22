@@ -14,5 +14,15 @@ score_leadership_rank <- function(Network_Data,
     }
     colnames(leadership_ranks) <- names(Measures[[1]]$local)
     rownames(leadership_ranks) <- names(Network_Data)
+
+    #remove NA rows
+    remove <- rep(0,nrow(leadership_ranks))
+    for(i in 1:nrow(leadership_ranks)){
+        naInRow <- which(is.na(leadership_ranks[i,]))
+        if(length(naInRow) > 0){
+            remove[i] <- 1
+        }
+    }
+    leadership_ranks <- leadership_ranks[-which(remove == 1),]
     return(leadership_ranks)
 }
