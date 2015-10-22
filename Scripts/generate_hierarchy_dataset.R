@@ -24,7 +24,9 @@ generate_hierarchy_dataset <- function(Network_Data){
         Network_Data = Network_Data,
         Measures = Measures)
 
+
     return(list(network_measure_list = Measures,
                 global_measure_dataframe =  global_measures,
-                leadership_ranking_scores = measure_scores))
+                leadership_ranking_scores = measure_scores,
+                network_list = Network_Data))
 }
