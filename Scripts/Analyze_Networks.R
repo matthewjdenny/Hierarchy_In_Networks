@@ -24,7 +24,18 @@ load("./Data/Network_Data.Rdata")
 
 data_list <- generate_hierarchy_dataset(Network_Data)
 
-multi_plot(data = data_list$global_measure_dataframe,
+global_measures <- data_list$global_measure_dataframe
+#deal with weird networks
+global_measures <- global_measures[-100,]
+global_measures <- global_measures[-which(row.names(global_measures) == "drugnet"),]
+global_measures <- global_measures[-which(row.names(global_measures) == "Terro_4275"),]
+global_measures <- global_measures[-which(row.names(global_measures) == "drug_net_61"),]
+global_measures <- global_measures[-which(row.names(global_measures) == "Koster_data8"),]
+global_measures <- global_measures[-which(row.names(global_measures) == "CITIES"),]
+
+save(global_measures, file = "./Data/global_hierarchy_measures.Rdata")
+
+multi_plot(data = global_measures,
            pdf_name = "Global_Measures",
            output_pdf = F,
            c(2:5,7))
