@@ -31,6 +31,7 @@ pca.g <- ggbiplot(pca, choices = c(1,2),
                   obs.scale = 1,
                   var.scale = 1,
                   ellipse = TRUE,
-                  circle = TRUE)
+                  circle = TRUE,
+                  colors <- as.factor())
 
 pca.g
