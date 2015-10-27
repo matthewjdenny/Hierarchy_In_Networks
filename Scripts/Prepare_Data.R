@@ -1,4 +1,5 @@
 #combine data
+
 load("./Data/Manager_Email_Networks.Rdata")
 load("./Data/Influence_Network_Data_97_108.Rdata")
 for(i in 1:length(Influence_Network_Data_97_108)){
@@ -90,12 +91,52 @@ load("./Data/Network_Data.Rdata")
 Network_Data <- append(Network_Data[1:17],Cosponsorship_Data)
 save(Network_Data,file = "./Data/Network_Data.Rdata")
 
+load(file = "./Data/Network_Data.Rdata")
+#read in UCI Networks
+lookup <- read.csv("./Data/Network_CSV_Names.txt",
+                   stringsAsFactors = F,
+                   header = F)
+lookup <- as.character(lookup[,1])
 
+types <- read.csv("./Data/Network_CSV_Type_Codings.csv",
+                            stringsAsFactors = F,
+                            header = T)[,2:5]
 
-temp <- igraph::read.graph(file = "allattrs960.##d", format = "dl")
-temp<- readLines("allattrs960.##d")
+UCI_Nets <- vector(mode = "list", length = length(lookup)-2)
+counter <- 1
+for(i in 1:length(lookup)){
+    print(i)
+    if(i != 28 & i != 15){
+        current <- read.csv(paste("./Data/CSVs/Networks/",lookup[i],sep = ""),
+                            stringsAsFactors = F,
+                            header = T,
+                            row.names = 1)
+        current <- as.matrix(current)
+        if(types$Need_To_Reverse[i] != ""){
+            current <- (max(current) + 1) - current
+        }
 
+        name <- stringr::str_split(lookup[i],"\\.")[[1]][1]
+        name <- stringr::str_replace_all(name," ", "_")
+        mode <- "directed"
+        if(isSymmetric.matrix(current)){
+            mode <- "undirected"
+        }
+        weighted <- TRUE
+        if(length(unique(current)) < 3){
+            weighted <- FALSE
+        }
+        type <- types$Type[i]
 
+        UCI_Nets[[counter]]$sociomatrix <- current
+        UCI_Nets[[counter]]$mode <- mode
+        UCI_Nets[[counter]]$weighted <- weighted
+        UCI_Nets[[counter]]$type <- type
+
+        names(UCI_Nets)[counter] <- name
+        counter <- counter + 1
+    }
+}
 
 
 
