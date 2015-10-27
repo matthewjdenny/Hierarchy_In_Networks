@@ -89,3 +89,15 @@ load("./Data/Network_Data.Rdata")
 # now we are going to get rid of influence networks
 Network_Data <- append(Network_Data[1:17],Cosponsorship_Data)
 save(Network_Data,file = "./Data/Network_Data.Rdata")
+
+
+
+temp <- igraph::read.graph(file = "allattrs960.##d", format = "dl")
+temp<- readLines("allattrs960.##d")
+
+
+
+
+
+
+
