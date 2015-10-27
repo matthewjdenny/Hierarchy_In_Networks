@@ -139,6 +139,17 @@ for(i in 1:length(lookup)){
 }
 
 
+Network_Data <- append(Network_Data,UCI_Nets)
+
+#fix issue with NA's in 100th network
+test <- Network_Data[[100]]
+test2 <- matrix(as.numeric(test2),nrow(test2),ncol(test2))
+Network_Data[[100]]$sociomatrix <- test2
+Network_Data[[52]]$type <- "interaction"
+
+save(Network_Data,file = "./Data/Network_Data.Rdata")
+
+
 
 
 
