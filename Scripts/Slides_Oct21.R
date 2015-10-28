@@ -97,7 +97,7 @@ pairs(save_L[[6]][,-c(1,2)],cex.labels=2,labels=c("landau","kendall",
 
 load("./Data/global_hierarchy_measures.Rdata")
 
-hold=matrix(NA,nrow=length(Network_Data),ncol=2)
+hold=matrix(nrow=length(Network_Data),ncol=2)
 for(i in 1:length(Network_Data)){
   hold[i,]=c(names(Network_Data)[i],Network_Data[[i]]$type)
 }

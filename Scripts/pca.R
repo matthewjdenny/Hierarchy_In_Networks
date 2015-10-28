@@ -26,12 +26,18 @@ pca <- with(global_measures, prcomp(~degree_centralization +
                                     center = TRUE))
 
 plot(pca, type = "l")
+hold=matrix(nrow=length(Network_Data),ncol=2)
+for(i in 1:length(Network_Data)){
+  hold[i,]=c(names(Network_Data)[i],Network_Data[[i]]$type)
+}
+facts=as.factor(hold[-c(100,52,54,128,53,78),2])
 
 pca.g <- ggbiplot(pca, choices = c(1,2),
                   obs.scale = 1,
                   var.scale = 1,
                   ellipse = TRUE,
                   circle = TRUE,
-                  colors <- as.factor())
+                  groups = c("black","yellow","red","orange","green","blue",
+                             "violetred4","maroon1","tan2")[unclass(facts)])
 
 pca.g
