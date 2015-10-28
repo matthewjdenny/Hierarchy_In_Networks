@@ -95,5 +95,17 @@ pairs(save_L[[6]][,-c(1,2)],cex.labels=2,labels=c("landau","kendall",
 
 
 
+load("./Data/global_hierarchy_measures.Rdata")
 
+hold=matrix(NA,nrow=length(Network_Data),ncol=2)
+for(i in 1:length(Network_Data)){
+  hold[i,]=c(names(Network_Data)[i],Network_Data[[i]]$type)
+}
+facts=as.factor(hold[-c(100,52,54,128,53,78),2])
+
+pairs(global_measures[1:7], main = "Global Hierarchy Measures",
+      pch = 21, bg = c("black","yellow","red","orange","green","blue",
+      "violetred4","maroon1","tan2")[unclass(facts)],cex.labels=2,labels=c("landau",
+      "kendall","m_degree","m_close","GRC","D_root","degree","closeness","betweenness",
+          "eigenvector"))
 
