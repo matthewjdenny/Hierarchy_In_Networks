@@ -73,23 +73,30 @@
 
 
 \begin{frame}\frametitle{Hierarchy in Networks--Datasets}
-	\LARGE
 \begin{itemize}
-	\item Manager to Manager Email Data
+	\item 141 datasets from UCINET, organizational emails, and Congress
 	\vspace{.2in}
-	\begin{itemize}
-		\Large
-		\item County manager should be at top of hierarchy.
-	\end{itemize}
-	\vspace{.2in}
-
-	\item Congressional Influence
-	\vspace{.2in}
-	\begin{itemize}
-		\Large
-		\item Party leaders should be at the top of hierarchy.
-	\end{itemize}
-	\item Many More...
+	\scriptsize
+	\begin{table}
+		\begin{tabular}{| r || c | c | c | c |}
+			\hline
+			Type & Nodes & Edges & Density & Clustering Coeff. \\
+			\hline
+			Communication & 25.71429  &2419.00000  &3.48259278 &             0.5579696 \\
+			Cosponsorship &101.22222 &13358.88889  &1.31717035  &            0.7881265\\
+			Co-membership & 22.00000  &9267.33333 &18.31816448  &            0.3768116\\
+			Interaction & 23.07500 & 1944.95000 & 1.98532327   &           0.5890074\\
+			Unknown & 76.83333 & 4688.25000 & 0.35985251   &              
+			   NaN\\
+			Friendship & 29.83333  &  92.00000 & 0.12159897    &          0.3483177\\
+			Affect & 17.63636  &  95.18182 & 0.31874335      &
+			        0.3291889\\
+			Terrorism & 63.00000 &  308.00000 & 0.07885305    &          0.3614130\\
+			Trade & 24.00000 &  285.60000 & 0.51739130     &
+			         0.7335679\\
+			\hline
+		\end{tabular}
+	\end{table}
 \end{itemize}
 \end{frame}
 
@@ -139,20 +146,36 @@
 \begin{frame}\frametitle{Hierarchy in Networks -- Comparing Measures}
 \begin{changemargin}{-2cm}{ -2cm}
 	\centering
-\includegraphics[scale = 0.65]{images/Measure_Scores.pdf}
+\includegraphics[scale = 0.29]{images/multi1.jpeg}
 \end{changemargin}
+\end{frame}
+
+\begin{frame}\frametitle{Hierarchy in Networks -- Comparing Measures}
+	\begin{changemargin}{-2cm}{ -2cm}
+		\centering
+		\includegraphics[scale = 0.29]{images/multi2.jpeg}
+	\end{changemargin}
 \end{frame}
 
 \begin{frame}\frametitle{Hiearchy in Networks -- PCA}
 \begin{changemargin}{-2cm}{ -2cm}
-\begin{tikzpicture}
-    \node(a) at (8,4){\includegraphics[width=13cm, height=8cm]{images/pca_biplot}};
-    \pause
-    \node(b) at (12.5,6.5){\includegraphics[width=4cm]{images/pca_variance}};
-    \draw[blue,->](11.1,5.6)--(8,0.5);
-    \draw[blue,->](12,5.5)--(4.5,4);
-  \end{tikzpicture}
+		\centering
+		\includegraphics[scale = 0.6]{images/Eigenvalues.pdf}
+%\begin{tikzpicture}
+    %\node(a) at (10,4){\includegraphics[width=12cm, height=8cm]{images/PCA_Plot}};
+    %\pause
+    %\node(b) at (5.5,6.5){\includegraphics[width=4cm]{images/Eigenvalues}};
+    %\draw[blue,->](11.1,5.6)--(8,0.5);
+    %\draw[blue,->](12,5.5)--(4.5,4);
+%  \end{tikzpicture}
 \end{changemargin}
+\end{frame}
+
+\begin{frame}\frametitle{Hierarchy in Networks -- PCA}
+	\begin{changemargin}{-2cm}{ -2cm}
+		\centering
+		\includegraphics[width=12cm, height=8cm]{images/PCA_Plot.pdf}
+	\end{changemargin}
 \end{frame}
 
 \end{document}
