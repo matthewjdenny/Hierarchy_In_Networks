@@ -19,6 +19,17 @@ generate_hierarchy_dataset <- function(Network_Data){
     colnames(global_measures) <- names((Measures[[1]]$global))
     rownames(global_measures) <- names(Network_Data)
 
+    #add on columns with type and name.
+    network_type <- rep("",nrow(global_measures))
+    network_name <- names(Network_Data)
+    for(i in 1:length(network_type)){
+        network_type[i] <- Network_Data[[i]]$type
+    }
+    global_measures <- data.frame(cbind(global_measures,
+                                        network_type,
+                                        network_name),
+                                  stringsAsFactors = F)
+
     #now score against their leadership rank
     measure_scores <- score_leadership_rank(
         Network_Data = Network_Data,
