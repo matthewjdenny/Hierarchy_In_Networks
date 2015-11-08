@@ -24,11 +24,12 @@ source("./Scripts/score_leadership_rank.R")
 source("./Scripts/multi_plot.R")
 source('./Scripts/generate_hierarchy_dataset.R')
 source('./Scripts/calculate_descriptive_statistics.R')
-source('./Scripts/generate_pca_plots.R')
-source('./Scripts/generate_barabasi_albert_networks.R')
 source('./Scripts/plotting_utility_functions.R')
 source('./Scripts/make_pairs_plots.R')
-
+source('./Scripts/generate_pca_plots.R')
+source('./Scripts/generate_barabasi_albert_networks.R')
+source('./Scripts/generate_erdos_renyi_networks.R')
+source('./Scripts/generate_tree_networks.R')
 
 # 1. Observed Networks
 
@@ -90,9 +91,11 @@ generate_pca_plots(global_measures,
 ################################
 
 # In general we out to expect that with more pref attachement comes more hierarchy
-ba_networks <- generate_barabasi_albert_networks(nodes = seq(25,100,by = 25),
-                    samples = 500,
-                    seed = 12345)
+ba_networks <- generate_barabasi_albert_networks(
+    nodes = c(50,200,500),
+    samples = 500,
+    seed = 12345,
+    pref_attachment_params = c(0.5,1,2,5,10))
 
 ba_measures <- generate_hierarchy_dataset(ba_networks)
 ba_global_measures <- ba_measures$global_measure_dataframe
@@ -130,5 +133,95 @@ multi_plot(data = ba_size_averages,
 ###################################
 ###   Tree-Structured Networks  ###
 ###################################
+
+tr_networks <- generate_tree_networks(
+    nodes = c(50,200,500),
+    samples = 500,
+    seed = 12345,
+    children = c(2,5,10,50))
+
+tr_measures <- generate_hierarchy_dataset(tr_networks)
+tr_global_measures <- tr_measures$global_measure_dataframe
+
+# collapse over pref attachment parameters
+generate_pca_plots(collapse_over_parameter(tr_global_measures),
+                   name_stem = "TR_Size",
+                   save_to_file = TRUE,
+                   pca_choice1 = 1,
+                   pca_choice2 = 2)
+
+# collapse over network size
+generate_pca_plots(collapse_over_size(tr_global_measures),
+                   name_stem = "TR_Param",
+                   save_to_file = TRUE,
+                   pca_choice1 = 1,
+                   pca_choice2 = 2)
+
+# now plot measure averages
+tr_param_averages <- average_over_type(collapse_over_size(tr_global_measures))
+tr_size_averages <- average_over_type(collapse_over_parameter(tr_global_measures))
+multi_plot(data = tr_param_averages,
+           pdf_name = "./Output/TR_Param_Averages",
+           output_pdf = T,
+           c(1:8),
+           connect_with_lines = T)
+
+multi_plot(data = tr_size_averages,
+           pdf_name = "./Output/TR_Size_Averages",
+           output_pdf = T,
+           c(1:8),
+           connect_with_lines = T)
+
+
+
+###############################
+###   Erdos-Renyi Networks  ###
+###############################
+
+er_networks <- generate_erdos_renyi_networks(
+    nodes = c(50,200,500),
+    samples = 500,
+    seed = 12345,
+    p = c(0.05,0.1,0.25,0.5))
+
+er_measures <- generate_hierarchy_dataset(er_networks)
+er_global_measures <- er_measures$global_measure_dataframe
+
+# collapse over pref attachment parameters
+generate_pca_plots(collapse_over_parameter(er_global_measures),
+                   name_stem = "ER_Size",
+                   save_to_file = TRUE,
+                   pca_choice1 = 1,
+                   pca_choice2 = 2)
+
+# collapse over network size
+generate_pca_plots(collapse_over_size(er_global_measures),
+                   name_stem = "ER_Param",
+                   save_to_file = TRUE,
+                   pca_choice1 = 1,
+                   pca_choice2 = 2)
+
+# now plot measure averages
+er_param_averages <- average_over_type(collapse_over_size(er_global_measures))
+er_size_averages <- average_over_type(collapse_over_parameter(er_global_measures))
+multi_plot(data = er_param_averages,
+           pdf_name = "./Output/ER_Param_Averages",
+           output_pdf = T,
+           c(1:7),
+           connect_with_lines = T)
+
+multi_plot(data = er_size_averages,
+           pdf_name = "./Output/ER_Size_Averages",
+           output_pdf = T,
+           c(1:7),
+           connect_with_lines = T)
+
+
+save(list = c("er_global_measures",
+              "tr_global_measures",
+              "ba_global_measures"),
+     file = "./Data/Simulated_Network_Global_Measures.Rdata")
+
+
 
 
