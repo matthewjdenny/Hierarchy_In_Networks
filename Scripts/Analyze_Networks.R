@@ -13,6 +13,7 @@ setwd("~/Dropbox/SoDA_502/Hierarchy_In_Networks")
 require(SpeedReader)
 require(ggbiplot)
 require(igraph)
+require(stringr)
 
 #load in functions
 source("./Scripts/calculate_analytical_hierarchy_measures.R")
@@ -21,7 +22,7 @@ source("./Scripts/multi_plot.R")
 source('./Scripts/generate_hierarchy_dataset.R')
 source('./Scripts/calculate_descriptive_statistics.R')
 source('./Scripts/generate_pca_plots.R')
-
+source('./Scripts/generate_barabasi_albert_networks.R')
 
 
 
@@ -74,3 +75,29 @@ generate_pca_plots(global_measures,
                    pca_choice1 = 1,
                    pca_choice2 = 3)
 
+
+# Time to simulate some networks
+
+################################
+###   Barabasi-Albert Model  ###
+################################
+ba_networks <- generate_barabasi_albert_networks(nodes = seq(25,100,by = 25),
+                    samples = 500,
+                    seed = 12345)
+
+ba_measures <- generate_hierarchy_dataset(ba_networks)
+ba_global_measures <- ba_measures$global_measure_dataframe
+
+# collapse over pref attachment parameters
+generate_pca_plots(collapse_over_parameter(ba_global_measures),
+                   name_stem = "BA_Size",
+                   save_to_file = TRUE,
+                   pca_choice1 = 1,
+                   pca_choice2 = 2)
+
+# collapse over network size
+generate_pca_plots(collapse_over_size(ba_global_measures),
+                   name_stem = "BA_Param",
+                   save_to_file = TRUE,
+                   pca_choice1 = 1,
+                   pca_choice2 = 2)
