@@ -101,3 +101,8 @@ generate_pca_plots(collapse_over_size(ba_global_measures),
                    save_to_file = TRUE,
                    pca_choice1 = 1,
                    pca_choice2 = 2)
+
+ba_param_averages <- average_over_type(collapse_over_size(ba_global_measures))
+ba_size_averages <- average_over_type(collapse_over_parameter(ba_global_measures))
+
+

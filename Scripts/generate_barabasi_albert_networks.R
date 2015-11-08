@@ -55,3 +55,24 @@ collapse_over_parameter <- function(dataframe){
     dataframe$network_type <- sapply(dataframe$network_type, remove_n)
     return(dataframe)
 }
+
+# takes a data-frame that has already been collapsed over size, type or otherwise
+average_over_type <- function(dataframe){
+    ret <- NULL
+    un <- unique(dataframe$network_type)
+
+    numeric_cols <- NULL
+    for(i in 1:ncol(dataframe)){
+        numeric_cols <- c(numeric_cols,class(dataframe[,i]))
+    }
+    character_cols <- which(numeric_cols != "numeric")[1]
+    numeric_cols <- which(numeric_cols == "numeric")
+    for(i in 1:length(un)){
+        ret <- data.frame(rbind(ret, c(colMeans(dataframe[which(dataframe$network_type == un[i]),numeric_cols], na.rm= TRUE),dataframe[which(dataframe$network_type == un[i])[1],character_cols])), stringsAsFactors = F)
+    }
+    #now make sure columns are numeric
+    for(j in 1:length(numeric_cols)){
+        ret[,numeric_cols[j]] <- as.numeric(ret[,numeric_cols[j]])
+    }
+    return(ret)
+}
