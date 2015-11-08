@@ -1,19 +1,36 @@
 generate_pca_plots <- function(global_measures,
                                save_to_file = FALSE,
+                               name_stem = "Observed",
                                output_directory = "./Output",
                                return_pca_object = FALSE,
                                pca_choice1 = 1,
                                pca_choice2 = 2){
-    # pca with all measures except D_root which was mostly NA.
-    pca <- with(global_measures, prcomp(~degree_centralization +
-                                            closeness_centralization +
-                                            betweenness_centralization +
-                                            eigenvector_centralization +
-                                            landau +
-                                            kendall +
-                                            GRC,
-                                        scale = TRUE,
-                                        center = TRUE))
+    if(length(which(is.na(global_measures$D_root))) > 0 & length(unique(global_measures$eigenvector_centralization)) > 1){
+           # pca with all measures except D_root which was mostly NA.
+           pca <- with(global_measures, prcomp(~degree_centralization +
+                                                   closeness_centralization +
+                                                   betweenness_centralization +
+                                                   eigenvector_centralization +
+                                                   landau +
+                                                   kendall +
+                                                   GRC,
+                                               scale = TRUE,
+                                               center = TRUE))
+       }
+
+    if(length(which(is.na(global_measures$D_root))) == 0 & length(unique(global_measures$eigenvector_centralization)) == 1){
+           # pca with all measures except D_root which was mostly NA.
+           pca <- with(global_measures, prcomp(~degree_centralization +
+                                                   closeness_centralization +
+                                                   betweenness_centralization +
+                                                   landau +
+                                                   kendall +
+                                                   GRC +
+                                                   D_root,
+                                               scale = TRUE,
+                                               center = TRUE))
+    }
+
 
     components <- data.frame(x = 1:length(pca$sdev),
                         y = (pca$sdev)^2)
@@ -24,7 +41,8 @@ generate_pca_plots <- function(global_measures,
         currentwd <- getwd()
         setwd(output_directory)
 
-        pdf(file = "PCA_Component_Varinces.pdf", width = 6, height = 5)
+        pdf(file = paste(name_stem,"_PCA_Component_Varinces.pdf",sep = ""),
+            width = 6, height = 5)
         plot(components,
              pch = 19,
              ylab = "Variances",
@@ -36,7 +54,8 @@ generate_pca_plots <- function(global_measures,
               col = "red")
         dev.off()
 
-        pdf(file = paste("PCA_Components",pca_choice1,"_",pca_choice2,".pdf",sep = ""), width = 12, height = 8)
+        pdf(file = paste(name_stem,"_PCA_Components",pca_choice1,"_",
+                         pca_choice2,".pdf",sep = ""), width = 12, height = 8)
         pca.g <- ggbiplot(pca, choices = c(pca_choice1, pca_choice2),
                           obs.scale = 1,
                           var.scale = 1,
