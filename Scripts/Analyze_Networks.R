@@ -1,6 +1,9 @@
-# Replication script
+# Replication script for "Hierarchy in Networks"
 
-# 0. Preliminaries
+################################################################################
+# 0. Preliminaries -- set working directory, load packages, functions and data #
+################################################################################
+
 
 rm(list = ls())
 
@@ -10,34 +13,53 @@ setwd("~/Dropbox/SoDA_502/Hierarchy_In_Networks")
 
 # install and load functions (you will need the devtools pacakge to install two
 # of them, which are necessary for making the pca plots, for example).
-# devtools::install_github("matthewjdenny/SpeedReader",.opts = list(ssl.verifypeer = FALSE))
 # devtools::install_github("vqv/ggbiplot")
-require(SpeedReader)
 require(ggbiplot)
 require(igraph)
 require(stringr)
 require(GGally)
 
-#load in functions
+# 0.1 -- load in functions which perform the analysis
+
+# actually calculates hierarchy measures
 source("./Scripts/calculate_analytical_hierarchy_measures.R")
+# scores each measure based on where it places the manager of
+# each of 17 counties in its local hierarchy rankings.
 source("./Scripts/score_leadership_rank.R")
+# general purpose extension to the matplot function
 source("./Scripts/multi_plot.R")
+# wrapper for calculate_analytical_hierarchy_measures(), does so for all networks
+# and organizes data in a format that is nice for further analysis.
 source('./Scripts/generate_hierarchy_dataset.R')
+# calculates descriptive statistics (nodes, density, etc.) for a list of networks
 source('./Scripts/calculate_descriptive_statistics.R')
+# some extra utility function that make plotting easier and collapse datasets
+# over the network_type field.
 source('./Scripts/plotting_utility_functions.R')
+# a wrapper for the pairs() function that makes things look good.
 source('./Scripts/make_pairs_plots.R')
+# a function that runs principle components analysis and generates plots with
+# nice formatting. Optionally returns PCA object for further analysis.
 source('./Scripts/generate_pca_plots.R')
+# generates a sample of networks from the Barabasi-Albert model (prefferential
+# attachment).
 source('./Scripts/generate_barabasi_albert_networks.R')
+# generates a sample of networks from the Erdos-Renyi model (random networks).
 source('./Scripts/generate_erdos_renyi_networks.R')
+# generates a sample of networks from from a deterministic tree model.
 source('./Scripts/generate_tree_networks.R')
 
-# 1. Observed Networks
+################################################################################
+#                         1. Analyze Observed Networks                         #
+################################################################################
 
-#load data
+# load data the observed network data
 load("./Data/Network_Data.Rdata")
 
+# generate local and global hierarchy measures for all networks and output them
+# into a list object
 data_list <- generate_hierarchy_dataset(Network_Data)
-
+# extract a data.frame of global measures
 global_measures <- data_list$global_measure_dataframe
 
 # remove networks the appear to be outliers so that they do not drive analysis.
@@ -57,11 +79,11 @@ multi_plot(data = data_list$leadership_ranking_scores,
            output_pdf = F)
 
 # two different alternatives for making pairs plots of all variables
-# The super fancy way
+# First: the super fancy way
 pdf(file = "./Output/Fancy_Pairs_Plot.pdf", width = 40, height= 40)
 ggpairs(global_measures[,c(1:7,9)], colour='network_type', alpha=0.4)
 dev.off()
-# the home-grown way
+# Second: the home-grown way
 make_pairs_plots(global_measures,
                  save_pdf = TRUE)
 
@@ -84,7 +106,17 @@ generate_pca_plots(global_measures,
                    pca_choice1 = 1,
                    pca_choice2 = 3)
 
-# 2. Simulated Networks
+################################################################################
+#                         1. Analyze Simulated Networks                        #
+################################################################################
+
+# instead of having to rerun the network generation functions, you can simply load
+# in the aggregate measures from the following file.
+load("./Data/Simulated_Network_Global_Measures.Rdata")
+# If you choose to do this, you will not need to run any of the
+# generate_xxx_networks() functions or the generate_hierarchy_dataset() function,
+# which has the longest runtime. Total runtime if replicating from scratch
+# should be 2-3 hours on a laptop.
 
 ################################
 ###   Barabasi-Albert Model  ###
@@ -97,24 +129,30 @@ ba_networks <- generate_barabasi_albert_networks(
     seed = 12345,
     pref_attachment_params = c(0.5,1,2,5,10))
 
+# generate local and global hierarchy measures for all networks and output them
+# into a list object
 ba_measures <- generate_hierarchy_dataset(ba_networks)
+# extract a data.frame of global measures
 ba_global_measures <- ba_measures$global_measure_dataframe
 
-# collapse over pref attachment parameters
+# collapse over parameter values and run principle components analysis, saving plots
+# to the output_directory by default
 generate_pca_plots(collapse_over_parameter(ba_global_measures),
                    name_stem = "BA_Size",
                    save_to_file = TRUE,
                    pca_choice1 = 1,
                    pca_choice2 = 2)
 
-# collapse over network size
+# collapse over network size and run principle components analysis, saving plots
+# to the output_directory by default
 generate_pca_plots(collapse_over_size(ba_global_measures),
                    name_stem = "BA_Param",
                    save_to_file = TRUE,
                    pca_choice1 = 1,
                    pca_choice2 = 2)
 
-# now plot measure averages
+# now plot averages of each measure when collapsed over network size and parameter
+# values
 ba_param_averages <- average_over_type(collapse_over_size(ba_global_measures))
 ba_size_averages <- average_over_type(collapse_over_parameter(ba_global_measures))
 multi_plot(data = ba_param_averages,
@@ -140,24 +178,30 @@ tr_networks <- generate_tree_networks(
     seed = 12345,
     children = c(2,5,10,50))
 
+# generate local and global hierarchy measures for all networks and output them
+# into a list object
 tr_measures <- generate_hierarchy_dataset(tr_networks)
+# extract a data.frame of global measures
 tr_global_measures <- tr_measures$global_measure_dataframe
 
-# collapse over pref attachment parameters
+# collapse over parameter values and run principle components analysis, saving plots
+# to the output_directory by default
 generate_pca_plots(collapse_over_parameter(tr_global_measures),
                    name_stem = "TR_Size",
                    save_to_file = TRUE,
                    pca_choice1 = 1,
                    pca_choice2 = 2)
 
-# collapse over network size
+# collapse over network size and run principle components analysis, saving plots
+# to the output_directory by default
 generate_pca_plots(collapse_over_size(tr_global_measures),
                    name_stem = "TR_Param",
                    save_to_file = TRUE,
                    pca_choice1 = 1,
                    pca_choice2 = 2)
 
-# now plot measure averages
+# now plot averages of each measure when collapsed over network size and parameter
+# values
 tr_param_averages <- average_over_type(collapse_over_size(tr_global_measures))
 tr_size_averages <- average_over_type(collapse_over_parameter(tr_global_measures))
 multi_plot(data = tr_param_averages,
@@ -184,24 +228,30 @@ er_networks <- generate_erdos_renyi_networks(
     seed = 12345,
     p = c(0.05,0.1,0.25,0.5))
 
+# generate local and global hierarchy measures for all networks and output them
+# into a list object
 er_measures <- generate_hierarchy_dataset(er_networks)
+# extract a data.frame of global measures
 er_global_measures <- er_measures$global_measure_dataframe
 
-# collapse over pref attachment parameters
+# collapse over parameter values and run principle components analysis, saving plots
+# to the output_directory by default
 generate_pca_plots(collapse_over_parameter(er_global_measures),
                    name_stem = "ER_Size",
                    save_to_file = TRUE,
                    pca_choice1 = 1,
                    pca_choice2 = 2)
 
-# collapse over network size
+# collapse over network size and run principle components analysis, saving plots
+# to the output_directory by default
 generate_pca_plots(collapse_over_size(er_global_measures),
                    name_stem = "ER_Param",
                    save_to_file = TRUE,
                    pca_choice1 = 1,
                    pca_choice2 = 2)
 
-# now plot measure averages
+# now plot averages of each measure when collapsed over network size and parameter
+# values
 er_param_averages <- average_over_type(collapse_over_size(er_global_measures))
 er_size_averages <- average_over_type(collapse_over_parameter(er_global_measures))
 multi_plot(data = er_param_averages,
@@ -216,7 +266,7 @@ multi_plot(data = er_size_averages,
            c(1:7),
            connect_with_lines = T)
 
-
+# save all of the global measures
 save(list = c("er_global_measures",
               "tr_global_measures",
               "ba_global_measures"),
