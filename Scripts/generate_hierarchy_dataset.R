@@ -29,12 +29,13 @@ generate_hierarchy_dataset <- function(Network_Data){
                                         network_type,
                                         network_name),
                                   stringsAsFactors = F)
+    global_measures$network_type <- as.character(global_measures$network_type)
+    global_measures$network_name <- as.character(global_measures$network_name)
 
     #now score against their leadership rank
     measure_scores <- score_leadership_rank(
         Network_Data = Network_Data,
         Measures = Measures)
-
 
     return(list(network_measure_list = Measures,
                 global_measure_dataframe =  global_measures,
