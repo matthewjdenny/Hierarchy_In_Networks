@@ -8,9 +8,9 @@ rm(list = ls())
 setwd("~/Dropbox/SoDA_502/Hierarchy_In_Networks")
 
 # install and load functions
-# devtools::install_github("matthewjdenny/SpeedReader")
+# devtools::install_github("matthewjdenny/SpeedReader",.opts = list(ssl.verifypeer = FALSE))
 # install_github("vqv/ggbiplot")
-require(SpeedReader)
+library(SpeedReader)
 require(ggbiplot)
 require(igraph)
 require(stringr)
@@ -107,6 +107,13 @@ ba_size_averages <- average_over_type(collapse_over_parameter(ba_global_measures
 
 
 multi_plot(data = ba_param_averages,
-           pdf_name = "Global_Measures",
-           output_pdf = F,
-           c(1:8))
+           pdf_name = "./Output/BA_Param_Averages",
+           output_pdf = T,
+           c(1:8),
+           connect_with_lines = T)
+
+multi_plot(data = ba_size_averages,
+           pdf_name = "./Output/BA_Size_Averages",
+           output_pdf = T,
+           c(1:8),
+           connect_with_lines = T)
