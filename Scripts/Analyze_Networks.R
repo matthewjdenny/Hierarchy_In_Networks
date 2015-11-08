@@ -61,5 +61,16 @@ network_descriptive_statistics <- descriptive_stats[[1]]
 type_descriptive_statistics <- descriptive_stats[[2]]
 
 # run pca analysis
-generate_pca_plots(global_measures)
+generate_pca_plots(global_measures,
+                   save_to_file = TRUE,
+                   pca_choice1 = 1,
+                   pca_choice2 = 2)
+generate_pca_plots(global_measures,
+                   save_to_file = TRUE,
+                   pca_choice1 = 2,
+                   pca_choice2 = 3)
+generate_pca_plots(global_measures,
+                   save_to_file = TRUE,
+                   pca_choice1 = 1,
+                   pca_choice2 = 3)
 

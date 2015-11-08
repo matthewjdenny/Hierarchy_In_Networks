@@ -1,7 +1,9 @@
 generate_pca_plots <- function(global_measures,
                                save_to_file = FALSE,
                                output_directory = "./Output",
-                               return_pca_object = FALSE){
+                               return_pca_object = FALSE,
+                               pca_choice1 = 1,
+                               pca_choice2 = 2){
     # pca with all measures except D_root which was mostly NA.
     pca <- with(global_measures, prcomp(~degree_centralization +
                                             closeness_centralization +
@@ -16,14 +18,7 @@ generate_pca_plots <- function(global_measures,
     components <- data.frame(x = 1:length(pca$sdev),
                         y = (pca$sdev)^2)
     facts=as.factor(global_measures$network_type)
-    pca.g <- ggbiplot(pca, choices = c(1,2),
-                      obs.scale = 1,
-                      var.scale = 1,
-                      ellipse = TRUE,
-                      circle = TRUE,
-                      groups = levels(facts)[unclass(facts)]) +
-        scale_color_discrete(name = '') +
-        theme(legend.direction = 'horizontal', legend.position = 'top')
+
 
     if(save_to_file){
         currentwd <- getwd()
@@ -41,8 +36,17 @@ generate_pca_plots <- function(global_measures,
               col = "red")
         dev.off()
 
-        pdf(file = "PCA_Plot.pdf", width = 12, height = 8)
-        pca.g
+        pdf(file = paste("PCA_Components",pca_choice1,"_",pca_choice2,".pdf",sep = ""), width = 12, height = 8)
+        pca.g <- ggbiplot(pca, choices = c(pca_choice1, pca_choice2),
+                          obs.scale = 1,
+                          var.scale = 1,
+                          ellipse = TRUE,
+                          circle = TRUE,
+                          groups = levels(facts)[unclass(facts)]) +
+            scale_color_discrete(name = '') +
+            theme(legend.direction = 'horizontal', legend.position = 'top')+
+            ggtitle(paste("Principal Components:",pca_choice1,"and",pca_choice2))
+        print(pca.g)
         dev.off()
 
         setwd(currentwd)
@@ -57,6 +61,15 @@ generate_pca_plots <- function(global_measures,
               lwd = 2,
               col = "red")
         Sys.sleep(2)
+        pca.g <- ggbiplot(pca, choices = c(pca_choice1, pca_choice2),
+                          obs.scale = 1,
+                          var.scale = 1,
+                          ellipse = TRUE,
+                          circle = TRUE,
+                          groups = levels(facts)[unclass(facts)]) +
+            scale_color_discrete(name = '') +
+            theme(legend.direction = 'horizontal', legend.position = 'top')+
+            ggtitle(paste("Principal Components:",pca_choice1,"and",pca_choice2))
         print(pca.g)
     }
     if(return_pca_object){
