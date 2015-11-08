@@ -1,13 +1,13 @@
 
-generate_barabasi_albert_networks <- function(nodes = seq(25,100,by = 25),
+generate_barabasi_albert_networks <- function(nodes = c(50,200,500),
                               samples = 500,
-                              seed = 12345){
+                              seed = 12345,
+                              pref_attachment_params = c(0.5,1,2,5,10)){
 
     set.seed(seed)
     num_network_sizes <- length(nodes)
 
     #generate networks from barabasi-albert model
-    pref_attachment_params <- c(0.5,1,1.5,2,2.5)
     num_params <- length(pref_attachment_params)
 
     #pre-allocate list
