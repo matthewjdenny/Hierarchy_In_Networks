@@ -226,7 +226,7 @@ er_networks <- generate_erdos_renyi_networks(
     nodes = c(50,200,500),
     samples = 500,
     seed = 12345,
-    p = c(0.05,0.1,0.25,0.5))
+    p = c(0.05,0.1,0.2))
 
 # generate local and global hierarchy measures for all networks and output them
 # into a list object
