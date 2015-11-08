@@ -74,5 +74,13 @@ average_over_type <- function(dataframe){
     for(j in 1:length(numeric_cols)){
         ret[,numeric_cols[j]] <- as.numeric(ret[,numeric_cols[j]])
     }
+
+    colnames(ret)[character_cols] <- "network_type"
+    collapser <- function(str){
+        paste0(stringr::str_split(str," ")[[1]],
+               collapse = "_")
+    }
+
+    row.names(ret) <- sapply(ret$network_type, collapser)
     return(ret)
 }

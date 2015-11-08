@@ -106,3 +106,7 @@ ba_param_averages <- average_over_type(collapse_over_size(ba_global_measures))
 ba_size_averages <- average_over_type(collapse_over_parameter(ba_global_measures))
 
 
+multi_plot(data = ba_param_averages,
+           pdf_name = "Global_Measures",
+           output_pdf = F,
+           c(1:8))
