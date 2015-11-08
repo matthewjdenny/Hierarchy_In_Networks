@@ -61,7 +61,9 @@ multi_plot(data = data_list$leadership_ranking_scores,
 
 # two different alternatives for amking pairs plots
 # The super fancy way
-ggpairs(global_measures, colour='network_type', alpha=0.4)
+pdf(file = "./Output/Fancy_Pairs_Plot.pdf", width = 40, height= 40)
+ggpairs(global_measures[,c(1:7,9)], colour='network_type', alpha=0.4)
+dev.off()
 # the home-grown way
 make_pairs_plots(global_measures,
                  save_pdf = TRUE)
