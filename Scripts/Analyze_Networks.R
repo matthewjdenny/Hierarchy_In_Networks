@@ -14,6 +14,7 @@ library(SpeedReader)
 require(ggbiplot)
 require(igraph)
 require(stringr)
+require(GGally)
 
 #load in functions
 source("./Scripts/calculate_analytical_hierarchy_measures.R")
@@ -23,6 +24,8 @@ source('./Scripts/generate_hierarchy_dataset.R')
 source('./Scripts/calculate_descriptive_statistics.R')
 source('./Scripts/generate_pca_plots.R')
 source('./Scripts/generate_barabasi_albert_networks.R')
+source('./Scripts/plotting_utility_functions.R')
+source('./Scripts/make_pairs_plots.R')
 
 
 
@@ -56,6 +59,13 @@ multi_plot(data = data_list$leadership_ranking_scores,
            pdf_name = "Measure_Scores",
            output_pdf = F)
 
+# two different alternatives for amking pairs plots
+# The super fancy way
+ggpairs(global_measures, colour='network_type', alpha=0.4)
+# the home-grown way
+make_pairs_plots(global_measures,
+                 save_pdf = TRUE)
+
 # calculate some descriptive statistics
 descriptive_stats <- calculate_descriptive_statistics(Network_Data)
 network_descriptive_statistics <- descriptive_stats[[1]]
@@ -81,6 +91,8 @@ generate_pca_plots(global_measures,
 ################################
 ###   Barabasi-Albert Model  ###
 ################################
+
+# In general we out to expect that with more pref attachement comes more hierarchy
 ba_networks <- generate_barabasi_albert_networks(nodes = seq(25,100,by = 25),
                     samples = 500,
                     seed = 12345)
@@ -102,10 +114,9 @@ generate_pca_plots(collapse_over_size(ba_global_measures),
                    pca_choice1 = 1,
                    pca_choice2 = 2)
 
+# now plot measure averages
 ba_param_averages <- average_over_type(collapse_over_size(ba_global_measures))
 ba_size_averages <- average_over_type(collapse_over_parameter(ba_global_measures))
-
-
 multi_plot(data = ba_param_averages,
            pdf_name = "./Output/BA_Param_Averages",
            output_pdf = T,
@@ -117,3 +128,5 @@ multi_plot(data = ba_size_averages,
            output_pdf = T,
            c(1:8),
            connect_with_lines = T)
+
+
