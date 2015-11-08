@@ -1,3 +1,13 @@
+#utility functions to aid with plotting and manipulating data.
+
+remove_rows <- function(dframe,
+                        remove){
+    for(i in 1:length(remove)){
+        dframe <- dframe[-which(row.names(dframe) == remove[i]),]
+    }
+    return(dframe)
+}
+
 # string <- "BA_n-100_p-0.5_s-123"
 collapse_over_size <- function(dataframe){
     remove_n <- function(string){

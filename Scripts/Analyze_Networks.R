@@ -1,16 +1,18 @@
 # Replication script
 
-#preliminaries
+# 0. Preliminaries
+
 rm(list = ls())
 
 # change your working directory to the "Hierarchy_In_Networks" folder location.
 # for me, this is:
 setwd("~/Dropbox/SoDA_502/Hierarchy_In_Networks")
 
-# install and load functions
+# install and load functions (you will need the devtools pacakge to install two
+# of them, which are necessary for making the pca plots, for example).
 # devtools::install_github("matthewjdenny/SpeedReader",.opts = list(ssl.verifypeer = FALSE))
-# install_github("vqv/ggbiplot")
-library(SpeedReader)
+# devtools::install_github("vqv/ggbiplot")
+require(SpeedReader)
 require(ggbiplot)
 require(igraph)
 require(stringr)
@@ -28,6 +30,7 @@ source('./Scripts/plotting_utility_functions.R')
 source('./Scripts/make_pairs_plots.R')
 
 
+# 1. Observed Networks
 
 #load data
 load("./Data/Network_Data.Rdata")
@@ -36,19 +39,12 @@ data_list <- generate_hierarchy_dataset(Network_Data)
 
 global_measures <- data_list$global_measure_dataframe
 
+# remove networks the appear to be outliers so that they do not drive analysis.
+remove <- c("mb031s01nets2","drugnet","Terro_4275","drug_net_61","Koster_data8",
+            "CITIES","AOM_division_comembership","Freeman's_EIES3")
+global_measures <- remove_rows(global_measures,remove)
 
-#deal with weird networks
-global_measures <- global_measures[-which(row.names(global_measures) == "mb031s01nets2"),]
-global_measures <- global_measures[-which(row.names(global_measures) == "drugnet"),]
-global_measures <- global_measures[-which(row.names(global_measures) == "Terro_4275"),]
-global_measures <- global_measures[-which(row.names(global_measures) == "drug_net_61"),]
-global_measures <- global_measures[-which(row.names(global_measures) == "Koster_data8"),]
-global_measures <- global_measures[-which(row.names(global_measures) == "CITIES"),]
-global_measures <- global_measures[-which(row.names(global_measures) == "AOM_division_comembership"),]
-global_measures <- global_measures[-which(row.names(global_measures) == "Freeman's_EIES3"),]
-
-
-save(global_measures, file = "./Data/global_hierarchy_measures.Rdata")
+# save(global_measures, file = "./Data/global_hierarchy_measures.Rdata")
 
 multi_plot(data = global_measures,
            pdf_name = "Global_Measures",
@@ -59,7 +55,7 @@ multi_plot(data = data_list$leadership_ranking_scores,
            pdf_name = "Measure_Scores",
            output_pdf = F)
 
-# two different alternatives for amking pairs plots
+# two different alternatives for making pairs plots of all variables
 # The super fancy way
 pdf(file = "./Output/Fancy_Pairs_Plot.pdf", width = 40, height= 40)
 ggpairs(global_measures[,c(1:7,9)], colour='network_type', alpha=0.4)
@@ -87,8 +83,7 @@ generate_pca_plots(global_measures,
                    pca_choice1 = 1,
                    pca_choice2 = 3)
 
-
-# Time to simulate some networks
+# 2. Simulated Networks
 
 ################################
 ###   Barabasi-Albert Model  ###
