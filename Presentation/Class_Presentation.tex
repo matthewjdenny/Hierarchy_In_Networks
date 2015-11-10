@@ -67,100 +67,195 @@
 %   \titlepage
 % \end{frame}
 
-
-
-
-
-
-\begin{frame}\frametitle{Hierarchy in Networks--Datasets}
-\begin{itemize}
-	\item 141 datasets from UCINET, organizational emails, and Congress
-	\vspace{.2in}
-	\scriptsize
+\begin{frame}\frametitle{Hierarchy in networks--Measures}
 	\begin{table}
 		\begin{tabular}{| r || c | c | c | c |}
 			\hline
-			Type & Nodes & Edges & Density & Cluster Coeff. \\
+			Measure & Undirected & Weighted & Global & Local \\
 			\hline
-			Communication & 25.71429  &2419.00000  &3.48259278 &             0.5579696 \\
-			Cosponsorship &101.22222 &13358.88889  &1.31717035  &            0.7881265\\
-			Co-membership & 22.00000  &9267.33333 &18.31816448  &            0.3768116\\
-			Interaction & 23.07500 & 1944.95000 & 1.98532327   &           0.5890074\\
-			Unknown & 76.83333 & 4688.25000 & 0.35985251   &              
-			   NaN\\
-			Friendship & 29.83333  &  92.00000 & 0.12159897    &          0.3483177\\
-			Affect & 17.63636  &  95.18182 & 0.31874335      &
-			        0.3291889\\
-			Terrorism & 63.00000 &  308.00000 & 0.07885305    &          0.3614130\\
-			Trade & 24.00000 &  285.60000 & 0.51739130     &
-			         0.7335679\\
+			Landau's h & & X& X& \\
+			Kendall's K & X& X& &X\\
+			Reach Degree & X& X& &X\\
+			Reach Closeness & X& X& &X\\
+			GRC & X& X& X&X\\
+			Rooted Depth & & & X&\\
+			Degree & X& X& X&X\\
+			Closeness & X& X& X&X\\
+			Betweenness & X& X& X&X\\
+			Eigenvector &  X& X& X& X \\
 			\hline
 		\end{tabular}
 	\end{table}
-\end{itemize}
 \end{frame}
 
-\begin{frame}\frametitle{Hierarchy in networks--Measures}
-\begin{table}
-	\begin{tabular}{| r || c | c | c | c |}
-		\hline
-		Measure & Undirected & Weighted & Global & Local \\
-		\hline
-		Landau's h & & X& X& \\
-		Kendall's K & X& X& &X\\
-		Reach Degree & X& X& &X\\
-		Reach Closeness & X& X& &X\\
-		GRC & X& X& X&X\\
-		Rooted Depth & & & X&\\
-		Degree & X& X& X&X\\
-		Closeness & X& X& X&X\\
-		Betweenness & X& X& X&X\\
-		Eigenvector &  X& X& X& X \\
-		\hline
-	\end{tabular}
-\end{table}
+\begin{frame}\frametitle{Hierarchy in Networks--Simulated Datasets}
+	\begin{itemize}
+		\item 7500 Barabasi-Albert (BA) Datasets with node size $50, 200,$ or $500$ and preferential attachment parameter $0.5, 1, 2, 5,$ or $10$.
+		\item 6000 Tree-Structured (TR) Datasets with node size $50, 200,$ or $500$ and children parameter $2, 5, 10,$ or $50$.
+		\item 4500 Erdos-Renyi (ER) Datasets with node size $50, 200,$ or $500$ and parameter size $0.05, 0.1,$ or $0.2$.
+		\scriptsize
+			\begin{table}
+				\begin{tabular}{| r || c | c | c |}
+					\hline
+					 BA and TR & Node & Edge & Density     \\
+					\hline
+					 &  50&  49&  0.02    \\	
+					 &  200& 199&  0.005    \\
+					 &  500& 499&  0.002    \\
+					\hline
+					\end{tabular}
+				\end{table}
+				\begin{table}
+					\begin{tabular}{| r || c | c | c |c| c|}
+						\hline
+						ER & Node & Parameter& Edge & Density&Cluster Coefficient \\
+						\hline
+						& 50& 0.05&122.524 & 0.050 &  0.0956  \\
+						  & 50& 0.1&244.768 & 0.100 &  0.188   \\
+						  & 50& 0.2&490.050 & 0.200 &  0.359   \\	
+						  &200&0.05&1989.242 &0.050&    0.098\\
+						  &200&0.1&3980.776& 0.100&     0.190\\
+						  &200&0.2&7952.138& 0.120&     0.360\\
+						  &500&0.05&12473.270& 0.050&    0.097\\
+						  &500&0.1&24932.824& 0.100&       0.190\\
+						  &500&0.2&49892.784& 0.200&  0.360	\\			
+						\hline
+					\end{tabular}
+				\end{table}
+	\end{itemize}
 \end{frame}
+
+\begin{frame}\frametitle{Hierarchy in Networks -- BA}
+	\begin{changemargin}{-2cm}{ -2cm}
+		\centering
+		\includegraphics[width=12cm, height=4cm]{images/BA_Param_Averages.pdf}
+		\\
+		\includegraphics[width=12cm, height=4cm]{images/BA_Size_Averages.pdf}
+	\end{changemargin}
+\end{frame}
+
+
+\begin{frame}\frametitle{Hierarchy in Networks -- BA PCA}
+	\begin{changemargin}{-2cm}{ -2cm}
+		\centering
+		\includegraphics[width=6cm, height=8cm]{images/BA_Param_PCA_Component_Varinces.pdf}
+		\includegraphics[width=6cm, height=8cm]{images/BA_Size_PCA_Component_Varinces.pdf}
+	\end{changemargin}
+\end{frame}
+
+\begin{frame}\frametitle{Hierarchy in Networks -- BA PCA}
+	\begin{changemargin}{-2cm}{ -2cm}
+		\centering
+		\includegraphics[width=15cm, height=8cm]{images/BA_Param_PCA_Components1_2.pdf}
+	\end{changemargin}
+\end{frame}
+
+\begin{frame}\frametitle{Hierarchy in Networks -- BA PCA}
+	\begin{changemargin}{-2cm}{ -2cm}
+		\centering
+		\includegraphics[width=15cm, height=8cm]{images/BA_Size_PCA_Components1_2.pdf}
+	\end{changemargin}
+\end{frame}
+
+\begin{frame}\frametitle{Hierarchy in Networks -- TR}
+	\begin{changemargin}{-2cm}{ -2cm}
+		\centering
+			\includegraphics[width=12cm, height=4cm]{images/TR_Param_Averages.pdf}
+			\\
+			\includegraphics[width=12cm, height=4cm]{images/TR_Size_Averages.pdf}
+	\end{changemargin}
+\end{frame}
+
+\begin{frame}\frametitle{Hierarchy in Networks -- TR PCA}
+	\begin{changemargin}{-2cm}{ -2cm}
+		\centering
+	\includegraphics[width=6cm, height=8cm]{images/TR_Param_PCA_Component_Varinces.pdf}
+	\includegraphics[width=6cm, height=8cm]{images/TR_Size_PCA_Component_Varinces.pdf}
+	\end{changemargin}
+\end{frame}
+
+\begin{frame}\frametitle{Hierarchy in Networks -- TR PCA}
+	\begin{changemargin}{-2cm}{ -2cm}
+		\centering
+		\includegraphics[width=15cm, height=8cm]{images/TR_Param_PCA_Components1_2.pdf}
+	\end{changemargin}
+\end{frame}
+
+\begin{frame}\frametitle{Hierarchy in Networks -- TR PCA}
+	\begin{changemargin}{-2cm}{ -2cm}
+		\centering
+		\includegraphics[width=15cm, height=8cm]{images/TR_Size_PCA_Components1_2.pdf}
+	\end{changemargin}
+\end{frame}
+
+\begin{frame}\frametitle{Hierarchy in Networks -- ER}
+	\begin{changemargin}{-2cm}{ -2cm}
+		\centering
+			\includegraphics[width=12cm, height=4cm]{images/ER_Param_Averages.pdf}
+			\\
+			\includegraphics[width=12cm, height=4cm]{images/ER_Size_Averages.pdf}
+	\end{changemargin}
+\end{frame}
+
+\begin{frame}\frametitle{Hierarchy in Networks -- ER PCA}
+	\begin{changemargin}{-2cm}{ -2cm}
+		\centering
+		\includegraphics[width=6cm, height=8cm]{images/ER_Param_PCA_Component_Varinces.pdf}
+		\includegraphics[width=6cm, height=8cm]{images/ER_Size_PCA_Component_Varinces.pdf}
+	\end{changemargin}
+\end{frame}
+
+\begin{frame}\frametitle{Hierarchy in Networks -- ER PCA}
+	\begin{changemargin}{-2cm}{ -2cm}
+		\centering
+		\includegraphics[width=15cm, height=8cm]{images/ER_Param_PCA_Components1_2.pdf}
+	\end{changemargin}
+\end{frame}
+
+\begin{frame}\frametitle{Hierarchy in Networks -- ER PCA}
+	\begin{changemargin}{-2cm}{ -2cm}
+		\centering
+		\includegraphics[width=15cm, height=8cm]{images/ER_Size_PCA_Components1_2.pdf}
+	\end{changemargin}
+\end{frame}
+
+\begin{frame}\frametitle{Hierarchy in Networks--Datasets}
+	\begin{itemize}
+		\item 141 datasets from UCINET, organizational emails, and Congress
+		\vspace{.2in}
+		\scriptsize
+		\begin{table}
+			\begin{tabular}{| r || c | c | c | c |}
+				\hline
+				Type & Nodes & Edges & Density & Cluster Coeff. \\
+				\hline
+				Communication & 25.714  &2419  &3.483 &  0.558 \\
+				Cosponsorship &101.222 &13358.889  &1.317  & 0.788\\
+				Co-membership & 22  &9267.333 &18.318  & 0.377\\
+				Interaction & 23.075 & 1944.95 & 1.985   &  0.589\\
+				Unknown & 76.833 & 4688.25 & 0.360   &  	NaN\\
+				Friendship & 29.833  &  92 & 0.122    &  0.348\\
+				Affect & 17.636  &  95.182 & 0.319      &	0.329\\
+				Terrorism & 63 &  308 & 0.079    &  0.361\\
+				Trade & 24 &  285.6 & 0.5170     &  0.734\\
+				\hline
+			\end{tabular}
+		\end{table}
+	\end{itemize}
+\end{frame}
+
 
 \begin{frame}\frametitle{Hierarchy in Networks -- Global Measures}
 \begin{changemargin}{-2cm}{ -2cm}
 	\centering
-	\begin{tikzpicture}
-	\node(a) at (8,4){\includegraphics[width=13cm, height=8cm]{images/pairs_global}};
-	\node(b) at (12,8){\includegraphics[width=4cm]{images/key}};
-	\end{tikzpicture}
-%\includegraphics[scale = 0.3]{images/pairs_global2.png}
+	\includegraphics[width=12cm, height=8cm]{images/Fancy_Pairs_Plot.pdf}
 \end{changemargin}
-\tiny
-*Measures for all 29 datasets.
-\end{frame}
-
-\begin{frame}\frametitle{Hierarchy in Networks -- Local Measures}
-	\begin{changemargin}{-2cm}{ -2cm}
-		\centering
-		\includegraphics[scale = 0.3]{images/pairs_local.jpeg}
-	\end{changemargin}
-	\tiny
-	*Measures for dataset 6.
-\end{frame}
-
-\begin{frame}\frametitle{Hierarchy in Networks -- Comparing Measures}
-\begin{changemargin}{-2cm}{ -2cm}
-	\centering
-\includegraphics[scale = 0.29]{images/multi1.jpeg}
-\end{changemargin}
-\end{frame}
-
-\begin{frame}\frametitle{Hierarchy in Networks -- Comparing Measures}
-	\begin{changemargin}{-2cm}{ -2cm}
-		\centering
-		\includegraphics[scale = 0.29]{images/multi2.jpeg}
-	\end{changemargin}
 \end{frame}
 
 \begin{frame}\frametitle{Hiearchy in Networks -- PCA}
 \begin{changemargin}{-2cm}{ -2cm}
 		\centering
-		\includegraphics[scale = 0.6]{images/Eigenvalues.pdf}
+		\includegraphics[scale = 0.6]{images/Observed_PCA_Component_Varinces.pdf}
 %\begin{tikzpicture}
     %\node(a) at (10,4){\includegraphics[width=12cm, height=8cm]{images/PCA_Plot}};
     %\pause
@@ -174,14 +269,21 @@
 \begin{frame}\frametitle{Hierarchy in Networks -- PCA}
 	\begin{changemargin}{-2cm}{ -2cm}
 		\centering
-		\includegraphics[width=12cm, height=8cm]{images/PCA_Plot.pdf}
+		\includegraphics[width=12cm, height=8cm]{images/Observed_PCA_Components1_2.pdf}
 	\end{changemargin}
 \end{frame}
 
 \begin{frame}\frametitle{Hierarchy in Networks -- PCA}
 	\begin{changemargin}{-2cm}{ -2cm}
 		\centering
-		\includegraphics[width=12cm, height=8cm]{images/pca_colored.jpeg}
+		\includegraphics[width=12cm, height=8cm]{images/Observed_PCA_Components1_3.pdf}
+	\end{changemargin}
+\end{frame}
+
+\begin{frame}\frametitle{Hierarchy in Networks -- PCA}
+	\begin{changemargin}{-2cm}{ -2cm}
+		\centering
+		\includegraphics[width=12cm, height=8cm]{images/Observed_PCA_Components2_3.pdf}
 	\end{changemargin}
 \end{frame}
 

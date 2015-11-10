@@ -273,5 +273,6 @@ save(list = c("er_global_measures",
      file = "./Data/Simulated_Network_Global_Measures.Rdata")
 
 
-
-
+calculate_descriptive_statistics(ba_networks)[[2]]
+calculate_descriptive_statistics(tr_networks)[[2]]
+calculate_descriptive_statistics(er_networks)[[2]]
