@@ -241,9 +241,10 @@
 		\end{itemize}
 		\item Only two principle components are needed.
 		\begin{itemize}
-			\item BA
-			\item TR
-			\item ER
+			\item For node size, very clear groupings and in all cases, not so for parameters.    
+			\item Closeness and Degree Centrality stay close.
+			\item Betweenness and Eigenvector Centrality stay close.
+			\item Landau and Kendall stay opposite.
 		\end{itemize} 
 	\end{itemize}
 \end{frame}
@@ -284,7 +285,7 @@
 \begin{frame}\frametitle{Hierarchy in Networks--Results}
 	\begin{itemize}
 		\item Landau and Kendall's measures have a correlation of 0.819, but all others are below 0.54
-		\item Other from above plot...
+		\item Correlation for co-membership and trade networks are the highest across all measures. 
 	\end{itemize}
 \end{frame}
 
@@ -326,9 +327,10 @@
 \begin{frame}\frametitle{Hierarchy in Networks--Results}
 	\begin{itemize}
 		\item Need first three principle components to explain the variation.
-		\item more...
-		\item All measures are not created equal.
-		
+		\item Both trade and co-membership stay grouped and towards the center. 
+		\item Both Landau and Kendall stay in same direction.
+		\item From the first PCA plot (PC1~PC2), we notice that there are three clear groupings of measures.
+		\item PC3 tries to separate the grouping of Betweenness from Landau and Kendall. 
 	\end{itemize}
 \end{frame}
 
