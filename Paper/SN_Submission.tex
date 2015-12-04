@@ -236,7 +236,7 @@ We will denote a network's graph as $G=(V,E)$, where $V=\{v_i\}={v_1,...v_N}$ th
 		\frac{1}{24}(N^3-N)&\mbox{ if $N$ is odd} \\
 		\frac{1}{24}(N^3-4N)&\mbox{ if $N$ is even}
 		\end{array} \right.$
-	\item Global Reaching Centrality, based on the $m$-reach centrality measure is adapted in \cite{GRC} to be a simple measure of hierarchy for any graph:
+	\item Global reaching centrality, based on the $m$-reach centrality measure is adapted in \cite{GRC} to be a simple measure of hierarchy for any graph:
 		$$
 		GRC=\frac{\sum_{i\in V}{[C_R^{max}-C_R(i)]}}{N-1},
 		$$
@@ -254,30 +254,41 @@ We will denote a network's graph as $G=(V,E)$, where $V=\{v_i\}={v_1,...v_N}$ th
 				$$
 		\end{enumerate}
 	
-	\item Rooted Depth in directed networks is defined in \cite{depth}, where a root is a node that has only incoming edges. Let $N_{r}$ be the number of node-root pairs in the network. Then the global root depth is defined as:
+	\item Rooted depth in directed networks is defined in \cite{depth}, where a root is a node that has only incoming edges. Let $N_{r}$ be the number of node-root pairs in the network. Then the global root depth is defined as:
 		$$
 		D=\frac{1}{N_{r}}\sum_{i=1}^{N_r}{l_{ri}},	
 		$$
 		where $l$ is the length of the shortest path between root $r$ and node $i$.
-	\item Betweenness Centrality is meant to capture the amount of influence a node has on the information transversed through it \cite{between}. Given ...
-	\item Eigenvector Centrality 
-	\item Closeness Centrality 
-	\item Degree Centrality is simply the size of $V$.
-		$$
-		C_{R}^{''}(i)=\frac{1}{N-1}\sum_{j:0<d(i,j)<\infty}{\frac{1}{d(i,j)}}
-		$$
+	\item We apply centralization, a method used to calculate a global measure of centrality from local measures, to the following local centrality measures: betweenness, closeness, eigenvector, and degree, all of which are defined in the following section. Centralization is defined as follows for local measures $c_{i}$: 
+	$$
+	C=\sum_{i=1}^{N}{(max\{c_{i}\}-c_{i})}
+	$$
 \end{enumerate}
 
 \subsection{Measures of Hierarchy-Local}
 \begin{enumerate}
-	\item M-reach degree $Md$ was developed to identify `key' players in a network \cite{key} and is defined for a vertex $v_{i}$ as the number of reachable vertices from $v_{i}.$ If 
+	\item M-reach degree was developed to identify `key' players in a network \cite{key} and is defined for a vertex $v_{i}$ as the number of reachable vertices from $v_{i}.$ If 
 		$G$ is directed then this reachable vertices must lie along an outgoing path from $v_{i}$. This local measure is the same used for the $GRC$ local measures in \cite{GRC}.  
-	\item M-reach closeness $Mc$ was also developed to identify `key' players \cite{key}. It is defined as the M-reach degree weighted by the inverse geodistances. 
-	\item A local version of rooted depth can be found. Given $r$ roots in a network, the each node has a local root depth equal to the average length of the shortest path between itself and all roots \cite{depth}.
+	\item M-reach closeness was also developed to identify `key' players \cite{key}. It is defined as the M-reach degree weighted by the inverse geodistances. 
+	\item A local version of rooted depth can be found for a graph. Given $r$ roots in a network, the each node has a local root depth equal to the average length of the shortest path between itself and all roots \cite{depth}.
+	\item Betweenness centrality is meant to capture the amount of influence a node has on the information transversed through it \cite{between}. Define $D_{i,j}$ as the number of shortest paths between $v_{i}$ and $v_{j}$ and $D_{i,j}(k)$ as the number of these shortest paths that pass through $v_{k},$ then the betweenness centrality for $v_{k}$ is:
+		$$
+		\sum_{i\neq k\neq j}{(\frac{D_{i,j}(k)}{D_{i,j}})}
+		$$
+	\item Given $d(i,j)$ is the length of the shortest path between $v_{i}$ and $v_{j}$, closeness centrality is measured as 
+		$$
+		\sum_{i\neq j}{(\frac{1}{d(i,j)})}
+		$$
+	\item Eigenvector centrality is meant to give weight to nodes that are connected to nodes that are most central in the network \cite{eigen}. Defining the graphs adjacency matrix 
+		as $A$ and the vector of local eigenvector centrality scores as $c=\{c({v_{1}}),...,c(v_{V})\}$ we have to solve the following equation: 
+		$$
+			A c=\lambda c
+		$$ 
+	\item Degree centrality for $v_{i}$ is simply the number of outgoing edges it has.
 \end{enumerate}
 
 \subsection{Discussion of Measures}
-Both Landau's $h$ and Kendall's $K$ have mostly been used to determine so called pecking order among animals \cite{animals}. Due to their ability to capture the degree to which a network is linearly hierarchical, we expect these measures to perform similarly. Since M- 
+For the global measures, both Landau's $h$ and Kendall's $K$ have mostly been used to determine so called pecking order among animals \cite{animals}. Due to their ability to capture the degree to which a network is linearly hierarchical, we expect these measures to perform similarly. We also expect all three centralization scores to perform the same. We note that rooted depth is only defined for graphs with at least one root. If there is no root the measure classifies the network as having no hierarchy. For the local measures, we expect M-reach degree and degree to be correlated since M-reach degree was defined based on degree centralization. Similarly we expect M-reach closeness to be correlated to closeness.  
 
 
 
@@ -411,14 +422,62 @@ Both Landau's $h$ and Kendall's $K$ have mostly been used to determine so called
 
 % \begin{thebibliography}{00}
 \begin{thebibliography}{9}
-	\bibitem{animals} 
-	Shizuka, D. and McDonald, D. B. (2012),
-	``A social network perspective on measurements of dominance hierarchies." 
-	\textit{Animal Behavior} 83: 925-934.
-	
 	\bibitem{key} 
 	An,W. (2015),
 	``Multilevel Meta Network Analysis with Application to Studying Network Dynamics of Network Interventions." \textit{Social Networks} 43: 48-56.
+	
+	\bibitem{eigen} 
+	Bonacich, P. (1972),
+	``Factoring and Weighting Approaches to Status Scores and Clique Identification." 
+	\textit{Journal of Mathematical Sociology} 2: 113-120.
+	
+	\bibitem{monks}
+	Breiger, R., Boorman, S., and Arabie, P. (1975),
+	``An algorithm for clustering relational data with applications to social network analysis and comparison with multidimensional scaling."
+	\textit{Journal of Mathematical Psychology} 12.
+	
+	\bibitem{libi}
+	Brozovsky, L. and Petricek, V. (2007),
+	``Recommender system for online dating service."
+	\textit{Proc. Znalosti} 29-40.
+	
+	\bibitem{docs}
+	Coleman, J., Katz, E., and Menzel, H. (1957),
+	``The diffusion of an innovation among physicians."
+	\textit{Sociometry} 253-270.
+	
+	\bibitem{HS}
+	Coleman, J. (1973),
+	``Introduction to mathematical sociology."
+	\textit{London Free Press Glencoe}.
+	
+	\bibitem{between} 
+	Freeman, L. (1977),
+	``A set of Measures of Centrality Based on Betweenness." 
+	\textit{Sociometry} 40: 1, 35-41.
+	
+	\bibitem{Res}
+	Freeman, L., Webster, C., and Kirke, D. (1998),
+	``Exploring social structure using dynamic three--dimensional color images."
+	\textit{Social Networks} 20: 2, 109-118.
+	
+	\bibitem{friendster}
+	Friendster network dataset - KONECT, May 2015.
+	
+	\bibitem{URV}
+	Guimera, R., Danon, L., Diaz-Guilera, A., Giralt, F., and Arenas, A. (2003),
+	``Self--similar community structure in a network of human interactions."
+	\textit{Phys. Rev. E.} 68: 6.
+	
+	\bibitem{online} 
+	Gupte, M., Shankar, P., Li, J., Muthukrishnan, S., and Iftode, L. (2011),
+	``Finding Hierarchy in Directed Online Social Networks." 
+	\textit{International World Wide Web Conference Committee (IW3C2)}.
+	
+	\bibitem{Digg}
+	Hogg, T. and Lerman, K. (2012),
+	``Social dynamics of Digg."
+	\textit{EPJ Data Science} 1, 5.
 	
 	\bibitem{kendall} 
 	Kendall, M. and Babington Smith B. (1940),
@@ -430,157 +489,107 @@ Both Landau's $h$ and Kendall's $K$ have mostly been used to determine so called
 	``On Dominance Relations and the Structure of Animal Societies:  Effect of inherent characteristics." 
 	\textit{Bulletin of Mathematical Biology} 13: 245-262.
 
+	\bibitem{EU}
+	Leskovec, J., Kleinber, J., and Faloutsos, C. (2007),
+	``Graph Evolution: Densification and Shrinking Diameters."
+	\textit{ACM Transactions on Knowledge Discovery from Data (ACM TKDD)} 1: 1.
+
+	\bibitem{livejournal}
+	Leskovec, J., Lang, K., Dasgupta, A., and Mahoney, M. (2009),
+	``Community Structure in Large Networks: Natural Cluster Sizes and the Absence of Large Well-Defined Clusters."
+	\textit{Internet Mathematics} 6: 1, 29-123.
+
+	\bibitem{wiki}
+	Leskovec, J., Huttenlocher, D., and Kleinberg, J. (2010),
+	''Predicting Positive and Negative Links in Online Social Networks."
+	
+	\bibitem{linux}
+	Linux kernel mailing list replies network dataset - KONECT, May 2015.
+
+	\bibitem{Liu12}
+	Liu, Y., Slotine, J., and Barab{\'a}si, A (2012),
+	``Control centrality and hierarchical structure in complex networks."
+	\textit{Plos ONE:} 7: 9.
+	
+	\bibitem{mann}
+	Mann, Michael. (1986), ``Chapter 1: Societies as organized power networks."
+	\textit{The Sources of Social Power, Volume 1, A history of power from the beginning to AD 1760}. Cambridge University Press: 1-33.
+	
+	\bibitem{facebook}
+	McAuley, J. and Leskovec, J. (2012),
+	``Learning to Discover Social Circles in Ego Networks."	\textit{NIPS}.
+	
+	\bibitem{manufacturing}
+	Michalski, R., Palus, S., and Kazienko, P. (2011),
+	``Matching organizational structure and social network extracted from email communication."
+	Lecture Notes in Business Information Processing: 87, 196-206.
+	
+	\bibitem{youtube}
+	Mislove, A., Marcon, M., Gummadi, K., Druschel, P., and Bhattacharjee, B. (2007),
+	``Measurement and analysis of online social networks."
+	\textit{Proc. Internet Measurement Conference}.
+	
 	\bibitem{GRC} 
 	Mones, E., Vicsek, L., and Vicsek, T. (2012),
 	``Hierarchy Measure for Complex Networks." 
 	\textit{Plos ONE} 7: 3, 1-10.	
+	
+	\bibitem{AdHealth}
+	Moody, J. (2001),
+	``Peer influence groups: Identifying dense clusters in large networks."
+	\textit{Social Networks} 23: 4, 261-283.
+	
+	\bibitem{irvine}
+	Opsahl, T. and Panzarasa, P. (2009),
+	``Clustering in weighted networks."
+	\textit{Social Networks} 31: 2, 155-163.
+	
+	\bibitem{cite}
+	Prosper loans network dataset - KONECT, May 2015.
+	
+	\bibitem{epinions}
+	Richardson, M., Agrawal, R., and Domingos, P. (2003),
+	``Trust Management for the Semantic Web." \textit{ISWC}.
+	
+	\bibitem{Taro}
+	Schwimmer, E. (1973),
+	``Exchange in the Social Structure of the Orokaiva: Traditional and Emergent Ideologies in the Northern District of Papua." \textit{St. Martin's Press}.
+	
+	\bibitem{animals} 
+	Shizuka, D. and McDonald, D. B. (2012),
+	``A social network perspective on measurements of dominance hierarchies." 
+	\textit{Animal Behavior} 83: 925-934.
 	
 	\bibitem{depth} 
 	Suchecki, K. and Holyst, J. (2013),
 	``Hierarchy depth in directed networks." 
 	\textit{Physica A} arXiv:1303-2085.
 	
-	\bibitem{between} 
-	Freeman, L. (1977),
-	``A set of Measures of Centrality Based on Betweenness." 
-	\textit{Sociometry} 40: 1, 35-41.
-	
-	
-	
-	
-	
-	\bibitem{3D} 
-	Murtra, B., Goni, J., and Caso, C. (2013),
-	\textit{On the origins of hierarchy in complex networks}. 
-	PNAS: 110, 33, 13316-13321.
-	
-	\bibitem{online} 
-	Gupte, M., Shankar, P., Li, J., Muthukrishnan, S., and Iftode, L. (2011)
-	\textit{Finding Hierarchy in Directed Online Social Networks}. 
-	International World Wide Web Conference Committee (IW3C2).
-			
-	\bibitem{Liu12}
-	Liu, Y., Slotine, J., and Barab{\'a}si, A (2012).
-	\textit{Control centrality and hierarchical structure in complex networks}.
-	Plos ONE: 7, 9.
-	
-	\bibitem{AdHealth}
-	Moody, J. (2001).
-	\textit{Peer influence groups: Identifying dense clusters in large networks}.
-	Social Networks: 23, 4, 261-283.
-	
-	\bibitem{Res}
-	Freeman, L., Webster, C., Kirke, D. (1998)
-	\textit{Exploring social structure using dynamic three--dimensional color images.}
-	Social Networks: 20, 2, 109-118.
-	
-	\bibitem{Taro}
-	Schwimmer, E. (1973)
-	\textit{Exchange in the Social Structure of the Orokaiva: Traditional and Emergent Ideologies in the Northern District of Papua}.
-	St. Martin's Press.
-	
-	\bibitem{HS}
-	Coleman, J. (1973)
-	\textit{Introduction to mathematical sociology}.
-	London Free Press Glencoe.
-	
-	\bibitem{Dutch}
-	Van de Bunt, G., Van Deuijn, M., Snijders, T. (1999)
-	\textit{Friendship networks through time: An actor-oriented dynamic statistical network model}.
-	Computational and Mathematical Organization Theory: 5, 2, 167-192.
-	
-	\bibitem{monks}
-	Breiger, R., Boorman, S., Arabie, P. (1975)
-	\textit{An algorithm for clustering relational data with applications to social network analysis and comparison with multidimensional scaling}.
-	Journal of Mathematical Psychology: 12, 3, 1975.
-	
-	\bibitem{docs}
-	Coleman, J., Katz, E., Menzel, H. (1957)
-	\textit{The diffusion of an innovation among physicians}.
-	Sociometry: 253-270.
-	
-	\bibitem{sevies}
-	Watts, D., Strogatz, S. (1998)
-	\textit{Collective dynamics of `small world' networks}.
-	Nature: 393, 1, 440-442
-	
-	\bibitem{cite}
-	Prosper loans network dataset - KONECT, May 2015.
-	
-	\bibitem{libi}
-	Brozovsky, L., Petricek, V. (2007)
-	\textit{Recommender system for online dating service}.
-	Proc. Znalosti: 29-40.
-	
-	\bibitem{Digg}
-	Hogg, T., Lerman, K. (2012)
-	\textit{Social dynamics of Digg}.
-	EPJ Data Science: 1, 5.
-	
-	\bibitem{youtube}
-	Mislove, A., Marcon, M., Gummadi, K., Druschel, P., Bhattacharjee, B. (2007)
-	\textit{Measurement and analysis of online social networks}.
-	Proc. Internet Measurement Conference.
-	
-	\bibitem{epinions}
-	Richardson, M., Agrawal, R., Domingos, P. (2003)
-	\textit{Trust Management for the Semantic Web}.
-	ISWC
-	
-	\bibitem{EU}
-	Leskovec, J., Kleinber, J., Faloutsos, C. (2007)
-	\textit{Graph Evolution: Densification and Shrinking Diameters}.
-	ACM Transactions on Knowledge Discovery from Data (ACM TKDD): 1, 1.
-	
-	\bibitem{facebook}
-	McAuley, J., Leskovec, J. (2012)
-	\textit{Learning to Discover Social Circles in Ego Networks}.
-	NIPS
-	
-	\bibitem{linux}
-	Linux kernel mailing list replies network dataset - KONECT, May 2015.
-	
-	\bibitem{livejournal}
-	Leskovec, J., Lang, K., Dasgupta, A., Mahoney, M. (2009)
-	\textit{Community Structure in Large Networks: Natural Cluster Sizes and the Absence of Large Well-Defined Clusters}.
-	Internet Mathematics: 6, 1, 29--123.
-	
-	\bibitem{manufacturing}
-	Michalski, R., Palus, S., Kazienko, P. (2011)
-	\textit{Matching organizational structure and social network extracted from email communication}.
-	Lecture Notes in Business Information Processing: 87, 196-206.
-	
 	\bibitem{pokec}
-	Takac, L., Zabovsky, M. (2012)
-	\textit{Data Analysis in Public Social Networks}.
+	Takac, L. and Zabovsky, M. (2012),
+	``Data Analysis in Public Social Networks."
 	International Scientific Conference \& International Workshop Present Day Trends of Innovations, Lomza, Poland.
 	
-	\bibitem{irvine}
-	Opsahl, T., Panzarasa, P. (2009)
-	\textit{Clustering in weighted networks}.
-	Social Networks: 31, 2, 155-163.
+	\bibitem{Dutch}
+	Van de Bunt, G., Van Deuijn, M., and Snijders, T. (1999),
+	``Friendship networks through time: An actor-oriented dynamic statistical network model."
+	\textit{Computational and Mathematical Organization Theory} 5: 2, 167-192.
 	
-	\bibitem{URV}
-	Guimera, R., Danon, L., Diaz-Guilera, A., Giralt, F., Arenas, A. (2003)
-	\textit{Self--similar community structure in a network of human interactions}.
-	Phys. Rev. E.: 68, 6.
-	
-	\bibitem{wiki}
-	Leskovec, J., Huttenlocher, D., Kleinberg, J. (2010)
-	\textit{Predicting Positive and Negative Links in Online Social Networks}.
-	WWWW
+	\bibitem{sevies}
+	Watts, D. and Strogatz, S. (1998),
+	``Collective dynamics of `small world' networks."
+	\textit{Nature} 393: 1, 440-442.
 	
 	\bibitem{wiki2}
-	West, R., Paskov, H., Leskovec, J., Potts, C. (2014)
-	\textit{Exploiting Social Network Structure for Person-to-Person Sentiment Analysis}.
-	Transactions of the Association for Computational Linguistics: 2, 297-310.
+	West, R., Paskov, H., Leskovec, J., and Potts, C. (2014),
+	``Exploiting Social Network Structure for Person-to-Person Sentiment Analysis."
+	\textit{Transactions of the Association for Computational Linguistics} 2: 297-310.
 
-    \bibitem{friendster}
-    Friendster network dataset - KONECT, May 2015.
+	
+
+
     
-    \bibitem{mann}
-    Mann, Michael. ``Chapter 1: Societies as organized power networks."
-    \textit{The Sources of Social Power, Volume 1, A history of power from the beginning to AD 1760}. Cambridge University Press, 1986: 1-33.
+    
     
 \end{thebibliography}
 %% \bibitem must have the following form:
