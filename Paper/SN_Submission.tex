@@ -195,7 +195,7 @@ Hierarchy \sep Network \sep Power
 \section{Introduction}
 \label{sec:introduction}
 
-\text{Hierarchies are imporantatskljdfl asdflks f.}
+\text{Hierarchies are important. What we did and why...what we found...}
 
 \begin{flushleft}
 	Hierarchy is an important feature of many organizations, such as firms, social clubs, and military units. Formally, we can define a hierarchy as a system where people or groups are ranked according to status or authority. Yet it is difficult to operationalize this definition for measurement and comparison. There has been a great deal of research on power and status in groups and organizations, but most of this research relies on measurements defined over domain specific rankings, such as job titles. At the same time, networks scholars have defined a number of broadly applicable hierarchy metrics based on network structure, but these metrics are not necessarily grounded in meaningful sociological concepts of status and authority. Contrastingly, social theorists like Michael Mann have noted the messiness of society and that a network-oriented perspective of the ``sociospatial and organizational model [of a network]" can explicate the ``sources of social power," \cite{mann} but they have generally not delved into the methodologies through which to fully explore such power dynamics. In this paper, we seek to bring together these two areas of research, and to develop a framework for measuring hierarchy in social networks that is both generally applicable and exhibits a high degree of construct validity.
@@ -219,95 +219,85 @@ Hierarchy \sep Network \sep Power
 \end{flushleft}
 
 \section{Measuring Hierarchy}
+We will denote a network's graph as $G=(V,E)$, where $V=\{v_i\}={v_1,...v_N}$ the set of vertices and the set of edges $E=\{e_j\}=e_1,...e_M$.
 
-\subsection{Measuring Hierarchy in Groups}
+\subsection{Measures of Hierarchy-Global}
+\begin{enumerate}
+	\item Landau's $h\in[0,1]$ is used to compare a directed network to a perfect linear hierarchy \cite{landau}. Let $S_i$ be the row sum for each node, then:
+		$$
+		h=\frac{12}{N^3-N}\sum_{i=1}^{N}{[S_i-\frac{N-1}{2}]^{2}}
+		$$
+	\item Kendall's $K\in[0,1]$ like Landau's $h$ was designed to compare a directed network to a perfect linear hierarchy \cite{kendall}. Let $d$ be the number of cyclic triads
+		defined as: $d=\frac{N(N-1)(2N-1)}{12}-\frac{1}{2}\sum{S_i^2}$. Then: 
+		$$
+		K=1-\frac{d}{d_{max}},
+		$$ 
+		where $d_{max} = \left\{ \begin{array}{rl}
+		\frac{1}{24}(N^3-N)&\mbox{ if $N$ is odd} \\
+		\frac{1}{24}(N^3-4N)&\mbox{ if $N$ is even}
+		\end{array} \right.$
+	\item Global Reaching Centrality, based on the $m$-reach centrality measure is adapted in \cite{GRC} to be a simple measure of hierarchy for any graph:
+		$$
+		GRC=\frac{\sum_{i\in V}{[C_R^{max}-C_R(i)]}}{N-1},
+		$$
+		\begin{enumerate}
+			\item When the graph is unweighted and directed, the $C_R(i)$ is the local reaching centrality defined as the proportion of all nodes in $G$ that can be reached along 
+				outgoing edges from node $i$.
+			\item When the graph is weighted and directed, the following version for the reaching centrality as defined in \cite{GRC} is used:
+				$$
+				C_{R}^{'}(i)=\frac{1}{N-1}\sum_{j: 0<d^{out}_{(i,j)}<\infty}{( \frac{\sum_{k=1}^{d^{out}(i,j)} {w_{i}^{(k)} (j) } }{d^{out}(i,j)} )},
+				$$
+				where $d^{out}_{i,j}$ is the length of the directed outgoing path from $v_{i}$ to $v_{j}$ and $w^{(k)}_{i}$ is the weight of the $k$th edge along this path. 
+			\item When the graph is unweighted and undirected, the following version for the reaching centrality as defined by \cite{GRC} is used:
+				$$
+				C_{R}^{''}(i)=\frac{1}{N-1}\sum_{j:0<d(i,j)<\infty}{\frac{1}{d(i,j)}}
+				$$
+		\end{enumerate}
+	
+	\item Rooted Depth in directed networks is defined in \cite{depth}, where a root is a node that has only incoming edges. Let $N_{r}$ be the number of node-root pairs in the network. Then the global root depth is defined as:
+		$$
+		D=\frac{1}{N_{r}}\sum_{i=1}^{N_r}{l_{ri}},	
+		$$
+		where $l$ is the length of the shortest path between root $r$ and node $i$.
+	\item Betweenness Centrality is meant to capture the amount of influence a node has on the information transversed through it \cite{between}. Given ...
+	\item Eigenvector Centrality 
+	\item Closeness Centrality 
+	\item Degree Centrality is simply the size of $V$.
+		$$
+		C_{R}^{''}(i)=\frac{1}{N-1}\sum_{j:0<d(i,j)<\infty}{\frac{1}{d(i,j)}}
+		$$
+\end{enumerate}
+
+\subsection{Measures of Hierarchy-Local}
+\begin{enumerate}
+	\item M-reach degree $Md$ was developed to identify `key' players in a network \cite{key} and is defined for a vertex $v_{i}$ as the number of reachable vertices from $v_{i}.$ If 
+		$G$ is directed then this reachable vertices must lie along an outgoing path from $v_{i}$. This local measure is the same used for the $GRC$ local measures in \cite{GRC}.  
+	\item M-reach closeness $Mc$ was also developed to identify `key' players \cite{key}. It is defined as the M-reach degree weighted by the inverse geodistances. 
+	\item A local version of rooted depth can be found. Given $r$ roots in a network, the each node has a local root depth equal to the average length of the shortest path between itself and all roots \cite{depth}.
+\end{enumerate}
+
+\subsection{Discussion of Measures}
+Both Landau's $h$ and Kendall's $K$ have mostly been used to determine so called pecking order among animals \cite{animals}. Due to their ability to capture the degree to which a network is linearly hierarchical, we expect these measures to perform similarly. Since M- 
 
 
-\subsection{Measuring Hierarchy in Networks}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \section{A Model of Network Hierarchy}
 
-\subsection{Notation}
-Given a graph $G=(V,E)$, it is comprised of a set of vertexes $V=\{v_i\}={v_1,...v_N}$ and edges $E=\{e_j\}=e_1,...e_M$. We define the set of paths through the graph as $\{\pi_{k}\}=\pi_1,...\pi_P$. \\ Need to explain the collapsed graph for 3-5 in below...\\Need to define d in 6 \\need to know what m is in 7 \\
-\subsection{Measures of Hierarchy}
 \begin{enumerate}
-	\item Landau's $h\in[0,1]$ is used to compare a directed network to a perfect linear hierarchy in \cite{animals}, where $S_i$ is the row sum for each node also referred to as the dominance total: 
-	$$
-	h=\frac{12}{N^3-N}\sum_{i=1}^{N}{[S_i-\frac{N-1}{2}]}
-	$$
-	\item Kendall's $K\in[0,1]$ is also used in \cite{animals} to compare a directed network to a perfect linear hierarchy. Let $d$ be the number of cyclic triad defined as: $d=\frac{N(N-1)(2N-1)}{12}-\frac{1}{2}\sum{S_i^2}$. Then: 
-	$$
-	K=1-\frac{d}{d_{max}},
-	$$ 
-	where $d_{max} = \left\{ \begin{array}{rl}
-	\frac{1}{24}(N^3-N)&\mbox{ if $N$ is odd} \\
-	\frac{1}{24}(N^3-4N)&\mbox{ if $N$ is even}
-	\end{array} \right.$
-	
-	\item Treeness $T\in[-1,1]$ tries to capture how pyramidal the structure is and how unambiguous the chain of command is in the directed network. Mathematically, it is the average of $f(G)$ over the set in $W(G)$, where $W(G)$ is the subset $G_C$ and all of its subsets obtained through a leaf removal algorithm. This measure is defined in \cite{3D} as:
-	$$
-	f(G)=\frac{H_f(G_C)-H_b(G_C)}{max\{H_f(G_C),H_b(G_C)\}},
-	$$
-	where $H_f, H_b$ denote the forward and backward path entropies, respectively. Path entropy is defined to be:  $h_f(v_i)=-\sum{P(\pi_k|v_i)logP(\pi_k|v_i)}$.  
-	
-	\item Feedforwardness $F\in[0,1]$ tries to penalize cycles near the top of the directed network. Mathematically, it is the average of path weights $F(\pi_k)$ where cyclic modules that are closer to the top get a higher penalty, and defined by \cite{3D}. Here the paths under consideration consist of the subset starting from the top node of $G_C$. If there are $p$ such paths then:
-	$$
-	F(G)=\frac{1}{p}\sum_{k=1}^{p}{\frac{|v(\pi_k)|}{\sum{a_i}}},
-	$$
-	where $a_i$ are the weights of each node along the path under consideration (i.e. the number of collapsed nodes from $G$ in the corresponding node of $G_C$), and $v(\pi_k)$ is the number of nodes along the path $\pi_k$.
-	
-	\item Orderability $O\in[0,1]$ defines how orderable the directed network is. Mathematically, it is the fraction of nodes that do not belong to any cycle and defined by \cite{3D}:
-	$$
-	O(G)=\frac{|v_i\in V_c\cap V|}{|V|}
-	$$
-	
-	\item Global Reaching Centrality, based on the $m$-reach centrality measure is adapted in \cite{GRC} to be a simple measure of hierarchy for any graph:
-	$$
-	GRC=\frac{\sum_{i\in V}{[C_R^{max}-C_R(i)]}}{N-1},
-	$$
-	\begin{enumerate}
-		\item When the graph is unweighted and directed, the $C_R(i)$ is the local reaching centrality defined as the proportion of all nodes in $G$ that can be reached along outgoing edges from node $i$.
-		
-		\item When the graph is weighted and directed, the following version for the reaching centrality as defined in \cite{GRC} is used:
-		$$
-		C_{R}^{'}(i)=\frac{1}{N-1}\sum_{j: 0<d^{out}_{(i,j)<\infty}}{( \frac{\sum_{k=1}^{d^{out}(i,j)} {w_{i}^{(k)} (j) } }{d^{out}(i,j)} )}
-		$$
-		
-		\item When the graph is unweighted and undirected, the following version for the reaching centrality as defined by \cite{GRC} is used:
-		$$
-		C_{R}^{''}(i)=\frac{1}{N-1}\sum_{j:0<d(i,j)<\infty}{\frac{1}{d(i,j)}}
-		$$
-	\end{enumerate}
-	\item For social networks, \cite{online} defines hierarchy $h(G)\in[0,1]$ from inferred nodal rankings $r(v)$. Mathematically, it is defined as:
-	$$
-	h(G)=1-\frac{1}{m}A(G),
-	$$ 
-	where $A(G)=\sum_{(v_i,v_j)\in E} {max(r(v_i)-r(v_j)+1,0}$ is the total 'agony'. Since the rankings are not known, they are found by minimizing the total agony over all possible rankings $r$.
-	
-	\item Rooted Depth in directed networks is defined in \cite{depth}, where a root is a node that has only incoming edges. Given $r$ roots in a network, the each node has a local root depth equal to the average length of the shortest path between itself and all roots. Let $N_{r}$ be the number of node, root pairs in the network. Then the global root depth is defined as:
-	$$
-	D=\frac{1}{N_{r}}\sum_{i=1}^{N_r}{l_{ri}},	
-	$$
-	where $l$ is the length of the shortest path between root $r$ and node $i$.
-	
-	\item Relative Depth in directed networks is defined in \cite{depth} by first collapsing the network into $G_C$. Then the main root must be found, which lies on the end of the longest path through the network. From here, each vertex is given a relative depth $d$ equal to the path length between itself and the main root. Let $L=1,...l$ be the set of leaves and $R=1,...r$ be the set of roots. Then the global relative depth is found by:
-	$$
-	D=\frac{1}{l}\sum_{i=1}^{l}{d_i}-\frac{1}{r}\sum_{i=1}^{r}{d_i}
-	$$
-	
-	\item Betweenness Centrality
-	
-	\item Eigenvector 
-	
-	\item Nodal Degree
-	
-	\item Closeness Centrality 
-	
-	$$
-	C_{R}^{''}(i)=\frac{1}{N-1}\sum_{j:0<d(i,j)<\infty}{\frac{1}{d(i,j)}}
-	$$
-	
 	\item Control Centrality in a weighted and directed graph, defined by \cite{Liu12}, identifies the minimum number of nodes need to drive an entire network to a given final state. Consider a directed, weighted network:
 	$$
 	\bm{x}(t) = \bm{Ax}(t) + \bm{Bu}(t)
@@ -316,6 +306,16 @@ Given a graph $G=(V,E)$, it is comprised of a set of vertexes $V=\{v_i\}={v_1,..
 	$$
 	C_{c}(i) \equiv rank_{g}(\bm{C}^{i})
 	$$
+	
+	\item For social networks, \cite{online} defines hierarchy $h(G)\in[0,1]$ from inferred nodal rankings $r(v)$. Mathematically, it is defined as:
+	$$
+	h(G)=1-\frac{1}{m}A(G),
+	$$ 
+	where $A(G)=\sum_{(v_i,v_j)\in E} {max(r(v_i)-r(v_j)+1,0}$ is the total 'agony'. Since the rankings are not known, they are found by minimizing the total agony over all possible rankings $r$.
+	
+	\end{enumerate}
+	
+	
 \section{Data}
 
 \begin{flushleft}
@@ -413,29 +413,52 @@ Given a graph $G=(V,E)$, it is comprised of a set of vertexes $V=\{v_i\}={v_1,..
 \begin{thebibliography}{9}
 	\bibitem{animals} 
 	Shizuka, D. and McDonald, D. B. (2012),
-	\textit{A social network perspective on measurements of dominance hierarchies}. 
-	Animal Behavior: 83, 925-934.
+	``A social network perspective on measurements of dominance hierarchies." 
+	\textit{Animal Behavior} 83: 925-934.
+	
+	\bibitem{key} 
+	An,W. (2015),
+	``Multilevel Meta Network Analysis with Application to Studying Network Dynamics of Network Interventions." \textit{Social Networks} 43: 48-56.
+	
+	\bibitem{kendall} 
+	Kendall, M. and Babington Smith B. (1940),
+	``On the Method of Paired Comparisons." 
+	\textit{Biometrika} 31: 324-345.
+	
+	\bibitem{landau} 
+	Landau, H. G. (1951),
+	``On Dominance Relations and the Structure of Animal Societies:  Effect of inherent characteristics." 
+	\textit{Bulletin of Mathematical Biology} 13: 245-262.
+
+	\bibitem{GRC} 
+	Mones, E., Vicsek, L., and Vicsek, T. (2012),
+	``Hierarchy Measure for Complex Networks." 
+	\textit{Plos ONE} 7: 3, 1-10.	
+	
+	\bibitem{depth} 
+	Suchecki, K. and Holyst, J. (2013),
+	``Hierarchy depth in directed networks." 
+	\textit{Physica A} arXiv:1303-2085.
+	
+	\bibitem{between} 
+	Freeman, L. (1977),
+	``A set of Measures of Centrality Based on Betweenness." 
+	\textit{Sociometry} 40: 1, 35-41.
+	
+	
+	
+	
 	
 	\bibitem{3D} 
 	Murtra, B., Goni, J., and Caso, C. (2013),
 	\textit{On the origins of hierarchy in complex networks}. 
 	PNAS: 110, 33, 13316-13321.
-
-	\bibitem{GRC} 
-	Mones, E., Vicsek, L., and Vicsek, T. (2012),
-	\textit{Hierarchy Measure for Complex Networks}. 
-	Plos ONE: 7, 3, 1-10.
 	
-		\bibitem{online} 
-		Gupte, M., Shankar, P., Li, J., Muthukrishnan, S., and Iftode, L. (2011)
-		\textit{Finding Hierarchy in Directed Online Social Networks}. 
-		International World Wide Web Conference Committee (IW3C2).
-		
-		\bibitem{depth} 
-		Suchecki, K. and Holyst, J. (2013),
-		\textit{Hierarchy depth in directed networks}. 
-		Physica A: preprint.
-		
+	\bibitem{online} 
+	Gupte, M., Shankar, P., Li, J., Muthukrishnan, S., and Iftode, L. (2011)
+	\textit{Finding Hierarchy in Directed Online Social Networks}. 
+	International World Wide Web Conference Committee (IW3C2).
+			
 	\bibitem{Liu12}
 	Liu, Y., Slotine, J., and Barab{\'a}si, A (2012).
 	\textit{Control centrality and hierarchical structure in complex networks}.
@@ -488,9 +511,6 @@ Given a graph $G=(V,E)$, it is comprised of a set of vertexes $V=\{v_i\}={v_1,..
 	Brozovsky, L., Petricek, V. (2007)
 	\textit{Recommender system for online dating service}.
 	Proc. Znalosti: 29-40.
-	
-	\bibitem{friendster}
-	Friendster network dataset - KONECT, May 2015.
 	
 	\bibitem{Digg}
 	Hogg, T., Lerman, K. (2012)
@@ -570,7 +590,7 @@ Given a graph $G=(V,E)$, it is comprised of a set of vertexes $V=\{v_i\}={v_1,..
 % \bibitem{}
 
 % \end{thebibliography}
-\end{enumerate}
+
 \end{document}
 
 %%

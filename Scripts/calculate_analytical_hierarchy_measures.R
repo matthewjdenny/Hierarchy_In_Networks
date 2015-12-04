@@ -68,8 +68,7 @@ landau <- function(matrix,directed=TRUE){
 
   N=nrow(matrix)
   S=apply(matrix,1,sum)
-  sum(S-((N-1)/2))
-  h=12/(N^3-N) * sum(S-((N-1)/2))
+  h=12/(N^3-N) * sum((S-((N-1)/2))^2)
   results=list(global=h,local=rep(NA,N))
   return(results)
 }
