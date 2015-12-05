@@ -10,11 +10,12 @@ generate_hierarchy_dataset <- function(Network_Data){
     }
     names(Measures) <- names(Network_Data)
     #populate dataframe with global measures
-    global_measures <- data.frame(matrix(0,
+    global_measures <- data.frame(matrix(NA,
                                          nrow = length(Measures),
                                          ncol = length(Measures[[1]]$global)))
     for(i in 1:length(Measures)){
-        global_measures[i,] <- unlist(Measures[[i]]$global)
+        glob <- unlist(Measures[[i]]$global)
+        global_measures[i,1:length(glob)] <- glob
     }
     colnames(global_measures) <- names((Measures[[1]]$global))
     rownames(global_measures) <- names(Network_Data)
