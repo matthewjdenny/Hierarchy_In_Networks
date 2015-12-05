@@ -1,8 +1,8 @@
 
 make_pairs_plots <- function(
     global_measures,
-    plot_columns = c(1:7),
-    measure_labels = c("degree","closeness","betweenness","eigenvector", "landau","kendall","GRC"),
+    plot_columns = c(1:7,9,10),
+    measure_labels = c("degree","closeness","betweenness","eigenvector", "landau","kendall","GRC","m_degree","m_close"),
     output_directory = "./Output",
     save_pdf = FALSE){
 
@@ -12,11 +12,11 @@ make_pairs_plots <- function(
                 "red","orange",
                 "green","blue",
                 "violetred4","maroon1",
-                "tan2")
+                "tan2","brown","darkgoldenrod")
     if(save_pdf){
         cur_dir <- getwd()
         setwd(output_directory)
-        pdf(file = "Global_Measure_Pairs_Plots.pdf", width = 12, height = 10)
+        pdf(file = "Global_Measure_Pairs_Plots.pdf", width = 15, height = 12)
         pairs(global_measures[,plot_columns],
               main = "",
               pch = "*",
