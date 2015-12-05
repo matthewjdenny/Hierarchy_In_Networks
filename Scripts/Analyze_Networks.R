@@ -65,7 +65,8 @@ global_measures <- data_list$global_measure_dataframe
 
 # remove networks the appear to be outliers so that they do not drive analysis.
 remove <- c("mb031s01nets2","drugnet","Terro_4275","drug_net_61","Koster_data8",
-            "CITIES","AOM_division_comembership","Freeman's_EIES3")
+            "CITIES","AOM_division_comembership","Freeman's_EIES3", "pv504",
+            "pv960", "Koster_data7")
 global_measures <- remove_rows(global_measures,remove)
 
 # save(global_measures, file = "./Data/global_hierarchy_measures.Rdata")
@@ -82,7 +83,8 @@ multi_plot(data = data_list$leadership_ranking_scores,
 # two different alternatives for making pairs plots of all variables
 # First: the super fancy way
 pdf(file = "./Output/Fancy_Pairs_Plot.pdf", width = 40, height= 40)
-ggpairs(global_measures[,c(1:7,9)], colour='network_type', alpha=0.4)
+ggpairs(global_measures[,c(1:7,9)],
+        colour=as.factor(global_measures$network_type), alpha=0.4)
 dev.off()
 # Second: the home-grown way
 make_pairs_plots(global_measures,
