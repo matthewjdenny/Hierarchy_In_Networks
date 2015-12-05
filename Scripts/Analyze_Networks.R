@@ -18,6 +18,7 @@ require(ggbiplot)
 require(igraph)
 require(stringr)
 require(GGally)
+require(ineq)
 
 # 0.1 -- load in functions which perform the analysis
 

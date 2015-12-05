@@ -23,6 +23,8 @@ calculate_analytical_hierarhy_measures <- function(sociomatrix,
         global$kendall <- kendall(adjacency)$global
         global$GRC <- GRC(adjacency)$global
         global$D_root <- D_root(adjacency)$global
+        global$m_degree <- m_degree(adjacency)$global
+        global$m_close <- m_close(adjacency)$global
     }
 
     #calculate local scores
@@ -106,7 +108,8 @@ kendall <- function(matrix,directed=TRUE){
 m_degree <- function(matrix,directed=TRUE){
   require("keyplayer")
   l=mreach.degree(matrix,cmode="outdegree")
-  results=list(global=NA,local=l)
+  g <- ineq::ineq(l,type="Gini")
+  results=list(global=g,local=l)
   return(results)
 }
 #######################################################################################
@@ -115,7 +118,8 @@ m_degree <- function(matrix,directed=TRUE){
 m_close <- function(matrix,directed=TRUE){
   require("keyplayer")
   l=mreach.closeness(matrix,cmode="outdegree")
-  results=list(global=NA,local=l)
+  g <- ineq::ineq(l,type="Gini")
+  results=list(global=g,local=l)
   return(results)
 }
 #######################################################################################
