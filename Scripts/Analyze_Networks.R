@@ -161,13 +161,13 @@ ba_size_averages <- average_over_type(collapse_over_parameter(ba_global_measures
 multi_plot(data = ba_param_averages,
            pdf_name = "./Output/BA_Param_Averages",
            output_pdf = T,
-           c(1:8),
+           c(1:10),
            connect_with_lines = T)
 
 multi_plot(data = ba_size_averages,
            pdf_name = "./Output/BA_Size_Averages",
            output_pdf = T,
-           c(1:8),
+           c(1:10),
            connect_with_lines = T)
 
 
@@ -210,13 +210,13 @@ tr_size_averages <- average_over_type(collapse_over_parameter(tr_global_measures
 multi_plot(data = tr_param_averages,
            pdf_name = "./Output/TR_Param_Averages",
            output_pdf = T,
-           c(1:8),
+           c(1:10),
            connect_with_lines = T)
 
 multi_plot(data = tr_size_averages,
            pdf_name = "./Output/TR_Size_Averages",
            output_pdf = T,
-           c(1:8),
+           c(1:10),
            connect_with_lines = T)
 
 
@@ -229,7 +229,7 @@ er_networks <- generate_erdos_renyi_networks(
     nodes = c(50,200,500),
     samples = 500,
     seed = 12345,
-    p = c(0.05,0.1,0.2))
+    p = c(0.05,0.075,0.1))
 
 # generate local and global hierarchy measures for all networks and output them
 # into a list object
@@ -260,13 +260,13 @@ er_size_averages <- average_over_type(collapse_over_parameter(er_global_measures
 multi_plot(data = er_param_averages,
            pdf_name = "./Output/ER_Param_Averages",
            output_pdf = T,
-           c(1:7),
+           c(1:7,9,10),
            connect_with_lines = T)
 
 multi_plot(data = er_size_averages,
            pdf_name = "./Output/ER_Size_Averages",
            output_pdf = T,
-           c(1:7),
+           c(1:7,9,10),
            connect_with_lines = T)
 
 # save all of the global measures
