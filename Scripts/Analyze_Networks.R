@@ -19,6 +19,7 @@ require(igraph)
 require(stringr)
 require(GGally)
 require(ineq)
+require(corrplot)
 
 # 0.1 -- load in functions which perform the analysis
 
@@ -108,6 +109,23 @@ generate_pca_plots(global_measures,
                    save_to_file = TRUE,
                    pca_choice1 = 1,
                    pca_choice2 = 3)
+
+# generate correlation plots of global measures against eachother
+M <- global_measures[,c(1:7,9,10)]
+cn <- as.character(sapply(colnames(M),replac))
+colnames(M) <- cn
+M <- cor(M)
+
+# first just plain correlation plot
+pdf(file = "./Output/Global_Measure_Correlations.pdf", height = 11, width = 11)
+corrplot(M, method = "pie",diag = F,tl.col = "black",tl.pos = "d")
+dev.off()
+
+# now with significance tests
+res1 <- cor.mtest(M, 0.95)
+pdf(file = "./Output/Global_Measure_Correlations_with_Tests.pdf", height =11, width = 11)
+corrplot(M, p.mat = res1[[1]], sig.level = 0.05, method = "pie",diag = F,tl.col = "black",tl.pos = "d")
+dev.off()
 
 ################################################################################
 #                         1. Analyze Simulated Networks                        #
