@@ -4,7 +4,9 @@ generate_pca_plots <- function(global_measures,
                                output_directory = "./Output",
                                return_pca_object = FALSE,
                                pca_choice1 = 1,
-                               pca_choice2 = 2){
+                               pca_choice2 = 2,
+                               elipse = FALSE,
+                               circle = TRUE){
     if(length(which(is.na(global_measures$D_root))) > 0 & length(unique(global_measures$eigenvector_centralization)) > 1){
            # pca with all measures except D_root which was mostly NA.
            pca <- with(global_measures, prcomp(~degree_centralization +
@@ -13,7 +15,9 @@ generate_pca_plots <- function(global_measures,
                                                    eigenvector_centralization +
                                                    landau +
                                                    kendall +
-                                                   GRC,
+                                                   GRC +
+                                                   m_close +
+                                                   m_degree,
                                                scale = TRUE,
                                                center = TRUE))
        }
@@ -26,7 +30,9 @@ generate_pca_plots <- function(global_measures,
                                                    landau +
                                                    kendall +
                                                    GRC +
-                                                   D_root,
+                                                   D_root +
+                                                   m_close +
+                                                   m_degree,
                                                scale = TRUE,
                                                center = TRUE))
     }
@@ -59,8 +65,8 @@ generate_pca_plots <- function(global_measures,
         pca.g <- ggbiplot(pca, choices = c(pca_choice1, pca_choice2),
                           obs.scale = 1,
                           var.scale = 1,
-                          ellipse = TRUE,
-                          circle = TRUE,
+                          ellipse = elipse,
+                          circle = circle,
                           groups = levels(facts)[unclass(facts)]) +
             scale_color_discrete(name = '') +
             theme(legend.direction = 'horizontal', legend.position = 'top')+
@@ -83,8 +89,8 @@ generate_pca_plots <- function(global_measures,
         pca.g <- ggbiplot(pca, choices = c(pca_choice1, pca_choice2),
                           obs.scale = 1,
                           var.scale = 1,
-                          ellipse = TRUE,
-                          circle = TRUE,
+                          ellipse = elipse,
+                          circle = circle,
                           groups = levels(facts)[unclass(facts)]) +
             scale_color_discrete(name = '') +
             theme(legend.direction = 'horizontal', legend.position = 'top')+
