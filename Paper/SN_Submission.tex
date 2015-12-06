@@ -321,9 +321,9 @@ In words, it is half of the \emph{average absolute difference} of all pairs of e
 
 \subsection{Measures of Hierarchy-Local}
 \begin{enumerate}
-	\item M-reach degree was developed to identify `key' players in a network \cite{key} and is defined for a vertex $v_{i}$ as the number of reachable vertices from $v_{i}.$ If 
-		$G$ is directed then this reachable vertices must lie along an outgoing path from $v_{i}$. This local measure is the same used for the $GRC$ local measures in \cite{GRC}.  
-	\item M-reach closeness was also developed to identify `key' players \cite{key}. It is defined as the M-reach degree weighted by the inverse geodistances. 
+	% \item M-reach degree was developed to identify `key' players in a network \cite{key} and is defined for a vertex $v_{i}$ as the number of reachable vertices from $v_{i}.$ If
+	% 	$G$ is directed then this reachable vertices must lie along an outgoing path from $v_{i}$. This local measure is the same used for the $GRC$ local measures in \cite{GRC}.
+	% \item M-reach closeness was also developed to identify `key' players \cite{key}. It is defined as the M-reach degree weighted by the inverse geodistances. 
 	\item A local version of rooted depth can be found for a graph. Given $r$ roots in a network, the each node has a local root depth equal to the average length of the shortest path between itself and all roots \cite{depth}.
 	% \item Betweenness centrality is meant to capture the amount of influence a node has on the information transversed through it \cite{between}. Define $D_{i,j}$ as the number of shortest paths between $v_{i}$ and $v_{j}$ and $D_{i,j}(k)$ as the number of these shortest paths that pass through $v_{k},$ then the betweenness centrality for $v_{k}$ is:
 	% 	$$
@@ -383,85 +383,22 @@ For the global measures, both Landau's $h$ and Kendall's $K$ have mostly been us
 	
 \section{Data}
 
-\begin{flushleft}
 	We are still working through evaluating a few different datasets to best suit our purposes. However, at present, this is a little difficult because we really want our measure to be theoretically-grounded, but we haven't yet developed a solid theoretical conception for hierarchy. Thus far, theory-wise, the Mann (1986) definition seems closest to the Liu-Driver measures discussed in the Mones et al. (2012) article: i.e., hierarchical networks are those in which the actions of a few nodes are needed to take control of the graph. Another potential definition, also implied, is hierarchy means the mechanisms of collective actions (i.e., the ability of different nodes to connect with one another) hinges on a small number.
 	
-	\paragraph Among the network datasets we are exploring, they are already or mostly in usable format. As we're navigating through our theoretical conception of hierarchy in network, we are ruling out the use of the karate club, dolphin, football, etc. datasets because we want to be able to analyze datasets where the networks are more interesting or theoretically-relevant. In this way, there are a couple of systems that might be useful. The first is a network of cooperation among militant groups, which encompasses joint exercises, mergers, and splits among militant groups: http://web.stanford.edu/group/mappingmilitants/cgi-bin/. This may interesting for us for a few reasons: (1) there is no de jure hierarchical structure (i.e., no formally-recognized chain of command or sovereignty); (2) militant groups face a classic collective action problem, and thus we can expect the dynamics Mann describes to hold; and (3) most theories of conflict would predict no hierarchy to occur in this system. An interesting system to compare this to would be military actions in Vietnam: http://tinyurl.com/pwofooy. The nodes here would be military units, and the edges are participation in the same battle. Of course, the main issue with this dataset is that it's undirected, which we've noted may be difficult to conceptualize within a hierarchy framework. We're focusing on conflict datasets because many of the theoretical definitions define hierarchy as essentially about outcomes—i.e., the ability of particular nodes to control the actions and behaviors of subordinate nodes.
+Among the network datasets we are exploring, they are already or mostly in usable format. As we're navigating through our theoretical conception of hierarchy in network, we are ruling out the use of the karate club, dolphin, football, etc. datasets because we want to be able to analyze datasets where the networks are more interesting or theoretically-relevant. In this way, there are a couple of systems that might be useful. The first is a network of cooperation among militant groups, which encompasses joint exercises, mergers, and splits among militant groups: http://web.stanford.edu/group/mappingmilitants/cgi-bin/. This may interesting for us for a few reasons: (1) there is no de jure hierarchical structure (i.e., no formally-recognized chain of command or sovereignty); (2) militant groups face a classic collective action problem, and thus we can expect the dynamics Mann describes to hold; and (3) most theories of conflict would predict no hierarchy to occur in this system. An interesting system to compare this to would be military actions in Vietnam: http://tinyurl.com/pwofooy. The nodes here would be military units, and the edges are participation in the same battle. Of course, the main issue with this dataset is that it's undirected, which we've noted may be difficult to conceptualize within a hierarchy framework. We're focusing on conflict datasets because many of the theoretical definitions define hierarchy as essentially about outcomes—i.e., the ability of particular nodes to control the actions and behaviors of subordinate nodes.
 	
-	\paragraph We may also use manager network data where each organization has a ``county manager" who is theoretically in charge of the rest of the actors, providing an opportunity to determine if the methods we employ capture a plausible hierarchical structure. We are still exploring this and other datasets though.
-\end{flushleft}
+ We may also use manager network data where each organization has a ``county manager" who is theoretically in charge of the rest of the actors, providing an opportunity to determine if the methods we employ capture a plausible hierarchical structure. We are still exploring this and other datasets though.
 
 
-\begin{enumerate}
 
 
-    	
-    	\item Adolescent Health: survey asked students to list 5 male and female friends. \cite{AdHealth}
-    	
-    	\item Residence Hall: friendships between 217 students in Australian National University. \cite{Res}
-    	
-    	\item Taro Exchange: gift--giving relationships between households in a Papaun village. \cite{Taro}
-    	
-    	\item Highschool: friendship relationship between boys at a small Indiana high school in 1957-1958. \cite{HS}
-    	
-    	\item Dutch College: friendships between 32 university freshmen. \cite{Dutch}
-    	
-    	\item Monks: preference ratings between monks in a cloister during a crisis. \cite{monks}
-    	
-    	\item Physicians: innovation spread between 246 physicians in Illinois. \cite{docs}
-    	
-    	\item Seventh graders: activity specific proximity rankings for 29 middle school students in Victoria \cite{sevies}.
-    
-    \item Prosper loans: loans between users of prosper.com \cite{prosper}.
-    
-    \item Libimseti.cz: likes between users on a Czech dataing site \cite{libi}.
-    
-    \item Friendster: friendship adds on the online site Friendster \cite{friendster}.
-    
-    \item Digg: friendships on Digg \cite{digg}.
-    
-    \item Youtube: connections between Youtube users \cite{youtube}.
-    
-    \item Epinions: who--trusts--whom between users of epinions \cite{epinions}.
-  
-    \item EU emails: emails for 18 months from a major European research institution \cite{EU}.
-    
-    \item Facebook: friends lists from FAcebook, generated through a Facebook app survey \cite{facebook}.
-    
-    \item Google Plus: friends between users who selected to ``share circles'' on Google Plus \cite{facebook}.
-    
-    \item Linx kernel mailing list: communication network for the linux kernel mailing list, where each edge is a reply from a user to another \cite{linux}.
-
-    \item Livejournal: map of an online community friendships of Livejournal users \cite{livejournal}.
-
-    \item Manufacturing: communication network between employess of a mid--size manufacturing firm \cite{manufacturing}.
-    
-    \item Pokec: Friendship networks in the Pokec online social network, popular in Slovakia \cite{pokec}.
-    
-    \item Slashdot: tagging between users in slashdot for 2008 and 2009 \cite{livejournal}.
-    
-    \item Twitter: circles between twitter users \cite{facebook}.
-    
-    \item UC Irvine: messages sent between students on an online community at UC Irvine \cite{irvine}.
- 
-    \item U. Rovira i Virgili: email communication network from University Rovira i Virgili in Tarragona \cite{URV}.
-
-    \item Wikipedia Talk: network of discussions between all users from the beginning of Wikipedia to January 2008 \cite{wiki}.
-
-    \item Wikipedia Votes: data from administrator elections \cite{wiki}.
-    
-    \item Wikipedia Requests for Adminship: requests from 2003 through 2013 \cite{wiki2}.
-
-    \item Friendster: network for online social site Friendster \cite{friendster}.
-
-\end{enumerate}
 
 \section{Analysis}
-\begin{flushleft}
-	The analytical portion of the problem will be conducted in R, which is known by all members of the group. We will be using both statistical and mathematical methods of quantifying and/or measuring hierarchy. We will focus on methods that have already been developed, published, and implemented in R, or are can easily be implemented by one of the group members. If time permits, we may try to develop or suggest directions for future development of our own statistical models and/or mathematical measurements. Each member of the group will be responsible for at least one method.
-	
-	\paragraph The statistical methods we will be looking into include hierarchical exponential graph models in the R package hergm. This package also includes hierarchical stochastic block models. Unlike fitting network data with exponential random graph models (ERGMs), hierarchical ERGMs focus on inducing local dependencies. Next, we will focus on latent space models, which can be fit in R using the latentnet package in the statnet suite of packages. For both the latent space and ERGM models, Bayesian inferential analysis can be conducted using the Bergm, VBLPCM, and lvm4net packages in R. We note that whenever fitting network data there is always the chance for computational timing and accuracy issues to come up. We have chosen a number of datasets for the purposes of capturing several types of hierarchies, but also so that we may have a few that are easily fit in R. Lastly, we will focus on mathematical measures of hierarchy. These measures primarily stem from graph theory, and can be easily programed by ourselves in R. The measurements include the Global Reach Centrality (GRC), Triangle Transitivity, Kendall's K, and Landau's lambda.
-\end{flushleft}
+
+% 	The analytical portion of the problem will be conducted in R, which is known by all members of the group. We will be using both statistical and mathematical methods of quantifying and/or measuring hierarchy. We will focus on methods that have already been developed, published, and implemented in R, or are can easily be implemented by one of the group members. If time permits, we may try to develop or suggest directions for future development of our own statistical models and/or mathematical measurements. Each member of the group will be responsible for at least one method.
+%
+% The statistical methods we will be looking into include hierarchical exponential graph models in the R package hergm. This package also includes hierarchical stochastic block models. Unlike fitting network data with exponential random graph models (ERGMs), hierarchical ERGMs focus on inducing local dependencies. Next, we will focus on latent space models, which can be fit in R using the latentnet package in the statnet suite of packages. For both the latent space and ERGM models, Bayesian inferential analysis can be conducted using the Bergm, VBLPCM, and lvm4net packages in R. We note that whenever fitting network data there is always the chance for computational timing and accuracy issues to come up. We have chosen a number of datasets for the purposes of capturing several types of hierarchies, but also so that we may have a few that are easily fit in R. Lastly, we will focus on mathematical measures of hierarchy. These measures primarily stem from graph theory, and can be easily programed by ourselves in R. The measurements include the Global Reach Centrality (GRC), Triangle Transitivity, Kendall's K, and Landau's lambda.
+
 
 
 \section{Conclusions}
@@ -659,6 +596,73 @@ For the global measures, both Landau's $h$ and Kendall's $K$ have mostly been us
 % \bibitem{}
 
 % \end{thebibliography}
+
+\newpage
+\appendix
+\section{Dataset References}
+\begin{enumerate}
+
+
+    	
+    	\item Adolescent Health: survey asked students to list 5 male and female friends. \cite{AdHealth}
+    	
+    	\item Residence Hall: friendships between 217 students in Australian National University. \cite{Res}
+    	
+    	\item Taro Exchange: gift--giving relationships between households in a Papaun village. \cite{Taro}
+    	
+    	\item Highschool: friendship relationship between boys at a small Indiana high school in 1957-1958. \cite{HS}
+    	
+    	\item Dutch College: friendships between 32 university freshmen. \cite{Dutch}
+    	
+    	\item Monks: preference ratings between monks in a cloister during a crisis. \cite{monks}
+    	
+    	\item Physicians: innovation spread between 246 physicians in Illinois. \cite{docs}
+    	
+    	\item Seventh graders: activity specific proximity rankings for 29 middle school students in Victoria \cite{sevies}.
+    
+    \item Prosper loans: loans between users of prosper.com \cite{prosper}.
+    
+    \item Libimseti.cz: likes between users on a Czech dataing site \cite{libi}.
+    
+    \item Friendster: friendship adds on the online site Friendster \cite{friendster}.
+    
+    \item Digg: friendships on Digg \cite{digg}.
+    
+    \item Youtube: connections between Youtube users \cite{youtube}.
+    
+    \item Epinions: who--trusts--whom between users of epinions \cite{epinions}.
+  
+    \item EU emails: emails for 18 months from a major European research institution \cite{EU}.
+    
+    \item Facebook: friends lists from FAcebook, generated through a Facebook app survey \cite{facebook}.
+    
+    \item Google Plus: friends between users who selected to ``share circles'' on Google Plus \cite{facebook}.
+    
+    \item Linx kernel mailing list: communication network for the linux kernel mailing list, where each edge is a reply from a user to another \cite{linux}.
+
+    \item Livejournal: map of an online community friendships of Livejournal users \cite{livejournal}.
+
+    \item Manufacturing: communication network between employess of a mid--size manufacturing firm \cite{manufacturing}.
+    
+    \item Pokec: Friendship networks in the Pokec online social network, popular in Slovakia \cite{pokec}.
+    
+    \item Slashdot: tagging between users in slashdot for 2008 and 2009 \cite{livejournal}.
+    
+    \item Twitter: circles between twitter users \cite{facebook}.
+    
+    \item UC Irvine: messages sent between students on an online community at UC Irvine \cite{irvine}.
+ 
+    \item U. Rovira i Virgili: email communication network from University Rovira i Virgili in Tarragona \cite{URV}.
+
+    \item Wikipedia Talk: network of discussions between all users from the beginning of Wikipedia to January 2008 \cite{wiki}.
+
+    \item Wikipedia Votes: data from administrator elections \cite{wiki}.
+    
+    \item Wikipedia Requests for Adminship: requests from 2003 through 2013 \cite{wiki2}.
+
+    \item Friendster: network for online social site Friendster \cite{friendster}.
+
+\end{enumerate}
 
 \end{document}
 
