@@ -253,22 +253,35 @@ where $\mathbf{\lambda}$ is a vector of positive eigenvalues. The challenge is t
 \begin{align}
 	h=\frac{12}{N^3-N}\sum_{i=1}^{N}{\left[\text{Out}_i-\frac{N-1}{2}\right]^{2}}
 \end{align}
-where $h\in[0,1]$. Note that Landau's $h$ does not provide an individual level metric of importance or relative power. This measure was specifically designed to operate on networks of ``has power over'' edges, and thus may be difficult to interpret when the network is not explicitly defined on power relations. Because of a preference for chain-like structures, this measure will likely provide poor performance when networks measure social relations.
+where $h\in[0,1]$. Note that Landau's $h$ does not provide an individual level metric of importance or relative power. This measure was specifically designed to operate on networks of ``has power over'' edges, and thus may be difficult to interpret when the network is not explicitly defined on power relations. Because of a preference for chain-like structures, this measure will likely provide poor performance when edges measure social relations. \textbf{Kendall's} $\mathbf{K}$  is also designed to compare a directed network to a perfect linear hierarchy \cite{kendall}. As noted in \cite{animals}, it often gives an identical value to Landau's $h$, but is theoretically distinct. Begin by defining the number of \emph{cyclic triads} ($CyT$) in the network as:
+\begin{align}
+	CyT=\frac{N(N-1)(2N-1)}{12}-\frac{1}{2}\sum{\text{Out}_i^2}
+\end{align}
+Then we can define Kendal's $K$ as 
+\begin{align}
+	K=1-\frac{d}{d_{max}}
+\end{align}
+where the value $d_{max}$ is defined as follows:
+\begin{align}
+	d_{max} = \begin{cases}
+			\frac{1}{24}(N^3-N) \hspace*{0.5in} \text{if $N$ is odd} \\
+			\frac{1}{24}(N^3-4N) \hspace*{0.44in} \text{if $N$ is even}
+			\end{cases}
+\end{align}
 
 \begin{enumerate}
-	\item Landau's $h\in[0,1]$ is used to compare a directed network to a perfect linear hierarchy \cite{landau}. Let $S_i$ be the row sum for each node, then:
-		$$
-		h=\frac{12}{N^3-N}\sum_{i=1}^{N}{[S_i-\frac{N-1}{2}]^{2}}
-		$$
-	\item Kendall's $K\in[0,1]$ like Landau's $h$ was designed to compare a directed network to a perfect linear hierarchy \cite{kendall}. Let $d$ be the number of cyclic triads
-		defined as: $d=\frac{N(N-1)(2N-1)}{12}-\frac{1}{2}\sum{S_i^2}$. Then: 
-		$$
-		K=1-\frac{d}{d_{max}},
-		$$ 
-		where $d_{max} = \left\{ \begin{array}{rl}
-		\frac{1}{24}(N^3-N)&\mbox{ if $N$ is odd} \\
-		\frac{1}{24}(N^3-4N)&\mbox{ if $N$ is even}
-		\end{array} \right.$
+	% \item Landau's $h\in[0,1]$ is used to compare a directed network to a perfect linear hierarchy \cite{landau}. Let $S_i$ be the row sum for each node, then:
+	% 	$$
+	% 	h=\frac{12}{N^3-N}\sum_{i=1}^{N}{[S_i-\frac{N-1}{2}]^{2}}
+	% 	$$
+	% \item Kendall's $K\in[0,1]$ like Landau's $h$ was designed to compare a directed network to a perfect linear hierarchy \cite{kendall}. Let $d$ be the number of cyclic triads defined as: $d=\frac{N(N-1)(2N-1)}{12}-\frac{1}{2}\sum{S_i^2}$. Then:
+	% 	$$
+	% 	K=1-\frac{d}{d_{max}},
+	% 	$$
+	% 	where $d_{max} = \left\{ \begin{array}{rl}
+	% 	\frac{1}{24}(N^3-N)&\mbox{ if $N$ is odd} \\
+	% 	\frac{1}{24}(N^3-4N)&\mbox{ if $N$ is even}
+	% 	\end{array} \right.$
 	\item Global reaching centrality, based on the $m$-reach centrality measure is adapted in \cite{GRC} to be a simple measure of hierarchy for any graph:
 		$$
 		GRC=\frac{\sum_{i\in V}{[C_R^{max}-C_R(i)]}}{N-1},
@@ -292,10 +305,10 @@ where $h\in[0,1]$. Note that Landau's $h$ does not provide an individual level m
 		D=\frac{1}{N_{r}}\sum_{i=1}^{N_r}{l_{ri}},	
 		$$
 		where $l$ is the length of the shortest path between root $r$ and node $i$.
-	\item We apply centralization, a method used to calculate a global measure of centrality from local measures, to the following local centrality measures: betweenness, closeness, eigenvector, and degree, all of which are defined in the following section. Centralization is defined as follows for local measures $c_{i}$: 
-	$$
-	C=\sum_{i=1}^{N}{(max\{c_{i}\}-c_{i})}
-	$$
+	% \item We apply centralization, a method used to calculate a global measure of centrality from local measures, to the following local centrality measures: betweenness, closeness, eigenvector, and degree, all of which are defined in the following section. Centralization is defined as follows for local measures $c_{i}$:
+	% $$
+	% C=\sum_{i=1}^{N}{(max\{c_{i}\}-c_{i})}
+	% $$
 \end{enumerate}
 
 \subsection{Measures of Hierarchy-Local}
