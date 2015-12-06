@@ -300,6 +300,18 @@ The last measure we consider, \textbf{rooted depth} \cite{depth},  is only defin
 \end{align}
 where $l$ is the length of the shortest path between root $r$ and node $i$. This measure can only be calculated for the network as a whole. However, given $R$ roots in a network, we can calculate a local root depth for each node that is equal to the average length of the shortest path between itself and all roots. One of the major problems with this measure is that it is undefined for networks without a root (a node with only incoming edges). This makes it very difficult to apply to most networks (we were only able to calculate it for a small fraction of networks in our sample). Furthermore, since this measure relies on finding nodes with no outgoing ties, it can be very sensitive to the way the network is measured. In general, we do not find rooted depth to be a useful measure in our empirical analysis.
 
+\subsection{Relationships Between Hierarchy Measures}
+To begin to understand how these measures are related, we each of these ten measures on a total of 136 social, organizational, and information networks described in greater detail in Section \ref{sec:data}. All of these networks are directed, and for almost all of them, we were not able to calculate the rooted depth of the network, and we therefore exclude it from our further analysis. Figure \ref{fig:measure correlations} illustrates the correlation coefficients between the nine hierarchy measures we were able to calculate on these networks. As we can see,  Landau's $h$ and Kendal's $K$ are essentially perfectly correlated and thus largely redundant. These measures are also significantly correlated with the simple degree centralization of the network. We can also see that $M$-reach degree and $M$-reach closeness Gini coefficients are highly correlated, with both also being significantly correlated with GRC, as expected.
+
+\begin{figure}
+\begin{center}
+	\caption{\label{fig:measure correlations} Pearson correlation coefficients between nine measures of network hierarchy. A black \textbf{X} in a cell indicates that there was not a significant correlation between measures at the $\alpha = 0.05$ level of significance. Note that the correlation between Landau's $h$ and Kendal's $K$ was $\approx 0.9996$ but was not exactly 1.}
+		\includegraphics[width = 0.98\textwidth]{./images/Global_Measure_Correlations_with_Tests.pdf}
+\end{center}
+\end{figure}
+
+Perhaps surprisingly, the rest of the correlations depicted in Figure \ref{fig:measure correlations} are quite small and statistically insignificant, indicating that if all of these measures are valid, they are capturing different dimensions of hierarchy in a network. Figure \ref{fig:pairs plots} provides a full set of pairs plots between all measures, with points for each network colored by the type of network. This finding suggests that either there are multiple dimensions to hierarchy in a network \cite{Corominas-Murtra2013}, some of these measures do not measure hierarchy, or some combination of both. To investigate this finding further, we perform several statistical and qualitative comparisons between these measures in Section \ref{sec:analysis}.
+
 % \subsection{Statistical Measures of Network Hierarchy}
 %
 % \begin{enumerate}
@@ -409,7 +421,7 @@ where $l$ is the length of the shortest path between root $r$ and node $i$. This
 	
 	
 \section{Data}
-
+\label{sec:data}
 A list of references for the network datasets used in this study can be found in \ref{sec:dataset references}.
 
 	
@@ -422,6 +434,39 @@ A list of references for the network datasets used in this study can be found in
 
 
 \section{Analysis}
+\label{sec:analysis}
+
+
+
+
+\begin{figure}
+\begin{center}
+	\caption{\label{fig:PCA variacnes} Eigenvalues for 9 largest principle components in our analysis indicate that we should examine the first three components, which all have eigenvalues greater than one.}
+		\includegraphics[width = 0.5\textwidth]{./images/Observed_PCA_Component_Varinces.pdf}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+	\caption{\label{fig:1 and 2} Principle components plot for components one and two.}
+		\includegraphics[width = 0.98\textwidth]{./images/Observed_PCA_Components1_2.pdf}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+	\caption{\label{fig:1 and 3} Principle components plot for components one and three.}
+		\includegraphics[width = 0.98\textwidth]{./images/Observed_PCA_Components1_3.pdf}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+	\caption{\label{fig:2 and 3} Principle components plot for components two and three.}
+		\includegraphics[width = 0.98\textwidth]{./images/Observed_PCA_Components2_3.pdf}
+\end{center}
+\end{figure}
+
 
 % 	The analytical portion of the problem will be conducted in R, which is known by all members of the group. We will be using both statistical and mathematical methods of quantifying and/or measuring hierarchy. We will focus on methods that have already been developed, published, and implemented in R, or are can easily be implemented by one of the group members. If time permits, we may try to develop or suggest directions for future development of our own statistical models and/or mathematical measurements. Each member of the group will be responsible for at least one method.
 %
@@ -469,6 +514,9 @@ A list of references for the network datasets used in this study can be found in
 	Coleman, J. (1973),
 	``Introduction to mathematical sociology."
 	\textit{London Free Press Glencoe}.
+	
+	\bibitem{Corominas-Murtra2013}
+	Corominas-Murtra, B., Goni, J., Sole, R. V, \& Rodríguez-Caso, C. (2013). ``On the origins of hierarchy in complex networks''. \emph{Proceedings of the National Academy of Sciences of the United States of America}, 110(33), 13316–21. \href{http://doi.org/10.1073/pnas.1300832110}{http://doi.org/10.1073/pnas.1300832110}
 	
 	\bibitem{between} 
 	Freeman, L. (1977),
@@ -627,6 +675,19 @@ A list of references for the network datasets used in this study can be found in
 
 \newpage
 \appendix
+
+
+\section{Measure Pairs Plots}
+\label{sec:pairs plots}
+
+\begin{figure}[htp]
+\begin{center}
+	\caption{\label{fig:pairs plots} Pairs plots between nine network hierarchy measures calculated on 136 networks. Points are colored according to network type, with the following color codings: \textbf{affect} = black,         \textbf{co-membership} = yellow,  \textbf{communication} = red, \textbf{bill cosponsorship} = orange, \textbf{friendship} = green,  \textbf{interaction} = blue, \textbf{terrorism} = pink, \textbf{trade} = maroon, and all networks for which the type was \textbf{unknown} were collored light brown.}
+		\includegraphics[width = 0.98\textwidth]{./images/Global_Measure_Pairs_Plots.pdf}
+\end{center}
+\end{figure}
+
+
 \section{Dataset References}
 \label{sec:dataset references}
 
