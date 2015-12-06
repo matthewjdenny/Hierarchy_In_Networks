@@ -1,9 +1,16 @@
 #utility functions to aid with plotting and manipulating data.
 
 remove_rows <- function(dframe,
-                        remove){
-    for(i in 1:length(remove)){
-        dframe <- dframe[-which(row.names(dframe) == remove[i]),]
+                        remove,
+                        list = FALSE){
+    if(list){
+        for(i in 1:length(remove)){
+            dframe <- dframe[-which(names(dframe) == remove[i])]
+        }
+    }else{
+        for(i in 1:length(remove)){
+            dframe <- dframe[-which(row.names(dframe) == remove[i]),]
+        }
     }
     return(dframe)
 }
