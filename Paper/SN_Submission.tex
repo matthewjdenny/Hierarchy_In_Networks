@@ -253,7 +253,7 @@ where $\mathbf{\lambda}$ is a vector of positive eigenvalues. The challenge is t
 \begin{align}
 	h=\frac{12}{N^3-N}\sum_{i=1}^{N}{\left[\text{Out}_i-\frac{N-1}{2}\right]^{2}}
 \end{align}
-where $h\in[0,1]$. Note that Landau's $h$ does not provide an individual level metric of importance or relative power. This measure was specifically designed to operate on networks of ``has power over'' edges, and thus may be difficult to interpret when the network is not explicitly defined on power relations. Because of a preference for chain-like structures, this measure will likely provide poor performance when edges measure social relations. \textbf{Kendall's} $\mathbf{K}$  is also designed to compare a directed network to a perfect linear hierarchy \cite{kendall}. As noted in \cite{animals}, it often gives an identical value to Landau's $h$, but is theoretically distinct. Begin by defining the number of \emph{cyclic triads} ($CyT$) in the network as:
+where $h \in [0,1]$. Note that Landau's $h$ does not provide an individual level metric of importance or relative power. This measure was specifically designed to operate on networks of ``has power over'' edges, and thus may be difficult to interpret when the network is not explicitly defined on power relations. Because of a preference for chain-like structures, this measure will likely provide poor performance when edges measure social relations. \textbf{Kendall's} $\mathbf{K}$  is also designed to compare a directed network to a perfect linear hierarchy \cite{kendall}. As noted in \cite{animals}, it often gives an identical value to Landau's $h$, but is theoretically distinct. Begin by defining the number of \emph{cyclic triads} ($CyT$) in the network as:
 \begin{align}
 	CyT=\frac{N(N-1)(2N-1)}{12}-\frac{1}{2}\sum{\text{Out}_i^2}
 \end{align}
@@ -268,6 +268,14 @@ where the value $d_{max}$ is defined as follows:
 			\frac{1}{24}(N^3-4N) \hspace*{0.44in} \text{if $N$ is even}
 			\end{cases}
 \end{align}
+Kendal's $K \in [0,1]$ is also only defined as a global measure, and no individual level analogue exists. It was also specifically designed to operate on networks of ``has power over'' edges, and is therefore likely a poor choice for networks defined over social interactions. 
+
+\textbf{M-reach degree} was developed to identify `key' players in a network \cite{key}.  It is defined as a measure for each node $v_{i}$ as the number of alters that are reachable from $v_{i}.$ If $G$ is directed then the reachable alters must lie along an outgoing path from $v_{i}$. A closely related measure, \textbf{M-reach closeness} is defined as the M-reach degree of a node, but with the contribution of each alter $j$ that is reachable, weighted by the inverse of the shortest path length between $i$ and $j$. Both of these measures are only defined for individual nodes, so to calculate a global measure for a network, we take the Gini coefficient of the measures calculated for each node $i$. The Gini  coefficient \cite{Yitzhaki1979} is a measure of inequality originally developed to measure income inequality in a society. For a vector of values $x : \{x_i\}_{i=1}^{N}$ the Gini coefficient $G$ of that vector is:
+\begin{align}
+	G = \frac{\displaystyle{\sum_i \sum_j \left| x_i - x_j \right|}}{\displaystyle{2 \sum_i \sum_j x_i}}
+\end{align}
+In words, it is half of the \emph{average absolute difference} of all pairs of entries in the vector, divided by the average, which acts as a normalizing constant. We take the Gini coefficient of the M-reach degree and M-reach closeness values for each node in the network and treat this as our global measure of network hierarchy. Intuitively, this measure is capturing the degree of inequality in access to other nodes in the network. We should expect that a higher degree of inequality in this metric would be associated with a more hierarchical network. One potential shortcoming of these measures is that they only account for out-degree, when incoming ties may be a better signal of power relations in many real-world social networks
+
 
 \begin{enumerate}
 	% \item Landau's $h\in[0,1]$ is used to compare a directed network to a perfect linear hierarchy \cite{landau}. Let $S_i$ be the row sum for each node, then:
