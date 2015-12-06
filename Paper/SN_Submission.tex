@@ -45,6 +45,7 @@
 \usepackage{bm}% bold math
 \usepackage{hyperref}% add hypertext capabilities
 \usepackage[mathlines]{lineno}
+\usepackage{bbm}
 
 %% The ecrc package defines commands needed for running heads and logos.
 %% For running heads, you can set the journal name, the volume, the starting page and the authors
@@ -195,33 +196,46 @@ Hierarchy \sep Network \sep Power
 \section{Introduction}
 \label{sec:introduction}
 
-\text{Hierarchies are important. What we did and why...what we found...}
+Hierarchy is an important feature of many organizations, such as firms, social clubs, and military units. Formally, we can define a hierarchy as a system where people or groups are ranked according to status or authority. Yet it is difficult to operationalize this definition for measurement and comparison. There has been a great deal of research on power and status in groups and organizations, but most of this research relies on measurements defined over domain specific rankings, such as job titles. At the same time, networks scholars have defined a number of broadly applicable hierarchy metrics based on network structure, but these metrics are not necessarily grounded in meaningful sociological concepts of status and authority. Contrastingly, social theorists like Michael Mann have noted the messiness of society and that a network-oriented perspective of the ``sociospatial and organizational model [of a network]" can explicate the ``sources of social power," \cite{mann} but they have generally not delved into the methodologies through which to fully explore such power dynamics. In this paper, we seek to bring together these two areas of research, and to develop a framework for measuring hierarchy in social networks that is both generally applicable and exhibits a high degree of construct validity.
 
-\begin{flushleft}
-	Hierarchy is an important feature of many organizations, such as firms, social clubs, and military units. Formally, we can define a hierarchy as a system where people or groups are ranked according to status or authority. Yet it is difficult to operationalize this definition for measurement and comparison. There has been a great deal of research on power and status in groups and organizations, but most of this research relies on measurements defined over domain specific rankings, such as job titles. At the same time, networks scholars have defined a number of broadly applicable hierarchy metrics based on network structure, but these metrics are not necessarily grounded in meaningful sociological concepts of status and authority. Contrastingly, social theorists like Michael Mann have noted the messiness of society and that a network-oriented perspective of the ``sociospatial and organizational model [of a network]" can explicate the ``sources of social power," \cite{mann} but they have generally not delved into the methodologies through which to fully explore such power dynamics. In this paper, we seek to bring together these two areas of research, and to develop a framework for measuring hierarchy in social networks that is both generally applicable and exhibits a high degree of construct validity.
-	
-	\paragraph Having developed a framework for measuring hierarchy in networks, we will then test its internal and external validity. To test the internal validity of such a measure, we will conduct a simulation study. To test the external validity of our measure we will compare measurements across networks that we can theoretically rank by their degree of hierarchy. We will  then apply our framework to better understand the implications of hierarchical network structure for organizational performance in a sample of 17 county government organizations. 
-\end{flushleft}
 
-\subsection{Problem Statement}
-\begin{flushleft}
-	How do we define and measure hierarchy in (directed) social networks? We need to relate sociological conceptions of hierarchy and power to network measures. In developing this framework we intend to compare analytical and statistical approaches to measurement on both synthetic and real world datasets. In particular there are several key questions we must address.	
-\end{flushleft}
-\begin{enumerate}
-	\item Is an analytical or statistical measure of network hierarchy more appropriate for our  goals?  
-	\item Can we capture all or even most salient dimensions of hierarchy as defined in the sociological literature in a single measure?
-	\item Can our measure be extended to undirected networks?
-\end{enumerate}
+% \subsection{Problem Statement}
+% \begin{flushleft}
+% 	How do we define and measure hierarchy in (directed) social networks? We need to relate sociological conceptions of hierarchy and power to network measures. In developing this framework we intend to compare analytical and statistical approaches to measurement on both synthetic and real world datasets. In particular there are several key questions we must address.
+% \end{flushleft}
+% \begin{enumerate}
+% 	\item Is an analytical or statistical measure of network hierarchy more appropriate for our  goals?
+% 	\item Can we capture all or even most salient dimensions of hierarchy as defined in the sociological literature in a single measure?
+% 	\item Can our measure be extended to undirected networks?
+% \end{enumerate}
 
-\subsection{Significance}
-\begin{flushleft}
-	All of our fields including political science, sociology, and statistics approach the concept of hierarchy from different angles. Yet the main goal of any researcher is the same:  to accurately theoretically understand and quantify real world phenomena. Without statistical models/mathematical measurements for hierarchy which are theoretically based, and vice versa; theory that can be statistical/mathematically quantified and verified, the conceptual idea of hierarchy cannot be fully understood. We do not suggest that this project will achieve an overreaching theory and methods, but we strive to take the first step. At the very least, we will try to demonstrate the need for a united theory and corresponding methods. As an interdisciplinary team, we are in the unique position to accomplish our goals.
-\end{flushleft}
+Without statistical models/mathematical measurements for hierarchy which are theoretically based, and vice versa; theory that can be statistical/mathematically quantified and verified, the conceptual idea of hierarchy cannot be fully understood. We do not suggest that this project will achieve an overreaching theory and methods, but we strive to take the first step. At the very least, we will try to demonstrate the need for a united theory and corresponding methods. As an interdisciplinary team, we are in the unique position to accomplish our goals.
 
 \section{Measuring Hierarchy}
-We will denote a network's graph as $G=(V,E)$, where $V=\{v_i\}={v_1,...v_N}$ the set of vertices and the set of edges $E=\{e_j\}=e_1,...e_M$.
+A number of analytical measures of hierarchy have been proposed for directed networks. Most proposed measures return a scalar value that is meant to capture the ``hierarchical-ness'' of a given network \cite{eigen, between,kendall, landau, GRC}. This theoretically facilitates comparison between measures calculated on the same network, as well as comparison on the same measure across multiple networks. However some approaches to measuring hierarchy only provide a local measure of importance or position in the hierarchy for each node in the network \cite{key}. For these measures, one can calculate a Gini coefficient \cite{Yitzhaki1979} from the individual level scores and use these coefficients as a proxy for a global measure. 
 
-\subsection{Measures of Hierarchy-Global}
+In this section, we introduce and describe ten candidate measures of network hierarchy that have been previously used in the networks literature. It is important to note that most of the measures we consider are only defined for directed networks, and thus for the remained of this paper we assume all networks under consideration are directed. We begin by introducing some terminology that will be common across all measures. For a given network $G=(V,E)$, let $V=\{v_i\}_{i=1}^N$ be the set of $N$ vertices (nodes) associated with $G$, and $E=\{e_j\}_{j=1}^M$ be the set of $M$ edges associated with $G$. Furthermore, for a given edge $e_j$, let $e_j^{(s)} \in 1:N$ be the index of the sender of the edge and $e_j^{(r)} \in 1:N$ be the index of the recipient. 
+
+One other important point is that most measures of network hierarchy are meant to be applied to networks where the edge sets capture relations other than ``has power over''. In this special case, it is theoretically easier to construct a measure of network hierarchy since the network must be directed and acyclic (preventing circular chains of command). However, obtaining such information is usually impossible in most cases (with military personell networks being an obvious exception). Furthermore, if the researcher has collected such an edge-set, then the need for summary measures of the ``hierarchical-ness'' of the network is likely obviated, as deeper insights could be gained from applying inferential network analysis tools to the raw network. Therefore, we focus or attention on the measurement of hierarchy on networks where edges are not explicitly power relations.
+
+\subsection{Analytical Measures of Hierarchy}
+The most basic measures of hierarchy or differential importance of a nodes in a network can all be derived from basic node-level measures of network centrality \cite{Wasserman1994}. To aggregate from these node-level measures up to a singel measure on a network, one can calculate $C$, the centralization of the network. For given local measures $\mathbf{c} = \{c_i\}_{i=1}^N$, the corresponding centralization measure is defined as: 
+\begin{align}
+	C = \sum_{i=1}^{N}{(\max\{c_{i}\}-c_{i})}
+\end{align}
+Centralization captures the degree of inequality in the distribution of a given centrality measure over the network. In general, we should then expect that networks that are more centralized are also likely to be more hierarchical. However, this measure attains its maximal value for any centrality measure when one node has a maximal value of the given centrality measure and all the rest of the nodes have the minimal possible value. This will tend to give star networks maximal centralization scores. This implicit assumption in measurement is important to consider when evaluating the validity of centralization based measures of hierarchy.
+
+The four centrality measures we consider are: degree centrality, closeness centrality, betweenness centrality, and eigenvector centrality. The \textbf{degree centrality} of node $v_{i}$ is simply the number of outgoing or incoming edges incident to it. Formally, this can be calculated as:
+\begin{align}
+	\text{indegree centrality}_i &= \sum_{j=1}^M \mathbbm{1}(e_j^{(r)} = i) \\
+	\text{outdegree centrality}_i &= \sum_{j=1}^M \mathbbm{1}(e_j^{(s)} = i) 
+\end{align}
+Degree centrality captures the number of friends or connections a node has, and intuitively, we should expect more powerful nodes will have more incoming and outgoing connections. However, degree centrality does not account for the identity of a node's alters. This can lead to difficulties when it is used to asses a node's position in a social hierarchy. For example, in a large company, we might expect that an administrative assistant may have a higher degree centrality than the CEO of a company if the edges being measured are work-related interaction. 
+
+
+
+
+
 \begin{enumerate}
 	\item Landau's $h\in[0,1]$ is used to compare a directed network to a perfect linear hierarchy \cite{landau}. Let $S_i$ be the row sum for each node, then:
 		$$
@@ -322,7 +336,7 @@ For the global measures, both Landau's $h$ and Kendall's $K$ have mostly been us
 	$$
 	h(G)=1-\frac{1}{m}A(G),
 	$$ 
-	where $A(G)=\sum_{(v_i,v_j)\in E} {max(r(v_i)-r(v_j)+1,0}$ is the total 'agony'. Since the rankings are not known, they are found by minimizing the total agony over all possible rankings $r$.
+	where $A(G)=\sum_{(v_i,v_j)\in E} {max(r(v_i)-r(v_j)+1,0}$ is the total `agony'. Since the rankings are not known, they are found by minimizing the total agony over all possible rankings $r$.
 	
 	\end{enumerate}
 	
@@ -501,7 +515,7 @@ For the global measures, both Landau's $h$ and Kendall's $K$ have mostly been us
 
 	\bibitem{wiki}
 	Leskovec, J., Huttenlocher, D., and Kleinberg, J. (2010),
-	''Predicting Positive and Negative Links in Online Social Networks."
+	``Predicting Positive and Negative Links in Online Social Networks."
 	
 	\bibitem{linux}
 	Linux kernel mailing list replies network dataset - KONECT, May 2015.
@@ -575,6 +589,9 @@ For the global measures, both Landau's $h$ and Kendall's $K$ have mostly been us
 	``Friendship networks through time: An actor-oriented dynamic statistical network model."
 	\textit{Computational and Mathematical Organization Theory} 5: 2, 167-192.
 	
+	\bibitem{Wasserman1994}
+	Wasserman, S., \& Faust, K. (1994). ``Social Network Analysis: Methods and Applications''. (M. Granovetter, Ed.)\emph{Social Networks (Vol. 8)}. Cambridge University Press. \href{http://doi.org/10.2307/2077235}{http://doi.org/10.2307/2077235}
+	
 	\bibitem{sevies}
 	Watts, D. and Strogatz, S. (1998),
 	``Collective dynamics of `small world' networks."
@@ -584,6 +601,9 @@ For the global measures, both Landau's $h$ and Kendall's $K$ have mostly been us
 	West, R., Paskov, H., Leskovec, J., and Potts, C. (2014),
 	``Exploiting Social Network Structure for Person-to-Person Sentiment Analysis."
 	\textit{Transactions of the Association for Computational Linguistics} 2: 297-310.
+	
+	\bibitem{Yitzhaki1979}
+	Yitzhaki, S.. (1979), ``Relative deprivation and the Gini coefficient." \emph{The quarterly journal of economics} 321-324.
 
 	
 
