@@ -45,7 +45,7 @@
 \usepackage{bm}% bold math
 \usepackage{hyperref}% add hypertext capabilities
 \usepackage[mathlines]{lineno}
-\usepackage{bbm}
+\usepackage{bbm,booktabs}
 
 %% The ecrc package defines commands needed for running heads and logos.
 %% For running heads, you can set the journal name, the volume, the starting page and the authors
@@ -422,7 +422,30 @@ Perhaps surprisingly, the rest of the correlations depicted in Figure \ref{fig:m
 	
 \section{Data}
 \label{sec:data}
-A list of references for the network datasets used in this study can be found in \ref{sec:dataset references}.
+A list of references for the network datasets used in this study can be found in \ref{sec:dataset references}. Descriptive statistics of each of the nine types of networks we consider in this study are provided in Table \ref{tab:descriptive stats by type}.
+
+
+% latex table generated in R 3.2.2 by xtable 1.8-0 package
+% Sun Dec  6 14:21:01 2015
+\begin{table}[ht]
+\centering
+\caption{\label{tab:descriptive stats by type} Network Descriptive statistics for all 136 networks in our sample, aggregated by the network type. All columns are averages over networks of that type.}
+\begin{tabular}{lrrrrr}
+  \toprule
+ \textbf{Type} & \textbf{\# of Networks} & \textbf{Nodes} & \textbf{Edges} & \textbf{Density} & \textbf{Clustering Coefficient} \\ 
+  \midrule
+\emph{communication} & 20 & 25.40 & 1764.25 & 2.87 & 0.55 \\ 
+  \emph{cosponsorship} & 18 & 101.22 & 13358.89 & 1.32 & 0.79 \\ 
+  \emph{co-membership} & 2 & 21.50 & 22.50 & 0.05 & 0.07 \\ 
+  \emph{interaction} & 40 & 23.07 & 1944.95 & 1.99 & 0.59 \\ 
+  \emph{unknown} & 33 & 38.70 & 445.36 & 0.38 & 0.43 \\ 
+  \emph{friendship} & 6 & 29.83 & 92.00 & 0.12 & 0.35 \\ 
+  \emph{affect} & 11 & 17.64 & 95.18 & 0.32 & 0.33 \\ 
+  \emph{terrorism} & 1 & 63.00 & 308.00 & 0.08 & 0.36 \\ 
+  \emph{trade} & 5 & 24.00 & 285.60 & 0.52 & 0.73 \\ 
+   \bottomrule
+\end{tabular}
+\end{table}
 
 	
 % Among the network datasets we are exploring, they are already or mostly in usable format. As we're navigating through our theoretical conception of hierarchy in network, we are ruling out the use of the karate club, dolphin, football, etc. datasets because we want to be able to analyze datasets where the networks are more interesting or theoretically-relevant. In this way, there are a couple of systems that might be useful. The first is a network of cooperation among militant groups, which encompasses joint exercises, mergers, and splits among militant groups: http://web.stanford.edu/group/mappingmilitants/cgi-bin/. This may interesting for us for a few reasons: (1) there is no de jure hierarchical structure (i.e., no formally-recognized chain of command or sovereignty); (2) militant groups face a classic collective action problem, and thus we can expect the dynamics Mann describes to hold; and (3) most theories of conflict would predict no hierarchy to occur in this system. An interesting system to compare this to would be military actions in Vietnam: http://tinyurl.com/pwofooy. The nodes here would be military units, and the edges are participation in the same battle. Of course, the main issue with this dataset is that it's undirected, which we've noted may be difficult to conceptualize within a hierarchy framework. We're focusing on conflict datasets because many of the theoretical definitions define hierarchy as essentially about outcomes—i.e., the ability of particular nodes to control the actions and behaviors of subordinate nodes.
