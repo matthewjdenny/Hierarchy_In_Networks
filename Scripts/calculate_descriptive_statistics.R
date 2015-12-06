@@ -17,13 +17,13 @@ calculate_descriptive_statistics <- function(Network_Data){
 
     #calculate type averages
     unique_types <- unique(network_types)
-    type_statistics <- matrix(0,nrow = length(unique_types), ncol = 4)
+    type_statistics <- matrix(0,nrow = length(unique_types), ncol = 5)
     for(i in 1:length(unique_types)){
         cur <- local_statistics[which(network_types == unique_types[i]),]
-        type_statistics[i,] <- colMeans(cur)
+        type_statistics[i,] <- c(length(which(network_types == unique_types[i])),colMeans(cur, na.rm = T))
     }
     rownames(type_statistics) <- unique_types
-    colnames(type_statistics) <- c("nodes","edges","density","clustering_coefficient")
+    colnames(type_statistics) <- c("number","nodes","edges","density","clustering_coefficient")
     type_statistics <- data.frame(type_statistics)
 
     return(list(network_statistics = local_statistics,
