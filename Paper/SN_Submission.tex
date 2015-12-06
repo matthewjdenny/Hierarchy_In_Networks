@@ -227,8 +227,8 @@ Centralization captures the degree of inequality in the distribution of a given 
 
 The \textbf{degree centrality} of node $v_{i}$ is simply the number of outgoing or incoming edges incident to it. Formally, this can be calculated as:
 \begin{align}
-	\text{indegree centrality}_i &= \sum_{j=1}^M \mathbbm{1}(e_j^{(r)} = i) \\
-	\text{outdegree centrality}_i &= \sum_{j=1}^M \mathbbm{1}(e_j^{(s)} = i) 
+	\text{indegree centrality}_i = \text{In}_i&= \sum_{j=1}^M \mathbbm{1}(e_j^{(r)} = i) \\
+	\text{outdegree centrality}_i  = \text{Out}_i &= \sum_{j=1}^M \mathbbm{1}(e_j^{(s)} = i) 
 \end{align}
 Degree centrality captures the number of friends or connections a node has, and intuitively, we should expect more powerful nodes will have more incoming and outgoing connections. However, degree centrality does not account for the identity of a node's alters. This can lead to difficulties when it is used to asses a node's position in a social hierarchy. For example, in a large company, we might expect that an administrative assistant may have a higher degree centrality than the CEO of a company if the edges being measured are work-related interaction. Furthermore, if there are many administrative assistants at the bottom of the power structure in an organization we might qualitatively consider to be extremely hierarchically structured, the degree centralization of the interaction network might be lower than in a comparably sized ``organizationally flat" organization where a handfull of people serve as coordinators. Thus we must take great care in interpreting this statistic, depending on the type of edges it is defined over. 
 
@@ -249,6 +249,11 @@ The last of the classical centrality based measures is \textbf{eigenvector centr
 \end{align}
 where $\mathbf{\lambda}$ is a vector of positive eigenvalues. The challenge is to find the \emph{dominant eigenvector}, as only the largest eigenvalue results in the desired centrality measure for each node. Intuitively, higher eigenvector centrality should be associated with greater social or organizational importance. Interestingly, the eigenvector centralization of a network can still be large even if there are a relatively large proportion of higher degree nodes, as long as the edges are organized such that only a few nodes are connected to all of these higher degree nodes.
 
+\textbf{Landau's} $\mathbf{h}$ is used to compare a directed network to a perfect linear hierarchy (a strict dominance-ordering of nodes) \cite{landau, animals}. This measure is defined as follows:
+\begin{align}
+	h=\frac{12}{N^3-N}\sum_{i=1}^{N}{\left[\text{Out}_i-\frac{N-1}{2}\right]^{2}}
+\end{align}
+where $h\in[0,1]$. Note that Landau's $h$ does not provide an individual level metric of importance or relative power. This measure was specifically designed to operate on networks of ``has power over'' edges, and thus may be difficult to interpret when the network is not explicitly defined on power relations. Because of a preference for chain-like structures, this measure will likely provide poor performance when networks measure social relations.
 
 \begin{enumerate}
 	\item Landau's $h\in[0,1]$ is used to compare a directed network to a perfect linear hierarchy \cite{landau}. Let $S_i$ be the row sum for each node, then:
@@ -299,20 +304,20 @@ where $\mathbf{\lambda}$ is a vector of positive eigenvalues. The challenge is t
 		$G$ is directed then this reachable vertices must lie along an outgoing path from $v_{i}$. This local measure is the same used for the $GRC$ local measures in \cite{GRC}.  
 	\item M-reach closeness was also developed to identify `key' players \cite{key}. It is defined as the M-reach degree weighted by the inverse geodistances. 
 	\item A local version of rooted depth can be found for a graph. Given $r$ roots in a network, the each node has a local root depth equal to the average length of the shortest path between itself and all roots \cite{depth}.
-	\item Betweenness centrality is meant to capture the amount of influence a node has on the information transversed through it \cite{between}. Define $D_{i,j}$ as the number of shortest paths between $v_{i}$ and $v_{j}$ and $D_{i,j}(k)$ as the number of these shortest paths that pass through $v_{k},$ then the betweenness centrality for $v_{k}$ is:
-		$$
-		\sum_{i\neq k\neq j}{(\frac{D_{i,j}(k)}{D_{i,j}})}
-		$$
-	\item Given $d(i,j)$ is the length of the shortest path between $v_{i}$ and $v_{j}$, closeness centrality is measured as 
-		$$
-		\sum_{i\neq j}{(\frac{1}{d(i,j)})}
-		$$
-	\item Eigenvector centrality is meant to give weight to nodes that are connected to nodes that are most central in the network \cite{eigen}. Defining the graphs adjacency matrix 
-		as $A$ and the vector of local eigenvector centrality scores as $c=\{c({v_{1}}),...,c(v_{V})\}$ we have to solve the following equation: 
-		$$
-			A c=\lambda c
-		$$ 
-	\item Degree centrality for $v_{i}$ is simply the number of outgoing edges it has.
+	% \item Betweenness centrality is meant to capture the amount of influence a node has on the information transversed through it \cite{between}. Define $D_{i,j}$ as the number of shortest paths between $v_{i}$ and $v_{j}$ and $D_{i,j}(k)$ as the number of these shortest paths that pass through $v_{k},$ then the betweenness centrality for $v_{k}$ is:
+	% 	$$
+	% 	\sum_{i\neq k\neq j}{(\frac{D_{i,j}(k)}{D_{i,j}})}
+	% 	$$
+	% \item Given $d(i,j)$ is the length of the shortest path between $v_{i}$ and $v_{j}$, closeness centrality is measured as
+	% 	$$
+	% 	\sum_{i\neq j}{(\frac{1}{d(i,j)})}
+	% 	$$
+	% \item Eigenvector centrality is meant to give weight to nodes that are connected to nodes that are most central in the network \cite{eigen}. Defining the graphs adjacency matrix
+	% 	as $A$ and the vector of local eigenvector centrality scores as $c=\{c({v_{1}}),...,c(v_{V})\}$ we have to solve the following equation:
+	% 	$$
+	% 		A c=\lambda c
+	% 	$$
+	% \item Degree centrality for $v_{i}$ is simply the number of outgoing edges it has.
 \end{enumerate}
 
 \subsection{Discussion of Measures}
