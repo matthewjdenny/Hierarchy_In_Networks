@@ -211,6 +211,9 @@ Hierarchy is an important feature of many organizations, such as firms, social c
 
 Without statistical models/mathematical measurements for hierarchy which are theoretically based, and vice versa; theory that can be statistical/mathematically quantified and verified, the conceptual idea of hierarchy cannot be fully understood. We do not suggest that this project will achieve an overreaching theory and methods, but we strive to take the first step. At the very least, we will try to demonstrate the need for a united theory and corresponding methods. As an interdisciplinary team, we are in the unique position to accomplish our goals.
 
+\section{Sociological Theories of Hierarchy}
+	We are still working through evaluating a few different datasets to best suit our purposes. However, at present, this is a little difficult because we really want our measure to be theoretically-grounded, but we haven't yet developed a solid theoretical conception for hierarchy. Thus far, theory-wise, the Mann (1986) definition seems closest to the Liu-Driver measures discussed in the Mones et al. (2012) article: i.e., hierarchical networks are those in which the actions of a few nodes are needed to take control of the graph. Another potential definition, also implied, is hierarchy means the mechanisms of collective actions (i.e., the ability of different nodes to connect with one another) hinges on a small number.
+
 \section{Measuring Hierarchy}
 A number of analytical measures of hierarchy have been proposed for directed networks. Most proposed measures return a scalar value that is meant to capture the ``hierarchical-ness'' of a given network \cite{eigen, between,kendall, landau, GRC}. This theoretically facilitates comparison between measures calculated on the same network, as well as comparison on the same measure across multiple networks. However some approaches to measuring hierarchy only provide a local measure of importance or position in the hierarchy for each node in the network \cite{key}. For these measures, one can calculate a Gini coefficient \cite{Yitzhaki1979} from the individual level scores and use these coefficients as a proxy for a global measure. 
 
@@ -270,14 +273,56 @@ where the value $d_{max}$ is defined as follows:
 \end{align}
 Kendal's $K \in [0,1]$ is also only defined as a global measure, and no individual level analogue exists. It was also specifically designed to operate on networks of ``has power over'' edges, and is therefore likely a poor choice for networks defined over social interactions. 
 
-\textbf{M-reach degree} was developed to identify `key' players in a network \cite{key}.  It is defined as a measure for each node $v_{i}$ as the number of alters that are reachable from $v_{i}.$ If $G$ is directed then the reachable alters must lie along an outgoing path from $v_{i}$. A closely related measure, \textbf{M-reach closeness} is defined as the M-reach degree of a node, but with the contribution of each alter $j$ that is reachable, weighted by the inverse of the shortest path length between $i$ and $j$. Both of these measures are only defined for individual nodes, so to calculate a global measure for a network, we take the Gini coefficient of the measures calculated for each node $i$. The Gini  coefficient \cite{Yitzhaki1979} is a measure of inequality originally developed to measure income inequality in a society. For a vector of values $x : \{x_i\}_{i=1}^{N}$ the Gini coefficient $G$ of that vector is:
+\textbf{$\mathbf{M}$-reach degree} was developed to identify `key' players in a network \cite{key}.  It is defined as a measure for each node $v_{i}$ as the number of alters that are reachable from $v_{i}.$ If $G$ is directed then the reachable alters must lie along an outgoing path from $v_{i}$. A closely related measure, \textbf{$\mathbf{M}$-reach closeness} is defined as the M-reach degree of a node, but with the contribution of each alter $j$ that is reachable, weighted by the inverse of the shortest path length between $i$ and $j$. Both of these measures are only defined for individual nodes, so to calculate a global measure for a network, we take the Gini coefficient of the measures calculated for each node $i$. The Gini  coefficient \cite{Yitzhaki1979} is a measure of inequality originally developed to measure income inequality in a society. For a vector of values $x : \{x_i\}_{i=1}^{N}$ the Gini coefficient $G$ of that vector is:
 \begin{align}
 	G = \frac{\displaystyle{\sum_i \sum_j \left| x_i - x_j \right|}}{\displaystyle{2 \sum_i \sum_j x_i}}
 \end{align}
-In words, it is half of the \emph{average absolute difference} of all pairs of entries in the vector, divided by the average, which acts as a normalizing constant. We take the Gini coefficient of the M-reach degree and M-reach closeness values for each node in the network and treat this as our global measure of network hierarchy. Intuitively, this measure is capturing the degree of inequality in access to other nodes in the network. We should expect that a higher degree of inequality in this metric would be associated with a more hierarchical network. One potential shortcoming of these measures is that they only account for out-degree, when incoming ties may be a better signal of power relations in many real-world social networks
+In words, it is half of the \emph{average absolute difference} of all pairs of entries in the vector, divided by the average, which acts as a normalizing constant. We take the Gini coefficient of the $M$-reach degree and $M$-reach closeness values for each node in the network and treat this as our global measure of network hierarchy. Intuitively, this measure is capturing the degree of inequality in access to other nodes in the network. We should expect that a higher degree of inequality in this metric would be associated with a more hierarchical network. One potential shortcoming of these measures is that they only account for out-degree, when incoming ties may be a better signal of power relations in many real-world social networks.
+
+\textbf{Global reaching centrality (GRC)}  is a generalization of $M$-reach degree centrality measure \cite{GRC}, and was designed specifically to measure on any network. When the network is unweighted and directed, let $C_R(i)$ be the local $M$-reach degree centrality of node $i$, then the global reaching centrality of the network can be defined as:
+\begin{align}
+	\label{eq:GRC}
+	GRC=\frac{\sum_{i=1}^N{\left[\max(C_R)-C_R(i)\right]}}{N-1}
+\end{align}
+When the graph is weighted and directed, the authors in \cite{GRC} propose an alternative formulation of $C_R(i)$:
+\begin{align}
+	C_{R}^{'}(i)=\frac{1}{N-1}\sum_{j: 0<d^{out}_{(i,j)}<\infty}{( \frac{\sum_{k=1}^{d^{out}(i,j)} {w_{i}^{(k)} (j) } }{d^{out}(i,j)} )}
+\end{align}
+where $d^{out}_{i,j}$ is the (directed) path length from node $i$ to node $j$, and $w^{(k)}_{i}$ is the weight of the $k$th edge along this path. This alternative formulation can then be plugged into equation \ref{eq:GRC} to calculate the GRC for a weighted,directed network. Finally, when the network is unweighted and undirected, the authors in \cite{GRC} propose an additional alternative formulation of $C_R(i)$:
+\begin{align}
+	C_{R}^{''}(i)=\frac{1}{N-1}\sum_{j:0<d(i,j)<\infty}{\frac{1}{d(i,j)}}
+\end{align}
+where $d_{i,j}$ is the (undirected) path length from node $i$ to node $j$. The intuition of for the interpretation of GRC as a measure of network hierarchy is almost identical to the interpretation of the Gini coefficient of the $M$-reach degree and $M$-reach closeness values for a network, with only difference being the way the individual measures are aggregated, and its extension to weighted and undirected networks. Again, a potential major shortcoming is that this measure only makes theoretical sense when the outgoing edges in the network signal a power relation where the sender has power over the recipient. 
+
+The last measure we consider, \textbf{rooted depth} \cite{depth},  is only defined for networks where a root (a node that has only incoming edges) exists. Let $N_{r}$ be the number of node-root pairs in the network. Then the rooted depth of the network can be defined as:
+\begin{align}
+	D=\frac{1}{N_{r}}\sum_{i=1}^{N_r}{l_{ri}}
+\end{align}
+where $l$ is the length of the shortest path between root $r$ and node $i$. This measure can only be calculated for the network as a whole. However, given $R$ roots in a network, we can calculate a local root depth for each node that is equal to the average length of the shortest path between itself and all roots. One of the major problems with this measure is that it is undefined for networks without a root (a node with only incoming edges). This makes it very difficult to apply to most networks (we were only able to calculate it for a small fraction of networks in our sample). Furthermore, since this measure relies on finding nodes with no outgoing ties, it can be very sensitive to the way the network is measured. In general, we do not find rooted depth to be a useful measure in our empirical analysis.
+
+% \subsection{Statistical Measures of Network Hierarchy}
+%
+% \begin{enumerate}
+% 	\item Control Centrality in a weighted and directed graph, defined by \cite{Liu12}, identifies the minimum number of nodes need to drive an entire network to a given final state. Consider a directed, weighted network:
+% 	$$
+% 	\bm{x}(t) = \bm{Ax}(t) + \bm{Bu}(t)
+% 	$$
+% 	which is the state of each node at time t, and also denoted as \begin{math}(\bm{A},\bm{B})\end{math}. The components of this controllability matrix are: $\bm{A}\in \mathbb{R}^{N\times N}$, where each element gives the strength that node $j$ can affect node $i$; and $\bm{B}\in\mathbb{R}^{N\times M}$, where each element is the strength between the input signal $u_{j}(t)$ and node $i$, and M contains independent signals imposed by an outside controller. Defining $\bm{C} = (\bm{A}$,$\bm{B})$, the control centr...(line truncated)...
+% 	$$
+% 	C_{c}(i) \equiv rank_{g}(\bm{C}^{i})
+% 	$$
+%
+% 	\item For social networks, \cite{online} defines hierarchy $h(G)\in[0,1]$ from inferred nodal rankings $r(v)$. Mathematically, it is defined as:
+% 	$$
+% 	h(G)=1-\frac{1}{m}A(G),
+% 	$$
+% 	where $A(G)=\sum_{(v_i,v_j)\in E} {max(r(v_i)-r(v_j)+1,0}$ is the total `agony'. Since the rankings are not known, they are found by minimizing the total agony over all possible rankings $r$.
+%
+% 	\end{enumerate}
 
 
-\begin{enumerate}
+
+% \begin{enumerate}
 	% \item Landau's $h\in[0,1]$ is used to compare a directed network to a perfect linear hierarchy \cite{landau}. Let $S_i$ be the row sum for each node, then:
 	% 	$$
 	% 	h=\frac{12}{N^3-N}\sum_{i=1}^{N}{[S_i-\frac{N-1}{2}]^{2}}
@@ -290,41 +335,41 @@ In words, it is half of the \emph{average absolute difference} of all pairs of e
 	% 	\frac{1}{24}(N^3-N)&\mbox{ if $N$ is odd} \\
 	% 	\frac{1}{24}(N^3-4N)&\mbox{ if $N$ is even}
 	% 	\end{array} \right.$
-	\item Global reaching centrality, based on the $m$-reach centrality measure is adapted in \cite{GRC} to be a simple measure of hierarchy for any graph:
-		$$
-		GRC=\frac{\sum_{i\in V}{[C_R^{max}-C_R(i)]}}{N-1},
-		$$
-		\begin{enumerate}
-			\item When the graph is unweighted and directed, the $C_R(i)$ is the local reaching centrality defined as the proportion of all nodes in $G$ that can be reached along 
-				outgoing edges from node $i$.
-			\item When the graph is weighted and directed, the following version for the reaching centrality as defined in \cite{GRC} is used:
-				$$
-				C_{R}^{'}(i)=\frac{1}{N-1}\sum_{j: 0<d^{out}_{(i,j)}<\infty}{( \frac{\sum_{k=1}^{d^{out}(i,j)} {w_{i}^{(k)} (j) } }{d^{out}(i,j)} )},
-				$$
-				where $d^{out}_{i,j}$ is the length of the directed outgoing path from $v_{i}$ to $v_{j}$ and $w^{(k)}_{i}$ is the weight of the $k$th edge along this path. 
-			\item When the graph is unweighted and undirected, the following version for the reaching centrality as defined by \cite{GRC} is used:
-				$$
-				C_{R}^{''}(i)=\frac{1}{N-1}\sum_{j:0<d(i,j)<\infty}{\frac{1}{d(i,j)}}
-				$$
-		\end{enumerate}
-	
-	\item Rooted depth in directed networks is defined in \cite{depth}, where a root is a node that has only incoming edges. Let $N_{r}$ be the number of node-root pairs in the network. Then the global root depth is defined as:
-		$$
-		D=\frac{1}{N_{r}}\sum_{i=1}^{N_r}{l_{ri}},	
-		$$
-		where $l$ is the length of the shortest path between root $r$ and node $i$.
+	% \item Global reaching centrality, based on the $m$-reach centrality measure is adapted in \cite{GRC} to be a simple measure of hierarchy for any graph:
+% 		$$
+% 		GRC=\frac{\sum_{i\in V}{[C_R^{max}-C_R(i)]}}{N-1},
+% 		$$
+% 		\begin{enumerate}
+% 			\item When the graph is unweighted and directed, the $C_R(i)$ is the local reaching centrality defined as the proportion of all nodes in $G$ that can be reached along
+% 				outgoing edges from node $i$.
+% 			\item When the graph is weighted and directed, the following version for the reaching centrality as defined in \cite{GRC} is used:
+% 				$$
+% 				C_{R}^{'}(i)=\frac{1}{N-1}\sum_{j: 0<d^{out}_{(i,j)}<\infty}{( \frac{\sum_{k=1}^{d^{out}(i,j)} {w_{i}^{(k)} (j) } }{d^{out}(i,j)} )},
+% 				$$
+% 				where $d^{out}_{i,j}$ is the length of the directed outgoing path from $v_{i}$ to $v_{j}$ and $w^{(k)}_{i}$ is the weight of the $k$th edge along this path.
+% 			\item When the graph is unweighted and undirected, the following version for the reaching centrality as defined by \cite{GRC} is used:
+% 				$$
+% 				C_{R}^{''}(i)=\frac{1}{N-1}\sum_{j:0<d(i,j)<\infty}{\frac{1}{d(i,j)}}
+% 				$$
+% 		\end{enumerate}
+%
+% 	\item Rooted depth in directed networks is defined in \cite{depth}, where a root is a node that has only incoming edges. Let $N_{r}$ be the number of node-root pairs in the network. Then the global root depth is defined as:
+% 		$$
+% 		D=\frac{1}{N_{r}}\sum_{i=1}^{N_r}{l_{ri}},
+% 		$$
+% 		where $l$ is the length of the shortest path between root $r$ and node $i$.
 	% \item We apply centralization, a method used to calculate a global measure of centrality from local measures, to the following local centrality measures: betweenness, closeness, eigenvector, and degree, all of which are defined in the following section. Centralization is defined as follows for local measures $c_{i}$:
 	% $$
 	% C=\sum_{i=1}^{N}{(max\{c_{i}\}-c_{i})}
 	% $$
-\end{enumerate}
+% \end{enumerate}
 
-\subsection{Measures of Hierarchy-Local}
-\begin{enumerate}
+% \subsection{Measures of Hierarchy-Local}
+% \begin{enumerate}
 	% \item M-reach degree was developed to identify `key' players in a network \cite{key} and is defined for a vertex $v_{i}$ as the number of reachable vertices from $v_{i}.$ If
 	% 	$G$ is directed then this reachable vertices must lie along an outgoing path from $v_{i}$. This local measure is the same used for the $GRC$ local measures in \cite{GRC}.
 	% \item M-reach closeness was also developed to identify `key' players \cite{key}. It is defined as the M-reach degree weighted by the inverse geodistances. 
-	\item A local version of rooted depth can be found for a graph. Given $r$ roots in a network, the each node has a local root depth equal to the average length of the shortest path between itself and all roots \cite{depth}.
+	% \item A local version of rooted depth can be found for a graph. Given $r$ roots in a network, the each node has a local root depth equal to the average length of the shortest path between itself and all roots \cite{depth}.
 	% \item Betweenness centrality is meant to capture the amount of influence a node has on the information transversed through it \cite{between}. Define $D_{i,j}$ as the number of shortest paths between $v_{i}$ and $v_{j}$ and $D_{i,j}(k)$ as the number of these shortest paths that pass through $v_{k},$ then the betweenness centrality for $v_{k}$ is:
 	% 	$$
 	% 	\sum_{i\neq k\neq j}{(\frac{D_{i,j}(k)}{D_{i,j}})}
@@ -339,12 +384,10 @@ In words, it is half of the \emph{average absolute difference} of all pairs of e
 	% 		A c=\lambda c
 	% 	$$
 	% \item Degree centrality for $v_{i}$ is simply the number of outgoing edges it has.
-\end{enumerate}
+% \end{enumerate}
 
-\subsection{Discussion of Measures}
-For the global measures, both Landau's $h$ and Kendall's $K$ have mostly been used to determine so called pecking order among animals \cite{animals}. Due to their ability to capture the degree to which a network is linearly hierarchical, we expect these measures to perform similarly. We also expect all three centralization scores to perform the same. We note that rooted depth is only defined for graphs with at least one root. If there is no root the measure classifies the network as having no hierarchy. For the local measures, we expect M-reach degree and degree to be correlated since M-reach degree was defined based on degree centralization. Similarly we expect M-reach closeness to be correlated to closeness.  
-
-
+% \subsection{Discussion of Measures}
+% For the global measures, both Landau's $h$ and Kendall's $K$ have mostly been used to determine so called pecking order among animals \cite{animals}. Due to their ability to capture the degree to which a network is linearly hierarchical, we expect these measures to perform similarly. We also expect all three centralization scores to perform the same. We note that rooted depth is only defined for graphs with at least one root. If there is no root the measure classifies the network as having no hierarchy. For the local measures, we expect M-reach degree and degree to be correlated since M-reach degree was defined based on degree centralization. Similarly we expect M-reach closeness to be correlated to closeness.
 
 
 
@@ -360,34 +403,19 @@ For the global measures, both Landau's $h$ and Kendall's $K$ have mostly been us
 
 
 
-\section{A Model of Network Hierarchy}
 
-\begin{enumerate}
-	\item Control Centrality in a weighted and directed graph, defined by \cite{Liu12}, identifies the minimum number of nodes need to drive an entire network to a given final state. Consider a directed, weighted network:
-	$$
-	\bm{x}(t) = \bm{Ax}(t) + \bm{Bu}(t)
-	$$
-	which is the state of each node at time t, and also denoted as \begin{math}(\bm{A},\bm{B})\end{math}. The components of this controllability matrix are: $\bm{A}\in \mathbb{R}^{N\times N}$, where each element gives the strength that node $j$ can affect node $i$; and $\bm{B}\in\mathbb{R}^{N\times M}$, where each element is the strength between the input signal $u_{j}(t)$ and node $i$, and M contains independent signals imposed by an outside controller. Defining $\bm{C} = (\bm{A}$,$\bm{B})$, the control centr...(line truncated)...
-	$$
-	C_{c}(i) \equiv rank_{g}(\bm{C}^{i})
-	$$
-	
-	\item For social networks, \cite{online} defines hierarchy $h(G)\in[0,1]$ from inferred nodal rankings $r(v)$. Mathematically, it is defined as:
-	$$
-	h(G)=1-\frac{1}{m}A(G),
-	$$ 
-	where $A(G)=\sum_{(v_i,v_j)\in E} {max(r(v_i)-r(v_j)+1,0}$ is the total `agony'. Since the rankings are not known, they are found by minimizing the total agony over all possible rankings $r$.
-	
-	\end{enumerate}
+
+
 	
 	
 \section{Data}
 
-	We are still working through evaluating a few different datasets to best suit our purposes. However, at present, this is a little difficult because we really want our measure to be theoretically-grounded, but we haven't yet developed a solid theoretical conception for hierarchy. Thus far, theory-wise, the Mann (1986) definition seems closest to the Liu-Driver measures discussed in the Mones et al. (2012) article: i.e., hierarchical networks are those in which the actions of a few nodes are needed to take control of the graph. Another potential definition, also implied, is hierarchy means the mechanisms of collective actions (i.e., the ability of different nodes to connect with one another) hinges on a small number.
+A list of references for the network datasets used in this study can be found in \ref{sec:dataset references}.
+
 	
-Among the network datasets we are exploring, they are already or mostly in usable format. As we're navigating through our theoretical conception of hierarchy in network, we are ruling out the use of the karate club, dolphin, football, etc. datasets because we want to be able to analyze datasets where the networks are more interesting or theoretically-relevant. In this way, there are a couple of systems that might be useful. The first is a network of cooperation among militant groups, which encompasses joint exercises, mergers, and splits among militant groups: http://web.stanford.edu/group/mappingmilitants/cgi-bin/. This may interesting for us for a few reasons: (1) there is no de jure hierarchical structure (i.e., no formally-recognized chain of command or sovereignty); (2) militant groups face a classic collective action problem, and thus we can expect the dynamics Mann describes to hold; and (3) most theories of conflict would predict no hierarchy to occur in this system. An interesting system to compare this to would be military actions in Vietnam: http://tinyurl.com/pwofooy. The nodes here would be military units, and the edges are participation in the same battle. Of course, the main issue with this dataset is that it's undirected, which we've noted may be difficult to conceptualize within a hierarchy framework. We're focusing on conflict datasets because many of the theoretical definitions define hierarchy as essentially about outcomes—i.e., the ability of particular nodes to control the actions and behaviors of subordinate nodes.
-	
- We may also use manager network data where each organization has a ``county manager" who is theoretically in charge of the rest of the actors, providing an opportunity to determine if the methods we employ capture a plausible hierarchical structure. We are still exploring this and other datasets though.
+% Among the network datasets we are exploring, they are already or mostly in usable format. As we're navigating through our theoretical conception of hierarchy in network, we are ruling out the use of the karate club, dolphin, football, etc. datasets because we want to be able to analyze datasets where the networks are more interesting or theoretically-relevant. In this way, there are a couple of systems that might be useful. The first is a network of cooperation among militant groups, which encompasses joint exercises, mergers, and splits among militant groups: http://web.stanford.edu/group/mappingmilitants/cgi-bin/. This may interesting for us for a few reasons: (1) there is no de jure hierarchical structure (i.e., no formally-recognized chain of command or sovereignty); (2) militant groups face a classic collective action problem, and thus we can expect the dynamics Mann describes to hold; and (3) most theories of conflict would predict no hierarchy to occur in this system. An interesting system to compare this to would be military actions in Vietnam: http://tinyurl.com/pwofooy. The nodes here would be military units, and the edges are participation in the same battle. Of course, the main issue with this dataset is that it's undirected, which we've noted may be difficult to conceptualize within a hierarchy framework. We're focusing on conflict datasets because many of the theoretical definitions define hierarchy as essentially about outcomes—i.e., the ability of particular nodes to control the actions and behaviors of subordinate nodes.
+%
+%  We may also use manager network data where each organization has a ``county manager" who is theoretically in charge of the rest of the actors, providing an opportunity to determine if the methods we employ capture a plausible hierarchical structure. We are still exploring this and other datasets though.
 
 
 
@@ -600,6 +628,8 @@ Among the network datasets we are exploring, they are already or mostly in usabl
 \newpage
 \appendix
 \section{Dataset References}
+\label{sec:dataset references}
+
 \begin{enumerate}
 
 
