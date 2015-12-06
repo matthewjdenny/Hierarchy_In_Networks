@@ -223,17 +223,31 @@ The most basic measures of hierarchy or differential importance of a nodes in a 
 \begin{align}
 	C = \sum_{i=1}^{N}{(\max\{c_{i}\}-c_{i})}
 \end{align}
-Centralization captures the degree of inequality in the distribution of a given centrality measure over the network. In general, we should then expect that networks that are more centralized are also likely to be more hierarchical. However, this measure attains its maximal value for any centrality measure when one node has a maximal value of the given centrality measure and all the rest of the nodes have the minimal possible value. This will tend to give star networks maximal centralization scores. This implicit assumption in measurement is important to consider when evaluating the validity of centralization based measures of hierarchy.
+Centralization captures the degree of inequality in the distribution of a given centrality measure over the network. In general, we should then expect that networks that are more centralized are also likely to be more hierarchical. However, this measure attains its maximal value for any centrality measure when one node has a maximal value of the given centrality measure and all the rest of the nodes have the minimal possible value. This will tend to give star networks maximal centralization scores. This implicit assumption in measurement is important to consider when evaluating the validity of centralization based measures of hierarchy. The four centrality measures we consider are: degree centrality, closeness centrality, betweenness centrality, and eigenvector centrality. 
 
-The four centrality measures we consider are: degree centrality, closeness centrality, betweenness centrality, and eigenvector centrality. The \textbf{degree centrality} of node $v_{i}$ is simply the number of outgoing or incoming edges incident to it. Formally, this can be calculated as:
+The \textbf{degree centrality} of node $v_{i}$ is simply the number of outgoing or incoming edges incident to it. Formally, this can be calculated as:
 \begin{align}
 	\text{indegree centrality}_i &= \sum_{j=1}^M \mathbbm{1}(e_j^{(r)} = i) \\
 	\text{outdegree centrality}_i &= \sum_{j=1}^M \mathbbm{1}(e_j^{(s)} = i) 
 \end{align}
-Degree centrality captures the number of friends or connections a node has, and intuitively, we should expect more powerful nodes will have more incoming and outgoing connections. However, degree centrality does not account for the identity of a node's alters. This can lead to difficulties when it is used to asses a node's position in a social hierarchy. For example, in a large company, we might expect that an administrative assistant may have a higher degree centrality than the CEO of a company if the edges being measured are work-related interaction. 
+Degree centrality captures the number of friends or connections a node has, and intuitively, we should expect more powerful nodes will have more incoming and outgoing connections. However, degree centrality does not account for the identity of a node's alters. This can lead to difficulties when it is used to asses a node's position in a social hierarchy. For example, in a large company, we might expect that an administrative assistant may have a higher degree centrality than the CEO of a company if the edges being measured are work-related interaction. Furthermore, if there are many administrative assistants at the bottom of the power structure in an organization we might qualitatively consider to be extremely hierarchically structured, the degree centralization of the interaction network might be lower than in a comparably sized ``organizationally flat" organization where a handfull of people serve as coordinators. Thus we must take great care in interpreting this statistic, depending on the type of edges it is defined over. 
 
 
+The \textbf{betweenness centrality} of node $v_{i}$ is a measure of the amount of influence a node has on the information transversed through it \cite{between}. Define $D_{i,j}$ as the number of shortest paths in $G$ between $v_{i}$ and $v_{j}$, and $D_{i,j}(k)$ as the number of these shortest paths that pass through $v_{k},$ then the betweenness centrality of node $k$ is:
+\begin{align}
+	\sum_{i\neq k\neq j}{(\frac{D_{i,j}(k)}{D_{i,j}})}
+\end{align}
+Betweenness centrality captures how in-the-middle-of-things a node is and when edges involve sharing information, how important the node is to information flowing quickly across the network, Intuitively, we should expect the nodes with higher betweenness centrality will be more powerful, and that greater inequality on this measure should signal a greater degree of hierarchical structure in a network. Similarly, the \textbf{closeness centrality} of node $v_{i}$ is a measure of how few intermediate edges a given node must traverse to reach all other nodes in the network. Define $d(i,j)$ as the length of the shortest path between $v_{i}$ and $v_{j}$, then closeness centrality of node $i$ is: 
+\begin{align}
+	\sum_{i\neq j}{(\frac{1}{d(i,j)})}
+\end{align}
+Again, intuitively, powerful members of a hierarchy will tend to be able to reach others in the network more easily, and inequality in this measure (as captured by the closeness centralization of the network) should theoretically signal the degree of hierarchy in the network.
 
+The last of the classical centrality based measures is \textbf{eigenvector centrality}, which is meant to capture the degree to which a node is connected to other well connected nodes \cite{eigen}. Let the adjacency matrix of the network be defined as $\mathbf{A}$ and the vector of local eigenvector centrality scores for each node be defined as $\mathbf{w}=\{w({v_{1}}),...,w(v_{V})\}$. Then to calculate the eigenvalue centralities $\mathbf{w}$, one must solve the following eigenvector equation: 
+\begin{align}
+	\mathbf{A}  \mathbf{w}=  \mathbf{\lambda} \mathbf{w}
+\end{align}
+where $\mathbf{\lambda}$ is a vector of positive eigenvalues. The challenge is to find the \emph{dominant eigenvector}, as only the largest eigenvalue results in the desired centrality measure for each node. Intuitively, higher eigenvector centrality should be associated with greater social or organizational importance. Interestingly, the eigenvector centralization of a network can still be large even if there are a relatively large proportion of higher degree nodes, as long as the edges are organized such that only a few nodes are connected to all of these higher degree nodes.
 
 
 \begin{enumerate}
