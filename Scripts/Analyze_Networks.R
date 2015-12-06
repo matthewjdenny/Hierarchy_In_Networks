@@ -20,6 +20,7 @@ require(stringr)
 require(GGally)
 require(ineq)
 require(corrplot)
+require(xtable)
 
 # 0.1 -- load in functions which perform the analysis
 
@@ -92,9 +93,13 @@ make_pairs_plots(global_measures,
                  save_pdf = TRUE)
 
 # calculate some descriptive statistics
-descriptive_stats <- calculate_descriptive_statistics(Network_Data)
+Reduced_Data  <- remove_rows(Network_Data, remove, TRUE)
+descriptive_stats <- calculate_descriptive_statistics(Reduced_Data)
 network_descriptive_statistics <- descriptive_stats[[1]]
 type_descriptive_statistics <- descriptive_stats[[2]]
+
+xtable(type_descriptive_statistics)
+
 
 # run pca analysis
 generate_pca_plots(global_measures,
