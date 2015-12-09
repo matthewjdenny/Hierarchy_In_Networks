@@ -1,15 +1,13 @@
-\documentclass[xcolor={table}]{beamer}
-%\usetheme{singapore}
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usetheme{Copenhagen}
+\usecolortheme{beaver}
+\usepackage{graphicx}
+
 \usepackage{bm}
 \usepackage{listings,verbatim}
 \usepackage{fancyvrb,tikz,color,xcolor,colortbl}
-%\usepackage[table]{xcolor}
-%\usepackage{verbatim}
-% \usepackage{array}
-%\lstloadlanguages{R}
-%\lstset{ language=R, basicstyle=\scriptsize\ttfamily, commentstyle=\ttfamily\color{gray}, numbers=left, numberstyle=\ttfamily\color{gray}\footnotesize, stepnumber=1, numbersep=5pt, backgroundcolor=\color{white}, showspaces=false, showstringspaces=false, showtabs=false, frame=single, tabsize=2, captionpos=b, breaklines=true, breakatwhitespace=false, escapeinside={}, keywordstyle={}, morekeywords={} }\renewcommand{\P}{\mathcal{P}}
-%\newcommand{\bt}{\pmb{\theta}}
-%\newcommand{\bG}{\pmb{\Gamma}}
+
 \newcommand{\p}{\pause}
 \definecolor{Grey}{rgb}{0.95,0.95,0.95}
 \newcommand{\pitem}{\pause \item}
@@ -33,39 +31,61 @@
 \usefonttheme{serif}
 
 \newenvironment{changemargin}[2]{%
-  \begin{list}{}{%
-    \setlength{\topsep}{0pt}%
-    \setlength{\leftmargin}{#1}%
-    \setlength{\rightmargin}{#2}%
-    \setlength{\listparindent}{\parindent}%
-    \setlength{\itemindent}{\parindent}%
-    \setlength{\parsep}{\parskip}%
-  }%
-  \item[]}{\end{list}}
+	\begin{list}{}{%
+			\setlength{\topsep}{0pt}%
+			\setlength{\leftmargin}{#1}%
+			\setlength{\rightmargin}{#2}%
+			\setlength{\listparindent}{\parindent}%
+			\setlength{\itemindent}{\parindent}%
+			\setlength{\parsep}{\parskip}%
+		}%
+		\item[]}{\end{list}}
 
-%
-\title{Inferring Latent Influence Diffusion Networks in The United States Senate}
-%
-\definecolor{umassred}{HTML}{8C2633}
-\setbeamercolor{structure}{fg=umassblue}
-\author{\Large\textbf{Matthew J. Denny}}
 
-%\affil[1]{University of Massachusetts Amherst}
-%\affil[2]{University of Connecticut}
-
-\institute{\Large Penn State University ---
- \texttt{mzd5530@psu.edu}\\
- \color{blue}\texttt{www.mjdenny.com}\\
- \texttt{@MatthewJDenny}
+%\setbeamersize{text margin left=2pt,text margin right=2pt} 
+\newcommand\Wider[2][3em]{%
+	\makebox[\linewidth][c]{%
+		\begin{minipage}{\dimexpr\textwidth+#1\relax}
+			\raggedright#2
+		\end{minipage}%
+	}%
 }
 
-\date{ \today }
-\begin{document}
+\newcommand\Wide[2][1.5em]{%
+	\makebox[\linewidth][c]{%
+		\begin{minipage}{\dimexpr\textwidth+#1\relax}
+			\raggedright#2
+		\end{minipage}%
+	}%
+}
 
+\makeatletter
+\setbeamertemplate{footline}
+{
+	\leavevmode%
+	\hbox{%
+		\begin{beamercolorbox}[wd=0.75\paperwidth,ht=2.25ex,dp=1ex,left]{title in head/foot}%
+			\usebeamerfont{title in head/foot}\insertshorttitle{}
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=0.25\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+			\insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+		\end{beamercolorbox}}%
+		\vskip0pt%
+	}
+	\makeatother
+	
+	
+	%Information to be included in the title page:
+	\title[Hierartical Structure in Social Networks]{Hierartical Structure in Social Networks}
+	\author{Cindy Cook, Matt Denny, Mitch Goist, Timmy Huynh}
+	\institute{SODA502:  Final Project}
+	\date{9 December 2015}
+	
+	
+	\begin{document}
+		
+		\frame{\titlepage}
 
-% \begin{frame}
-%   \titlepage
-% \end{frame}
 
 \begin{frame}\frametitle{Hierarchy in networks--Measures}
 	\begin{table}
@@ -90,9 +110,10 @@
 
 \begin{frame}\frametitle{Hierarchy in Networks--Simulated Datasets}
 	\begin{itemize}
+		\small{
 		\item 7500 Barabasi-Albert (BA) Datasets with node size $50, 200,$ or $500$ and preferential attachment parameter $0.5, 1, 2, 5,$ or $10$.
 		\item 6000 Tree-Structured (TR) Datasets with node size $50, 200,$ or $500$ and children parameter $2, 5, 10,$ or $50$.
-		\item 4500 Erdos-Renyi (ER) Datasets with node size $50, 200,$ or $500$ and parameter size $0.05, 0.1,$ or $0.2$.
+		\item 4500 Erdos-Renyi (ER) Datasets with node size $50, 200,$ or $500$ and parameter size $0.05, 0.1,$ or $0.2$.}
 		\scriptsize
 			\begin{table}
 				\begin{tabular}{| r || c | c | c |}
@@ -138,29 +159,6 @@
 \end{frame}
 
 
-\begin{frame}\frametitle{PCA--BA Networks}
-	\begin{changemargin}{-2cm}{ -2cm}
-		\centering
-		\includegraphics[scale = 0.6]{images/BA_Param_PCA_Component_Varinces.pdf}
-	\end{changemargin}
-\end{frame}
-
-\begin{frame}\frametitle{PCA--BA Networks}
-	\begin{changemargin}{-2cm}{ -2cm}
-		\centering
-		\text{Parameters}\par
-		\includegraphics[width=15cm, height=8cm]{images/BA_Param_PCA_Components1_2.pdf}
-	\end{changemargin}
-\end{frame}
-
-\begin{frame}\frametitle{PCA--BA Networks}
-	\begin{changemargin}{-2cm}{ -2cm}
-		\centering
-		\text{Node Size}\par
-		\includegraphics[width=15cm, height=8cm]{images/BA_Size_PCA_Components1_2.pdf}
-	\end{changemargin}
-\end{frame}
-
 \begin{frame}\frametitle{Average Global Hierarchy--TR Networks}
 	\begin{changemargin}{-2cm}{ -2cm}
 		\centering
@@ -170,29 +168,6 @@
 		\vspace{-5mm}
 		\text{Node Size}\par
 		\includegraphics[width=10cm, height=4cm]{images/TR_Size_Averages.pdf}
-	\end{changemargin}
-\end{frame}
-
-\begin{frame}\frametitle{PCA--TR}
-	\begin{changemargin}{-2cm}{ -2cm}
-		\centering
-	\includegraphics[scale = 0.6]{images/TR_Param_PCA_Component_Varinces.pdf}
-	\end{changemargin}
-\end{frame}
-
-\begin{frame}\frametitle{PCA--TR}
-	\begin{changemargin}{-2cm}{ -2cm}
-		\centering
-		\text{Parameters}\par
-		\includegraphics[width=15cm, height=8cm]{images/TR_Param_PCA_Components1_2.pdf}
-	\end{changemargin}
-\end{frame}
-
-\begin{frame}\frametitle{PCA--TR}
-	\begin{changemargin}{-2cm}{ -2cm}
-		\centering
-		\text{Node Size}\par
-		\includegraphics[width=15cm, height=8cm]{images/TR_Size_PCA_Components1_2.pdf}
 	\end{changemargin}
 \end{frame}
 
@@ -208,29 +183,6 @@
 	\end{changemargin}
 \end{frame}
 
-\begin{frame}\frametitle{PCA--ER}
-	\begin{changemargin}{-2cm}{ -2cm}
-		\centering
-		\includegraphics[scale = 0.6]{images/ER_Param_PCA_Component_Varinces.pdf}
-	\end{changemargin}
-\end{frame}
-
-\begin{frame}\frametitle{PCA--ER}
-	\begin{changemargin}{-2cm}{ -2cm}
-		\centering
-		\text{Parameters}\par
-		\includegraphics[width=15cm, height=8cm]{images/ER_Param_PCA_Components1_2.pdf}
-	\end{changemargin}
-\end{frame}
-
-\begin{frame}\frametitle{PCA--ER}
-	\begin{changemargin}{-2cm}{ -2cm}
-		\centering
-		\text{Node Size}\par
-		\includegraphics[width=15cm, height=8cm]{images/ER_Size_PCA_Components1_2.pdf}
-	\end{changemargin}
-\end{frame}
-
 \begin{frame}\frametitle{Hierarchy in Networks--Results}
 	\begin{itemize}
 		\item GRC and D Root are not robust to changes in node size.
@@ -239,13 +191,6 @@
 			\item GRC decreases with node size for ER networks. 
 			\item D Root increases with node size for BA networks.
 		\end{itemize}
-		\item Only two principle components are needed.
-		\begin{itemize}
-			\item For node size, very clear groupings and in all cases, not so for parameters.    
-			\item Closeness and Degree Centrality stay close.
-			\item Betweenness and Eigenvector Centrality stay close.
-			\item Landau and Kendall stay opposite.
-		\end{itemize} 
 	\end{itemize}
 \end{frame}
 
@@ -278,15 +223,15 @@
 \begin{frame}\frametitle{Hierarchy in Networks -- Global Measures}
 \begin{changemargin}{-2cm}{ -2cm}
 	\centering
-	\includegraphics[width=12cm, height=8cm]{images/Fancy_Pairs_Plot.pdf}
+	\includegraphics[width=12cm, height=8cm]{images/Global_Measure_Correlations_with_Tests.pdf}
 \end{changemargin}
 \end{frame}
 
-\begin{frame}\frametitle{Hierarchy in Networks--Results}
-	\begin{itemize}
-		\item Landau and Kendall's measures have a correlation of 0.819, but all others are below 0.54
-		\item Correlation for co-membership and trade networks are the highest across all measures. 
-	\end{itemize}
+\begin{frame}\frametitle{Hierarchy in Networks -- Global Measures}
+	\begin{changemargin}{-2cm}{ -2cm}
+		\centering
+		\includegraphics[width=12cm, height=8cm]{images/Global_Measure_Pairs_Plots.pdf}
+	\end{changemargin}
 \end{frame}
 
 \begin{frame}\frametitle{Hiearchy in Networks -- PCA}
@@ -334,4 +279,10 @@
 	\end{itemize}
 \end{frame}
 
+\begin{frame}\frametitle{Hierarchy in Networks -- Local Measures}
+	\begin{changemargin}{-2cm}{ -2cm}
+		\centering
+		\includegraphics[width=12cm, height=8cm]{images/Measure_Scores.pdf}
+	\end{changemargin}
+\end{frame}
 \end{document}
