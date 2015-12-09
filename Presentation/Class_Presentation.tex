@@ -249,17 +249,10 @@
 \end{frame}
 
 \begin{frame}\frametitle{Hiearchy in Networks -- PCA}
-\begin{changemargin}{-2cm}{ -2cm}
+	\begin{changemargin}{-2cm}{ -2cm}
 		\centering
-		\includegraphics[scale = 0.6]{images/Observed_PCA_Component_Varinces.pdf}
-%\begin{tikzpicture}
-    %\node(a) at (10,4){\includegraphics[width=12cm, height=8cm]{images/PCA_Plot}};
-    %\pause
-    %\node(b) at (5.5,6.5){\includegraphics[width=4cm]{images/Eigenvalues}};
-    %\draw[blue,->](11.1,5.6)--(8,0.5);
-    %\draw[blue,->](12,5.5)--(4.5,4);
-%  \end{tikzpicture}
-\end{changemargin}
+		\includegraphics[width=12cm, height=8cm]{images/Observed_PCA_Component_Varinces.pdf}
+	\end{changemargin}
 \end{frame}
 
 \begin{frame}\frametitle{Hierarchy in Networks -- PCA}
@@ -267,6 +260,20 @@
 		\centering
 		\includegraphics[width=12cm, height=8cm]{images/Observed_PCA_Components1_2.pdf}
 	\end{changemargin}
+\end{frame}
+
+\begin{frame}\frametitle{Interpretation for Components 1 and 2}
+	\begin{itemize}
+		\item These two components explain over half of the variation
+		\item There is a significant dropoff in the variation accounted for after PC2
+		\vskip 1cm
+		\item three distinct groupings:
+		\begin{description}
+			\item[Control] Kendall's K, Landau's H, Degree Centralization
+			\item[Reach] M Degree, M Close, GRC
+			\item[Centrality] ...we'll come back to this
+		\end{description}
+	\end{itemize}
 \end{frame}
 
 \begin{frame}\frametitle{Hierarchy in Networks -- PCA}
@@ -283,13 +290,24 @@
 	\end{changemargin}
 \end{frame}
 
+\begin{frame}\frametitle{Interepretation for Components 2 and 3}
+	\begin{itemize}
+		\item Component 3 is primarily Eigenvector centralization
+		\item the rest of component 3 is split between the various centralization measures
+		\item back to centrality...
+		\item the centrality measures are split evenly between the components
+		\item we believe this is because centralization is a \emph{related} but \emph{distinct} concept from hierarchy
+	\end{itemize}
+\end{frame}
+
+
 \begin{frame}\frametitle{Hierarchy in Networks--Results}
 	\begin{itemize}
 		\item Need first three principle components to explain the variation.
 		\item Both trade and co-membership stay grouped and towards the center. 
 		\item Both Landau and Kendall stay in same direction.
 		\item From the first PCA plot (PC1~PC2), we notice that there are three clear groupings of measures.
-		\item PC3 tries to separate the grouping of Betweenness from Landau and Kendall. 
+		\item we believe these correspond to two distinct models of hierarchy: dictitorial control, and decentralized reach
 	\end{itemize}
 \end{frame}
 
