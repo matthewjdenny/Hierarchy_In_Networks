@@ -181,6 +181,31 @@ generate_pca_plots(collapse_over_size(ba_global_measures),
 # values
 ba_param_averages <- average_over_type(collapse_over_size(ba_global_measures))
 ba_size_averages <- average_over_type(collapse_over_parameter(ba_global_measures))
+ba_param_averages[,6]=ba_param_averages[,5]
+ba_size_averages[,6]=ba_size_averages[,5]
+ba_param_avg_norm=ba_param_averages
+ba_size_avg_norm=ba_size_averages
+for(i in 1:10){
+ba_param_avg_norm[,i] <-(ba_param_averages[,i]-min(ba_param_averages[,i]))/(
+    max(ba_param_averages[,i])-min(ba_param_averages[,i]))
+ba_param_avg_norm[which(is.na(ba_param_avg_norm[,i])),i]=0
+ba_size_avg_norm[,i] <-(ba_size_averages[,i]-min(ba_size_averages[,i]))/(
+  max(ba_size_averages[,i])-min(ba_size_averages[,i]))
+ba_size_avg_norm[which(is.na(ba_size_avg_norm[,i])),i]=0
+}
+
+multi_plot(data = ba_param_avg_norm,
+           pdf_name = "./Output/BA_Param_Avg_Norm",
+           output_pdf = T,
+           c(1:10),
+           connect_with_lines = T,legend_location="")
+
+multi_plot(data = ba_size_avg_norm,
+           pdf_name = "./Output/BA_Size_Avg_Norm",
+           output_pdf = T,
+           c(1:10),
+           connect_with_lines = T)
+
 multi_plot(data = ba_param_averages,
            pdf_name = "./Output/BA_Param_Averages",
            output_pdf = T,
@@ -230,6 +255,31 @@ generate_pca_plots(collapse_over_size(tr_global_measures),
 # values
 tr_param_averages <- average_over_type(collapse_over_size(tr_global_measures))
 tr_size_averages <- average_over_type(collapse_over_parameter(tr_global_measures))
+tr_param_averages[,6]=tr_param_averages[,5]
+tr_size_averages[,6]=tr_size_averages[,5]
+tr_param_avg_norm=tr_param_averages
+tr_size_avg_norm=tr_size_averages
+for(i in 1:10){
+  tr_param_avg_norm[,i] <-(tr_param_averages[,i]-min(tr_param_averages[,i]))/(
+    max(tr_param_averages[,i])-min(tr_param_averages[,i]))
+  tr_param_avg_norm[which(is.na(tr_param_avg_norm[,i])),i]=0
+  tr_size_avg_norm[,i] <-(tr_size_averages[,i]-min(tr_size_averages[,i]))/(
+    max(tr_size_averages[,i])-min(tr_size_averages[,i]))
+  tr_size_avg_norm[which(is.na(tr_size_avg_norm[,i])),i]=0
+}
+
+multi_plot(data = tr_param_avg_norm,
+           pdf_name = "./Output/TR_Param_Avg_Norm",
+           output_pdf = T,
+           c(1:10),
+           connect_with_lines = T)
+
+multi_plot(data = tr_size_avg_norm,
+           pdf_name = "./Output/TR_Size_Avg_Norm",
+           output_pdf = T,
+           c(1:10),
+           connect_with_lines = T)
+
 multi_plot(data = tr_param_averages,
            pdf_name = "./Output/TR_Param_Averages",
            output_pdf = T,
@@ -280,6 +330,30 @@ generate_pca_plots(collapse_over_size(er_global_measures),
 # values
 er_param_averages <- average_over_type(collapse_over_size(er_global_measures))
 er_size_averages <- average_over_type(collapse_over_parameter(er_global_measures))
+er_param_averages[,6]=er_param_averages[,5]
+er_size_averages[,6]=er_size_averages[,5]
+er_param_avg_norm=er_param_averages
+er_size_avg_norm=er_size_averages
+for(i in 1:10){
+  er_param_avg_norm[,i] <-(er_param_averages[,i]-min(er_param_averages[,i]))/(
+    max(er_param_averages[,i])-min(er_param_averages[,i]))
+  er_param_avg_norm[which(is.na(er_param_avg_norm[,i])),i]=0
+  er_size_avg_norm[,i] <-(er_size_averages[,i]-min(er_size_averages[,i]))/(
+    max(er_size_averages[,i])-min(er_size_averages[,i]))
+  er_size_avg_norm[which(is.na(er_size_avg_norm[,i])),i]=0
+}
+
+multi_plot(data = er_param_avg_norm,
+           pdf_name = "./Output/ER_Param_Avg_Norm",
+           output_pdf = T,
+           c(1:10),
+           connect_with_lines = T)
+
+multi_plot(data = er_size_avg_norm,
+           pdf_name = "./Output/ER_Size_Avg_Norm",
+           output_pdf = T,
+           c(1:10),
+           connect_with_lines = T)
 multi_plot(data = er_param_averages,
            pdf_name = "./Output/ER_Param_Averages",
            output_pdf = T,
@@ -302,3 +376,23 @@ save(list = c("er_global_measures",
 calculate_descriptive_statistics(ba_networks)[[2]]
 calculate_descriptive_statistics(tr_networks)[[2]]
 calculate_descriptive_statistics(er_networks)[[2]]
+
+
+
+
+
+par(mfrow=c(2,2))
+multi_plot(data = ba_size_avg_norm,
+           output_pdf = F,
+           c(1:10),
+           connect_with_lines = T)
+multi_plot(data = tr_size_avg_norm,
+          
+           output_pdf = F,
+           c(1:10),
+           connect_with_lines = T,legend_location="")
+multi_plot(data = er_size_avg_norm,
+           
+           output_pdf = F,
+           c(1:10),
+           connect_with_lines = T,legend_location="")
