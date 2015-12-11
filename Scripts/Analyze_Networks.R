@@ -74,13 +74,21 @@ global_measures <- remove_rows(global_measures,remove)
 # save(global_measures, file = "./Data/global_hierarchy_measures.Rdata")
 
 multi_plot(data = global_measures,
-           pdf_name = "Global_Measures",
-           output_pdf = F,
-           c(2:5,7))
+           pdf_name = "./Output/Global_Measures_Normalized",
+           output_pdf = T,
+           c(1:7,9,10),
+           normalize = T,
+           legend_location = "topright",
+           height = 11,
+           width = 15)
+
+# get the average ranks of each measure in identifying the county manager
+average_rank <- apply(data_list$leadership_ranking_scores,2,mean)
+xtable(as.data.frame(average_rank))
 
 multi_plot(data = data_list$leadership_ranking_scores,
-           pdf_name = "Measure_Scores",
-           output_pdf = F)
+           pdf_name = "./Output/Measure_Scores",
+           output_pdf = T)
 
 # two different alternatives for making pairs plots of all variables
 # First: the super fancy way
