@@ -25,7 +25,8 @@ multi_plot <- function(data,
                        height = 5,
                        width = 8,
                        connect_with_lines = FALSE,
-                       normalize = FALSE){
+                       normalize = FALSE,
+                       order_by_col = NULL){
 
     UMASS_BLUE <- rgb(51,51,153,195,maxColorValue = 255)
     UMASS_RED <- rgb(153,0,51,195,maxColorValue = 255)
@@ -34,6 +35,12 @@ multi_plot <- function(data,
     UMASS_ORANGE <- rgb(255,204,51,195,maxColorValue = 255)
     UMASS_PURPLE <- rgb(65,39,59,195,maxColorValue = 255)
     UMASS_BROWN <- rgb(148,121,93,195,maxColorValue = 255)
+
+    # if we are ordering observations by a column
+    if(!is.null(order_by_col)){
+        ordering <- order(data[,order_by_col],decreasing = T)
+        data <- data[ordering,]
+    }
 
     #normalizes each row of a data frame
     normalize_values <- function(data,
@@ -72,7 +79,7 @@ multi_plot <- function(data,
 
         if(connect_with_lines){
             matplot(data[,plot_columns],
-                 ylim=c(min(data[,plot_columns],0),max(data[,plot_columns],1)),
+                 ylim=c(min(data[,plot_columns], 0 ,na.rm = T),max(data[,plot_columns],1,na.rm = T)),
                  lwd=1,
                  col = "grey80",
                  type="l",
@@ -83,7 +90,7 @@ multi_plot <- function(data,
                  cex.axis = 0.5)
         }else{
             matplot(data[,plot_columns],
-                 ylim=c(min(data[,plot_columns],0),max(data[,plot_columns],1)),
+                 ylim=c(min(data[,plot_columns],0,na.rm = T),max(data[,plot_columns],1,na.rm = T)),
                  lwd=-1,
                  col = "white",
                  type="l",
@@ -96,8 +103,8 @@ multi_plot <- function(data,
 
         for(i in 1:nrow(data)){
             segments(x0=i,
-                     y0=min(data[,plot_columns],0),
-                     x1=i,y1=max(data[,plot_columns],1),
+                     y0=min(data[,plot_columns],0,na.rm = T),
+                     x1=i,y1=max(data[,plot_columns],1,na.rm = T),
                      lwd=0.5,
                      col="grey80",
                      lty=3)
@@ -129,7 +136,8 @@ multi_plot <- function(data,
 
         if(connect_with_lines){
             matplot(data[,plot_columns],
-                 ylim=c(min(data[,plot_columns],0),max(data[,plot_columns],1)),
+                 ylim=c(min(data[,plot_columns],0,na.rm = T),
+                 max(data[,plot_columns],1,na.rm = T)),
                  lwd=1,
                  col = "grey80",
                  type="l",
@@ -140,7 +148,9 @@ multi_plot <- function(data,
                  cex.axis = 0.5)
         }else{
             matplot(data[,plot_columns],
-                 ylim=c(min(data[,plot_columns],0),max(data[,plot_columns],1)),
+                 ylim=c(min(data[,plot_columns],
+                            0, na.rm = T),
+                 max(data[,plot_columns], 1, na.rm = T)),
                  lwd=-1,
                  col = "white",
                  type="l",
@@ -151,7 +161,8 @@ multi_plot <- function(data,
                  cex.axis = 0.5)
         }
         for(i in 1:nrow(data)){
-            segments(x0=i,y0=min(data[,plot_columns],0),x1=i,y1=max(data[,plot_columns],1),lwd=0.5,col="grey80",lty=3)
+            segments(x0=i,y0=min(data[,plot_columns], 0, na.rm = T),
+            x1=i,y1=max(data[,plot_columns],1,na.rm = T),lwd=0.5,col="grey80",lty=3)
         }
 
         col_names <- NULL
