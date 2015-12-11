@@ -5,7 +5,7 @@ calculate_analytical_hierarhy_measures <- function(sociomatrix,
     #statistics using igraph
     require(igraph)
     adjacency <- sociomatrix
-    sociomatrix <- graph.adjacency(sociomatrix, mode = mode)
+    sociomatrix <- graph.adjacency(sociomatrix, mode = mode, weighted = TRUE)
 
     isDirected <- FALSE
     if(mode == "directed"){
@@ -19,6 +19,7 @@ calculate_analytical_hierarhy_measures <- function(sociomatrix,
     global$betweenness_centralization <-  centralization.betweenness (sociomatrix, directed = isDirected)$centralization
     global$eigenvector_centralization <- centralization.evcent (sociomatrix, directed = isDirected)$centralization
     if(isDirected){
+        global$krackhardt <- as.numeric(sna::hierarchy(matrix,"krackhardt"))
         global$landau <- landau(adjacency)$global
         global$kendall <- kendall(adjacency)$global
         global$GRC <- GRC(adjacency)$global
@@ -53,16 +54,29 @@ calculate_analytical_hierarhy_measures <- function(sociomatrix,
         }
     }
 
-
     # return a list object with a $global and $local sublist, each of which contains the output from all of the different measures which are appropriately named. In the $local sublist, we provide the $rank and $score for each node in the network.
     return_list <- list(global = global, local = local)
     return(return_list)
 }
 
+
+reachability(matrix)
 #######################################################################################
 #Landau's h-outputs global stat only works for directed graphs
 
-landau <- function(matrix,directed=TRUE){
+landau <- function(matrix,
+                   directed=TRUE,
+                   normalize = TRUE){
+
+    if(normalize){
+        if(max(matrix) > 1){
+            if(min(matrix) < 0){
+                matrix <- matrix + (abs(min(matrix)))
+            }
+            matrix <- matrix/max(matrix)
+        }
+    }
+
   if(directed==FALSE){
     print("error: this measure may only be used with directed networks")
     break;
@@ -78,7 +92,18 @@ landau <- function(matrix,directed=TRUE){
 #######################################################################################
 #Kendall's K-outputs global stat only works for directed graphs
 
-kendall <- function(matrix,directed=TRUE){
+kendall <- function(matrix,
+                    directed=TRUE,
+                    normalize = TRUE){
+
+    if(normalize){
+        if(max(matrix) > 1){
+            if(min(matrix) < 0){
+                matrix <- matrix + (abs(min(matrix)))
+            }
+            matrix <- matrix/max(matrix)
+        }
+    }
 
   if(directed==FALSE){
     print("error: this measure may only be used with directed networks")
@@ -129,12 +154,32 @@ GRC <- function(matrix,directed=TRUE){
   require("keyplayer")
   N=dim(matrix)[1]
 
-  if(directed==TRUE){
-    C=mreach.degree(matrix,cmode="outdegree")
-  }
+  #if the matrix is weighted -- hand rolled
+  if(length(unique(matrix)) > 2){
+      d <- data.matrix(matrix, rownames.force = NA)
+      rownames(d) <- c(colnames(d))
+      distances = sna::geodist(d, ignore.eval = F)$gdist
+      colnames(distances) <- c(colnames(d))
+      rownames(distances) <- c(colnames(d))
+      diag(distances) = Inf
+      sociomatrix <- graph.adjacency(matrix, mode = "directed", weighted = TRUE)
+      weights <- shortest.paths(sociomatrix)
+      #weights = weights/max(weights[which(is.finite(weights))])
+      weights[which(!is.finite(weights))] <- 0
 
-  if(directed==FALSE){
-    C=mreach.degree(matrix,cmode="all")[,3]
+      #now calculate for each node
+      C <- rep(0,N)
+      for(i in 1:N){
+          C[i] <- (1/(N-1))*sum((weights[i,]/distances[i,]))
+      }
+  }else{
+      if(directed==TRUE){
+          C=mreach.degree(matrix,cmode="outdegree")
+      }
+
+      if(directed==FALSE){
+          C=mreach.degree(matrix,cmode="all")[,3]
+      }
   }
 
   C_max=max(C)
