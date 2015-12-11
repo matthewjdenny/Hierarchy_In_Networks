@@ -14,15 +14,18 @@ calculate_analytical_hierarhy_measures <- function(sociomatrix,
 
     dominance <- matrix(0,nrow(adjacency),nrow(adjacency))
     dominance_tri <- matrix(0,nrow(adjacency),nrow(adjacency))
+
     for(i in 1:nrow(adjacency)){
         for(j in 1:nrow(adjacency)){
-            if(adjacency[i,j] > adjacency[i,j]){
-                dominance[i,j] <- 1
-                dominance_tri[i,j] <- 1
-            }
-            if(adjacency[i,j] == adjacency[i,j]){
-                dominance[i,j] <- 0.5
-                dominance_tri[i,j] <- 1
+            if(!is.na(adjacency[i,j]) & !is.na(adjacency[j,i])){
+                if(adjacency[i,j] > adjacency[i,j]){
+                    dominance[i,j] <- 1
+                    dominance_tri[i,j] <- 1
+                }
+                if(adjacency[i,j] == adjacency[i,j]){
+                    dominance[i,j] <- 0.5
+                    dominance_tri[i,j] <- 1
+                }
             }
         }
     }
