@@ -60,28 +60,29 @@ source('./Scripts/generate_tree_networks.R')
 # load data the observed network data
 load("./Data/Network_Data.Rdata")
 
+# remove networks the appear to be outliers so that they do not drive analysis.
+remove <- c("mb031s01nets2","drugnet","Terro_4275","drug_net_61","Koster_data8",
+            "CITIES","AOM_division_comembership","Freeman's_EIES3", "pv504",
+            "pv960", "Koster_data7")
+Network_Data  <- remove_rows(Network_Data, remove, TRUE)
+
 # generate local and global hierarchy measures for all networks and output them
 # into a list object
 data_list <- generate_hierarchy_dataset(Network_Data)
 # extract a data.frame of global measures
 global_measures <- data_list$global_measure_dataframe
 
-# remove networks the appear to be outliers so that they do not drive analysis.
-remove <- c("mb031s01nets2","drugnet","Terro_4275","drug_net_61","Koster_data8",
-            "CITIES","AOM_division_comembership","Freeman's_EIES3", "pv504",
-            "pv960", "Koster_data7")
-global_measures <- remove_rows(global_measures,remove)
-
 # save(global_measures, file = "./Data/global_hierarchy_measures.Rdata")
 
 multi_plot(data = global_measures,
            pdf_name = "./Output/Global_Measures_Normalized",
            output_pdf = T,
-           c(1:8,10,11),
+           c(1:9,11,12),
            normalize = F,
            legend_location = "topright",
            height = 11,
-           width = 15)
+           width = 15,
+           order_by_col = 4)
 
 # get the average ranks of each measure in identifying the county manager
 average_rank <- apply(data_list$leadership_ranking_scores,2,mean)
@@ -102,8 +103,7 @@ make_pairs_plots(global_measures,
                  save_pdf = TRUE)
 
 # calculate some descriptive statistics
-Reduced_Data  <- remove_rows(Network_Data, remove, TRUE)
-descriptive_stats <- calculate_descriptive_statistics(Reduced_Data)
+descriptive_stats <- calculate_descriptive_statistics(Network_Data)
 network_descriptive_statistics <- descriptive_stats[[1]]
 type_descriptive_statistics <- descriptive_stats[[2]]
 xtable(type_descriptive_statistics)
@@ -116,27 +116,42 @@ generate_pca_plots(global_measures,
                    pca_choice2 = 2)
 generate_pca_plots(global_measures,
                    save_to_file = TRUE,
-                   pca_choice1 = 2,
+                   pca_choice1 = 1,
                    pca_choice2 = 3)
 generate_pca_plots(global_measures,
                    save_to_file = TRUE,
                    pca_choice1 = 1,
+                   pca_choice2 = 4)
+generate_pca_plots(global_measures,
+                   save_to_file = TRUE,
+                   pca_choice1 = 2,
                    pca_choice2 = 3)
+generate_pca_plots(global_measures,
+                   save_to_file = TRUE,
+                   pca_choice1 = 2,
+                   pca_choice2 = 4)
+generate_pca_plots(global_measures,
+                   save_to_file = TRUE,
+                   pca_choice1 = 3,
+                   pca_choice2 = 4)
 
 # generate correlation plots of global measures against eachother
-M <- global_measures[,c(1:7,9,10)]
+M <- global_measures[,c(1:9,11,12)]
 cn <- as.character(sapply(colnames(M),replac))
 colnames(M) <- cn
 M <- cor(M)
 
+rem <- which(is.na(global_measures$triangle_transitivity))
+global_measures <- global_measures[-rem,]
+
 # first just plain correlation plot
-pdf(file = "./Output/Global_Measure_Correlations.pdf", height = 11, width = 11)
+pdf(file = "./Output/Global_Measure_Correlations.pdf", height = 13, width = 13)
 corrplot(M, method = "pie",diag = F,tl.col = "black",tl.pos = "d")
 dev.off()
 
 # now with significance tests
 res1 <- cor.mtest(M, 0.95)
-pdf(file = "./Output/Global_Measure_Correlations_with_Tests.pdf", height =11, width = 11)
+pdf(file = "./Output/Global_Measure_Correlations_with_Tests.pdf", height =13, width = 13)
 corrplot(M, p.mat = res1[[1]], sig.level = 0.05, method = "pie",diag = F,tl.col = "black",tl.pos = "d")
 dev.off()
 
