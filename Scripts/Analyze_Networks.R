@@ -21,6 +21,7 @@ require(GGally)
 require(ineq)
 require(corrplot)
 require(xtable)
+require(keyplayer)
 
 # 0.1 -- load in functions which perform the analysis
 
@@ -76,8 +77,8 @@ global_measures <- remove_rows(global_measures,remove)
 multi_plot(data = global_measures,
            pdf_name = "./Output/Global_Measures_Normalized",
            output_pdf = T,
-           c(1:7,9,10),
-           normalize = T,
+           c(1:8,10,11),
+           normalize = F,
            legend_location = "topright",
            height = 11,
            width = 15)
