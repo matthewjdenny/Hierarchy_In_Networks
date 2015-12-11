@@ -7,6 +7,12 @@ generate_pca_plots <- function(global_measures,
                                pca_choice2 = 2,
                                elipse = FALSE,
                                circle = TRUE){
+
+    #remove rows with NA for triangle transitivity
+    rem <- which(is.na(global_measures$triangle_transitivity))
+    global_measures <- global_measures[-rem,]
+
+
     if(length(which(is.na(global_measures$D_root))) > 0 & length(unique(global_measures$eigenvector_centralization)) > 1){
            # pca with all measures except D_root which was mostly NA.
            pca <- with(global_measures, prcomp(~degree_centralization +
@@ -17,7 +23,9 @@ generate_pca_plots <- function(global_measures,
                                                    kendall +
                                                    GRC +
                                                    m_close +
-                                                   m_degree,
+                                                   m_degree +
+                                                   krackhardt +
+                                                   triangle_transitivity,
                                                scale = TRUE,
                                                center = TRUE))
        }
@@ -32,7 +40,9 @@ generate_pca_plots <- function(global_measures,
                                                    GRC +
                                                    D_root +
                                                    m_close +
-                                                   m_degree,
+                                                   m_degree +
+                                                   krackhardt +
+                                                   triangle_transitivity,
                                                scale = TRUE,
                                                center = TRUE))
     }
