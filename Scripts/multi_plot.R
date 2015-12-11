@@ -39,7 +39,9 @@ multi_plot <- function(data,
     normalize_values <- function(data,
                                  columns = c(1:10)){
         for(i in columns){
-            data[,i] <- data[,i]/max(abs(data[,i]))
+            if(max(abs(data[,i]),na.rm = T) > 1){
+                data[,i] <- data[,i]/max(abs(data[,i]),na.rm = T)
+            }
         }
         return(data)
     }
