@@ -493,6 +493,26 @@ PCA component eigenvalues are illustrated in Figure \ref{fig:PCA variacnes}. A g
 \end{figure}
 
 
+% latex table generated in R 3.2.2 by xtable 1.8-0 package
+% Fri Dec 11 16:43:36 2015
+\begin{table}[ht]
+\centering
+\begin{tabular}{rr}
+  \hline
+ & average\_rank \\ 
+  \hline
+degree\_centrality & 0.75 \\ 
+  closeness\_centrality & 0.82 \\ 
+  betweenness\_centrality & 0.78 \\ 
+  eigenvector\_centrality & 0.78 \\ 
+  m\_degree & 0.81 \\ 
+  m\_close & 0.63 \\ 
+  GRC & 0.36 \\ 
+  D\_root & 0.86 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
 % 	The analytical portion of the problem will be conducted in R, which is known by all members of the group. We will be using both statistical and mathematical methods of quantifying and/or measuring hierarchy. We will focus on methods that have already been developed, published, and implemented in R, or are can easily be implemented by one of the group members. If time permits, we may try to develop or suggest directions for future development of our own statistical models and/or mathematical measurements. Each member of the group will be responsible for at least one method.
 %
 % The statistical methods we will be looking into include hierarchical exponential graph models in the R package hergm. This package also includes hierarchical stochastic block models. Unlike fitting network data with exponential random graph models (ERGMs), hierarchical ERGMs focus on inducing local dependencies. Next, we will focus on latent space models, which can be fit in R using the latentnet package in the statnet suite of packages. For both the latent space and ERGM models, Bayesian inferential analysis can be conducted using the Bergm, VBLPCM, and lvm4net packages in R. We note that whenever fitting network data there is always the chance for computational timing and accuracy issues to come up. We have chosen a number of datasets for the purposes of capturing several types of hierarchies, but also so that we may have a few that are easily fit in R. Lastly, we will focus on mathematical measures of hierarchy. These measures primarily stem from graph theory, and can be easily programed by ourselves in R. The measurements include the Global Reach Centrality (GRC), Triangle Transitivity, Kendall's K, and Landau's lambda.
