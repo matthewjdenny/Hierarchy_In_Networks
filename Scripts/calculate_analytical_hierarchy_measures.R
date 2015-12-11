@@ -12,6 +12,21 @@ calculate_analytical_hierarhy_measures <- function(sociomatrix,
         isDirected <- TRUE
     }
 
+    dominance <- matrix(0,nrow(adjacency),nrow(adjacency))
+    dominance_tri <- matrix(0,nrow(adjacency),nrow(adjacency))
+    for(i in 1:nrow(adjacency)){
+        for(j in 1:nrow(adjacency)){
+            if(adjacency[i,j] > adjacency[i,j]){
+                dominance[i,j] <- 1
+                dominance_tri[i,j] <- 1
+            }
+            if(adjacency[i,j] == adjacency[i,j]){
+                dominance[i,j] <- 0.5
+                dominance_tri[i,j] <- 1
+            }
+        }
+    }
+
     #calculate global scores
     global <- list()
     global$degree_centralization <- centralization.degree (sociomatrix, mode = "all")$centralization
@@ -19,9 +34,10 @@ calculate_analytical_hierarhy_measures <- function(sociomatrix,
     global$betweenness_centralization <-  centralization.betweenness (sociomatrix, directed = isDirected)$centralization
     global$eigenvector_centralization <- centralization.evcent (sociomatrix, directed = isDirected)$centralization
     if(isDirected){
-        global$krackhardt <- as.numeric(sna::hierarchy(matrix,"krackhardt"))
-        global$landau <- landau(adjacency)$global
-        global$kendall <- kendall(adjacency)$global
+        global$krackhardt <- as.numeric(sna::hierarchy(adjacency,"krackhardt"))
+        global$triangle_transitivity <- as.numeric(dominance_tri)
+        global$landau <- landau(dominance)$global
+        global$kendall <- kendall(dominance)$global
         global$GRC <- GRC(adjacency)$global
         global$D_root <- D_root(adjacency)$global
         global$m_degree <- m_degree(adjacency)$global
@@ -59,23 +75,11 @@ calculate_analytical_hierarhy_measures <- function(sociomatrix,
     return(return_list)
 }
 
-
-reachability(matrix)
 #######################################################################################
 #Landau's h-outputs global stat only works for directed graphs
 
 landau <- function(matrix,
-                   directed=TRUE,
-                   normalize = TRUE){
-
-    if(normalize){
-        if(max(matrix) > 1){
-            if(min(matrix) < 0){
-                matrix <- matrix + (abs(min(matrix)))
-            }
-            matrix <- matrix/max(matrix)
-        }
-    }
+                   directed=TRUE){
 
   if(directed==FALSE){
     print("error: this measure may only be used with directed networks")
@@ -89,21 +93,23 @@ landau <- function(matrix,
   return(results)
 }
 
+# from: A social network perspective on measurements of dominance hierarchies
+triangle_transitivity <- function(matrix){
+    m=as.matrix(matrix)
+    g=network::network(m,directed=TRUE)
+    tri=sna::triad.census(g) #The full triad census as an 16-element vector
+    w=as.vector(c(0,0,0,0,0,0,0,0,1,0,0,1,1,0.5,0.75,0.75)) # The weighting vector for transitivity
+    N.triangle=sum(tri*as.vector(c(0,0,0,0,0,0,0,0,1,1,0,1,1,1,1,1))) #Count sum the number of triangles
+    Pt=sum(tri*w)/N.triangle
+    t.tri=4*(Pt-0.75)
+    return(t.tri)
+}
+
 #######################################################################################
 #Kendall's K-outputs global stat only works for directed graphs
 
 kendall <- function(matrix,
-                    directed=TRUE,
-                    normalize = TRUE){
-
-    if(normalize){
-        if(max(matrix) > 1){
-            if(min(matrix) < 0){
-                matrix <- matrix + (abs(min(matrix)))
-            }
-            matrix <- matrix/max(matrix)
-        }
-    }
+                    directed=TRUE){
 
   if(directed==FALSE){
     print("error: this measure may only be used with directed networks")
