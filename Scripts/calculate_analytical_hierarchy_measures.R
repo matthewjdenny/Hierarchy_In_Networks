@@ -38,7 +38,7 @@ calculate_analytical_hierarhy_measures <- function(sociomatrix,
     global$eigenvector_centralization <- centralization.evcent (sociomatrix, directed = isDirected)$centralization
     if(isDirected){
         global$krackhardt <- as.numeric(sna::hierarchy(adjacency,"krackhardt"))
-        global$triangle_transitivity <- as.numeric(dominance_tri)
+        global$triangle_transitivity <- as.numeric(triangle_transitivity(adjacency))
         global$landau <- landau(dominance)$global
         global$kendall <- kendall(dominance)$global
         global$GRC <- GRC(adjacency)$global
