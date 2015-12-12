@@ -9,7 +9,7 @@ rm(list = ls())
 
 # change your working directory to the "Hierarchy_In_Networks" folder location.
 # for me, this is:
-setwd("~/Dropbox/SoDA_502/Hierarchy_In_Networks")
+setwd("~/Dropbox/SoDa502/Hierarchy_In_Networks")
 
 # install and load functions (you will need the devtools pacakge to install two
 # of them, which are necessary for making the pca plots, for example).
@@ -22,6 +22,7 @@ require(ineq)
 require(corrplot)
 require(xtable)
 require(keyplayer)
+require(network)
 
 # 0.1 -- load in functions which perform the analysis
 
@@ -134,6 +135,12 @@ generate_pca_plots(global_measures,
                    save_to_file = TRUE,
                    pca_choice1 = 3,
                    pca_choice2 = 4)
+
+#use to create table for factor loadings
+pca <- generate_pca_plots(global_measures,
+                   return_pca_object=TRUE)
+
+stargazer(pca$rotation[,1:4],style="asr")
 
 # generate correlation plots of global measures against eachother
 M <- global_measures[,c(1:9,11,12)]

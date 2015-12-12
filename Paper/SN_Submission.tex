@@ -478,6 +478,27 @@ Before fitting any of the hierarchy measures on these real datasets, we want to 
 \subsection{Principle Components Analysis}
 PCA component eigenvalues are illustrated in Figure \ref{fig:PCA variacnes}. A graphical comparison of components one and two is provided in \ref{fig:1 and 2}. A graphical comparison of components one and three is provided in \ref{fig:1 and 3}. A graphical comparison of components two and three is provided in \ref{fig:2 and 3}.
 
+\begin{table}[!htbp] \centering 
+  \caption{PCA Rotation for Components with Eigenvalues above 1} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}} ccccc} 
+\\[-1.8ex]\hline \\[-1.8ex] 
+ & PC1 & PC2 & PC3 & PC4 \\ 
+\hline \\[-1.8ex] 
+degree\_centralization & $$-$0.017$ & $0.062$ & $$-$0.522$ & $0.222$ \\ 
+closeness\_centralization & $$-$0.130$ & $$-$0.056$ & $$-$0.606$ & $$-$0.107$ \\ 
+betweenness\_centralization & $$-$0.009$ & $0.437$ & $$-$0.292$ & $0.387$ \\ 
+eigenvector\_centralization & $0.166$ & $0.040$ & $$-$0.239$ & $0.466$ \\ 
+landau & $0.130$ & $0.454$ & $$-$0.126$ & $$-$0.481$ \\ 
+kendall & $0.171$ & $0.506$ & $$-$0.098$ & $$-$0.395$ \\ 
+GRC & $0.501$ & $$-$0.109$ & $$-$0.085$ & $$-$0.088$ \\ 
+m\_close & $0.539$ & $0.011$ & $0.045$ & $0.151$ \\ 
+m\_degree & $0.538$ & $$-$0.036$ & $0.087$ & $0.044$ \\ 
+krackhardt & $$-$0.055$ & $$-$0.408$ & $$-$0.346$ & $$-$0.370$ \\ 
+triangle\_transitivity & $0.273$ & $$-$0.397$ & $$-$0.237$ & $$-$0.127$ \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
 
 
 \begin{figure}
@@ -503,11 +524,31 @@ PCA component eigenvalues are illustrated in Figure \ref{fig:PCA variacnes}. A g
 
 \begin{figure}
 \begin{center}
+	\caption{\label{fig:1 and 4} Principle components plot for components one and four.}
+		\includegraphics[width = 0.98\textwidth]{./images/Observed_PCA_Components1_4.pdf}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
 	\caption{\label{fig:2 and 3} Principle components plot for components two and three.}
 		\includegraphics[width = 0.98\textwidth]{./images/Observed_PCA_Components2_3.pdf}
 \end{center}
 \end{figure}
 
+\begin{figure}
+\begin{center}
+	\caption{\label{fig:2 and 4} Principle components plot for components two and four.}
+		\includegraphics[width = 0.98\textwidth]{./images/Observed_PCA_Components2_4.pdf}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+	\caption{\label{fig:3 and 4} Principle components plot for components three and four.}
+		\includegraphics[width = 0.98\textwidth]{./images/Observed_PCA_Components3_4.pdf}
+\end{center}
+\end{figure}
 
 
 \subsection{Simulation Study}
