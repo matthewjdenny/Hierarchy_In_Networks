@@ -422,8 +422,8 @@ Perhaps surprisingly, the rest of the correlations depicted in Figure \ref{fig:m
 	
 \section{Data}
 \label{sec:data}
-A list of references for the network datasets used in this study can be found in \ref{sec:dataset references}. Descriptive statistics of each of the nine types of networks we consider in this study are provided in Table \ref{tab:descriptive stats by type}.
-
+We refer to three main sources for our data. The first set of networks, County Managers, contains information on email communications between 17 county managers and their staff. They are categorized as communication networks. Our second set of networks contains information on 17 bills in congress and are classified as co-sponsorship networks. Our final source of data contains all networks found within UCINET. After removing $11$ networks that were undirected, two-mode, or extreme outliers, we were left with a total of $136$ networks. Of the $102$ UCINET datasets included in our analysis, $33$ did not have a classification. Since there are no clear guidelines on how UCINET defined types for each dataset, the accurate categorization of these $33$ networks did not appear viable. These datasets are classified as unknown networks. Descriptive statistics for each of the nine types of networks we consider in this study are provided in Table \ref{tab:descriptive stats by type}.  
+%A list of references for the network datasets used in this study can be found in \ref{sec:dataset references}.
 
 % latex table generated in R 3.2.2 by xtable 1.8-0 package
 % Sun Dec  6 14:21:01 2015
@@ -447,6 +447,7 @@ A list of references for the network datasets used in this study can be found in
 \end{tabular}
 \end{table}
 
+Before fitting any of the hierarchy measures on these real datasets, we want to make sure that the measures are invariant to the size of the network. We simulate $7500$ Barbasi-Albert (BA), $6000$ Tree-Structured (TR), and $4500$ Erdos-Renyi (ER) datasets, where one third of each type has $50$ nodes, a third has $200$, and the last third has $500$. We are also curious to see how the hierarchy measures perform while altering the parameters of these datasets. For the BA datasets, we set the preferential treatment parameter to $p=0.5, 1, 2, 5, 10$. We set the number of children parameter in the TR datasets to be $c=2, 5, 10, 50$, and the probability of forming and edge in the ER datasets to $d=0.05, 0.1, 0.2$. Figures can be found in Appendix C, which illustrate our findings. For the BA networks, we notice that Kendall and Landau's measures do not change as $p$ increases. We note that all other measures except for degree and closeness decrease as $p$ increases. For TR networks,   
 	
 % Among the network datasets we are exploring, they are already or mostly in usable format. As we're navigating through our theoretical conception of hierarchy in network, we are ruling out the use of the karate club, dolphin, football, etc. datasets because we want to be able to analyze datasets where the networks are more interesting or theoretically-relevant. In this way, there are a couple of systems that might be useful. The first is a network of cooperation among militant groups, which encompasses joint exercises, mergers, and splits among militant groups: http://web.stanford.edu/group/mappingmilitants/cgi-bin/. This may interesting for us for a few reasons: (1) there is no de jure hierarchical structure (i.e., no formally-recognized chain of command or sovereignty); (2) militant groups face a classic collective action problem, and thus we can expect the dynamics Mann describes to hold; and (3) most theories of conflict would predict no hierarchy to occur in this system. An interesting system to compare this to would be military actions in Vietnam: http://tinyurl.com/pwofooy. The nodes here would be military units, and the edges are participation in the same battle. Of course, the main issue with this dataset is that it's undirected, which we've noted may be difficult to conceptualize within a hierarchy framework. We're focusing on conflict datasets because many of the theoretical definitions define hierarchy as essentially about outcomes—i.e., the ability of particular nodes to control the actions and behaviors of subordinate nodes.
 %
@@ -491,6 +492,26 @@ PCA component eigenvalues are illustrated in Figure \ref{fig:PCA variacnes}. A g
 \end{center}
 \end{figure}
 
+
+% latex table generated in R 3.2.2 by xtable 1.8-0 package
+% Fri Dec 11 16:43:36 2015
+\begin{table}[ht]
+\centering
+\begin{tabular}{rr}
+  \hline
+ & average\_rank \\ 
+  \hline
+degree\_centrality & 0.75 \\ 
+  closeness\_centrality & 0.82 \\ 
+  betweenness\_centrality & 0.78 \\ 
+  eigenvector\_centrality & 0.78 \\ 
+  m\_degree & 0.81 \\ 
+  m\_close & 0.63 \\ 
+  GRC & 0.36 \\ 
+  D\_root & 0.86 \\ 
+   \hline
+\end{tabular}
+\end{table}
 
 % 	The analytical portion of the problem will be conducted in R, which is known by all members of the group. We will be using both statistical and mathematical methods of quantifying and/or measuring hierarchy. We will focus on methods that have already been developed, published, and implemented in R, or are can easily be implemented by one of the group members. If time permits, we may try to develop or suggest directions for future development of our own statistical models and/or mathematical measurements. Each member of the group will be responsible for at least one method.
 %
@@ -739,7 +760,7 @@ PCA component eigenvalues are illustrated in Figure \ref{fig:PCA variacnes}. A g
     
     \item Libimseti.cz: likes between users on a Czech dataing site \cite{libi}.
     
-    \item Friendster: friendship adds on the online site Friendster \cite{friendster}.
+    %\item Friendster: friendship adds on the online site Friendster \cite{friendster}.
     
     \item Digg: friendships on Digg \cite{digg}.
     
@@ -769,17 +790,31 @@ PCA component eigenvalues are illustrated in Figure \ref{fig:PCA variacnes}. A g
  
     \item U. Rovira i Virgili: email communication network from University Rovira i Virgili in Tarragona \cite{URV}.
 
-    \item Wikipedia Talk: network of discussions between all users from the beginning of Wikipedia to January 2008 \cite{wiki}.
+    %\item Wikipedia Talk: network of discussions between all users from the beginning of Wikipedia to January 2008 \cite{wiki}.
 
-    \item Wikipedia Votes: data from administrator elections \cite{wiki}.
+    %\item Wikipedia Votes: data from administrator elections \cite{wiki}.
     
-    \item Wikipedia Requests for Adminship: requests from 2003 through 2013 \cite{wiki2}.
+    %\item Wikipedia Requests for Adminship: requests from 2003 through 2013 \cite{wiki2}.
 
-    \item Friendster: network for online social site Friendster \cite{friendster}.
+    %\item Friendster: network for online social site Friendster \cite{friendster}.
 
 \end{enumerate}
 
+\section{Simulated Data Figures}
+\label{sec:simulated figures}
+\vspace{-1cm}
+\begin{figure}[ht]
+	\begin{center}
+		\caption{\label{fig::Simulated Parameters} All figures show the average normalized global measure (denoted by the symbol in the bottom right key) by parameter value. The top left plot is for BA networks. The top right is for TR netwroks. The bottom left is for ER networks.}
+		\includegraphics[width = 0.60\textwidth]{./images/Norm_Pars.pdf}
+	\vspace{-5cm}
+	\caption{\label{fig::Simulated Size} All figures show the average normalized global measure (denoted by the symbol in the bottom right key) by pnumber of nodes. The top left plot is for BA networks. The top right is for TR netwroks. The bottom left is for ER networks.}
+	\includegraphics[width = 0.60\textwidth]{./images/Norm_Size.pdf}
+	\end{center}
+\end{figure}
 \end{document}
+
+
 
 %%
 %% End of file `ecrc-template.tex'. 

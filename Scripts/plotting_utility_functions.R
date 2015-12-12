@@ -85,3 +85,12 @@ cor.mtest <- function(mat, conf.level = 0.95) {
     }
     return(list(p.mat, lowCI.mat, uppCI.mat))
 }
+
+#normalizes each row of a data frame
+normalize_values <- function(data,
+                             columns = c(1:10)){
+    for(i in columns){
+        data[,i] <- data[,i]/max(abs(data[,i]))
+    }
+    return(data)
+}

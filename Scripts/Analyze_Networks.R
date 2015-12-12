@@ -21,6 +21,7 @@ require(GGally)
 require(ineq)
 require(corrplot)
 require(xtable)
+require(keyplayer)
 
 # 0.1 -- load in functions which perform the analysis
 
@@ -59,28 +60,37 @@ source('./Scripts/generate_tree_networks.R')
 # load data the observed network data
 load("./Data/Network_Data.Rdata")
 
+# remove networks the appear to be outliers so that they do not drive analysis.
+remove <- c("mb031s01nets2","drugnet","Terro_4275","drug_net_61","Koster_data8",
+            "CITIES","AOM_division_comembership","Freeman's_EIES3", "pv504",
+            "pv960", "Koster_data7")
+Network_Data  <- remove_rows(Network_Data, remove, TRUE)
+
 # generate local and global hierarchy measures for all networks and output them
 # into a list object
 data_list <- generate_hierarchy_dataset(Network_Data)
 # extract a data.frame of global measures
 global_measures <- data_list$global_measure_dataframe
 
-# remove networks the appear to be outliers so that they do not drive analysis.
-remove <- c("mb031s01nets2","drugnet","Terro_4275","drug_net_61","Koster_data8",
-            "CITIES","AOM_division_comembership","Freeman's_EIES3", "pv504",
-            "pv960", "Koster_data7")
-global_measures <- remove_rows(global_measures,remove)
-
 # save(global_measures, file = "./Data/global_hierarchy_measures.Rdata")
 
 multi_plot(data = global_measures,
-           pdf_name = "Global_Measures",
-           output_pdf = F,
-           c(2:5,7))
+           pdf_name = "./Output/Global_Measures_Normalized",
+           output_pdf = T,
+           c(1:9,11,12),
+           normalize = F,
+           legend_location = "topright",
+           height = 11,
+           width = 15,
+           order_by_col = 4)
+
+# get the average ranks of each measure in identifying the county manager
+average_rank <- apply(data_list$leadership_ranking_scores,2,mean)
+xtable(as.data.frame(average_rank))
 
 multi_plot(data = data_list$leadership_ranking_scores,
-           pdf_name = "Measure_Scores",
-           output_pdf = F)
+           pdf_name = "./Output/Measure_Scores",
+           output_pdf = T)
 
 # two different alternatives for making pairs plots of all variables
 # First: the super fancy way
@@ -93,11 +103,9 @@ make_pairs_plots(global_measures,
                  save_pdf = TRUE)
 
 # calculate some descriptive statistics
-Reduced_Data  <- remove_rows(Network_Data, remove, TRUE)
-descriptive_stats <- calculate_descriptive_statistics(Reduced_Data)
+descriptive_stats <- calculate_descriptive_statistics(Network_Data)
 network_descriptive_statistics <- descriptive_stats[[1]]
 type_descriptive_statistics <- descriptive_stats[[2]]
-
 xtable(type_descriptive_statistics)
 
 
@@ -108,27 +116,42 @@ generate_pca_plots(global_measures,
                    pca_choice2 = 2)
 generate_pca_plots(global_measures,
                    save_to_file = TRUE,
-                   pca_choice1 = 2,
+                   pca_choice1 = 1,
                    pca_choice2 = 3)
 generate_pca_plots(global_measures,
                    save_to_file = TRUE,
                    pca_choice1 = 1,
+                   pca_choice2 = 4)
+generate_pca_plots(global_measures,
+                   save_to_file = TRUE,
+                   pca_choice1 = 2,
                    pca_choice2 = 3)
+generate_pca_plots(global_measures,
+                   save_to_file = TRUE,
+                   pca_choice1 = 2,
+                   pca_choice2 = 4)
+generate_pca_plots(global_measures,
+                   save_to_file = TRUE,
+                   pca_choice1 = 3,
+                   pca_choice2 = 4)
 
 # generate correlation plots of global measures against eachother
-M <- global_measures[,c(1:7,9,10)]
+M <- global_measures[,c(1:9,11,12)]
 cn <- as.character(sapply(colnames(M),replac))
 colnames(M) <- cn
 M <- cor(M)
 
+rem <- which(is.na(global_measures$triangle_transitivity))
+global_measures <- global_measures[-rem,]
+
 # first just plain correlation plot
-pdf(file = "./Output/Global_Measure_Correlations.pdf", height = 11, width = 11)
+pdf(file = "./Output/Global_Measure_Correlations.pdf", height = 13, width = 13)
 corrplot(M, method = "pie",diag = F,tl.col = "black",tl.pos = "d")
 dev.off()
 
 # now with significance tests
 res1 <- cor.mtest(M, 0.95)
-pdf(file = "./Output/Global_Measure_Correlations_with_Tests.pdf", height =11, width = 11)
+pdf(file = "./Output/Global_Measure_Correlations_with_Tests.pdf", height =13, width = 13)
 corrplot(M, p.mat = res1[[1]], sig.level = 0.05, method = "pie",diag = F,tl.col = "black",tl.pos = "d")
 dev.off()
 
@@ -181,6 +204,21 @@ generate_pca_plots(collapse_over_size(ba_global_measures),
 # values
 ba_param_averages <- average_over_type(collapse_over_size(ba_global_measures))
 ba_size_averages <- average_over_type(collapse_over_parameter(ba_global_measures))
+
+multi_plot(data = ba_param_averages,
+           pdf_name = "./Output/BA_Param_Avg_Norm",
+           output_pdf = T,
+           c(1:10),
+           connect_with_lines = T,
+           normalize = T)
+
+multi_plot(data = ba_size_averages,
+           pdf_name = "./Output/BA_Size_Avg_Norm",
+           output_pdf = T,
+           c(1:10),
+           connect_with_lines = T,
+           normalize = T)
+
 multi_plot(data = ba_param_averages,
            pdf_name = "./Output/BA_Param_Averages",
            output_pdf = T,
@@ -230,6 +268,21 @@ generate_pca_plots(collapse_over_size(tr_global_measures),
 # values
 tr_param_averages <- average_over_type(collapse_over_size(tr_global_measures))
 tr_size_averages <- average_over_type(collapse_over_parameter(tr_global_measures))
+
+multi_plot(data = tr_param_averages,
+           pdf_name = "./Output/TR_Param_Avg_Norm",
+           output_pdf = T,
+           c(1:10),
+           connect_with_lines = T,
+           normalize = T)
+
+multi_plot(data = tr_size_averages,
+           pdf_name = "./Output/TR_Size_Avg_Norm",
+           output_pdf = T,
+           c(1:10),
+           connect_with_lines = T,
+           normalize = T)
+
 multi_plot(data = tr_param_averages,
            pdf_name = "./Output/TR_Param_Averages",
            output_pdf = T,
@@ -280,6 +333,21 @@ generate_pca_plots(collapse_over_size(er_global_measures),
 # values
 er_param_averages <- average_over_type(collapse_over_size(er_global_measures))
 er_size_averages <- average_over_type(collapse_over_parameter(er_global_measures))
+
+multi_plot(data = er_param_averages,
+           pdf_name = "./Output/ER_Param_Avg_Norm",
+           output_pdf = T,
+           c(1:10),
+           connect_with_lines = T,
+           normalize = T)
+
+multi_plot(data = er_size_averages,
+           pdf_name = "./Output/ER_Size_Avg_Norm",
+           output_pdf = T,
+           c(1:10),
+           connect_with_lines = T,
+           normalize = T)
+
 multi_plot(data = er_param_averages,
            pdf_name = "./Output/ER_Param_Averages",
            output_pdf = T,
@@ -302,3 +370,19 @@ save(list = c("er_global_measures",
 calculate_descriptive_statistics(ba_networks)[[2]]
 calculate_descriptive_statistics(tr_networks)[[2]]
 calculate_descriptive_statistics(er_networks)[[2]]
+
+
+# not sure what this does-- why is this in here?
+par(mfrow=c(2,2))
+multi_plot(data = ba_size_avg_norm,
+           output_pdf = F,
+           c(1:10),
+           connect_with_lines = T)
+multi_plot(data = tr_size_avg_norm,
+           output_pdf = F,
+           c(1:10),
+           connect_with_lines = T,legend_location="")
+multi_plot(data = er_size_avg_norm,
+           output_pdf = F,
+           c(1:10),
+           connect_with_lines = T,legend_location="")
