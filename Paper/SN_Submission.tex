@@ -46,6 +46,8 @@
 \usepackage{hyperref}% add hypertext capabilities
 \usepackage[mathlines]{lineno}
 \usepackage{bbm,booktabs}
+\bibliographystyle{elsarticle-num}
+
 
 %% The ecrc package defines commands needed for running heads and logos.
 %% For running heads, you can set the journal name, the volume, the starting page and the authors
@@ -210,53 +212,65 @@ Hierarchy is an important feature of many organizations, such as firms, social c
 % \end{enumerate}
 
 Without statistical models/mathematical measurements for hierarchy which are theoretically based, and vice versa; theory that can be statistical/mathematically quantified and verified, the conceptual idea of hierarchy cannot be fully understood. We do not suggest that this project will achieve an overreaching theory and methods, but we strive to take the first step. At the very least, we will try to demonstrate the need for a united theory and corresponding methods. As an interdisciplinary team, we are in the unique position to accomplish our goals.
-
 \section{Sociological Theories of Hierarchy}
 	We are still working through evaluating a few different datasets to best suit our purposes. However, at present, this is a little difficult because we really want our measure to be theoretically-grounded, but we haven't yet developed a solid theoretical conception for hierarchy. Thus far, theory-wise, the Mann (1986) definition seems closest to the Liu-Driver measures discussed in the Mones et al. (2012) article: i.e., hierarchical networks are those in which the actions of a few nodes are needed to take control of the graph. Another potential definition, also implied, is hierarchy means the mechanisms of collective actions (i.e., the ability of different nodes to connect with one another) hinges on a small number.
-
 \section{Measuring Hierarchy}
-A number of analytical measures of hierarchy have been proposed for directed networks. Most proposed measures return a scalar value that is meant to capture the ``hierarchical-ness'' of a given network \cite{eigen, between,kendall, landau, GRC}. This theoretically facilitates comparison between measures calculated on the same network, as well as comparison on the same measure across multiple networks. However some approaches to measuring hierarchy only provide a local measure of importance or position in the hierarchy for each node in the network \cite{key}. For these measures, one can calculate a Gini coefficient \cite{Yitzhaki1979} from the individual level scores and use these coefficients as a proxy for a global measure. 
+A number of analytical measures of hierarchy have been proposed for directed networks. Most proposed measures return a scalar value that is meant to capture the ``hierarchical-ness'' of a given network \cite{Mones2012, Shizuka2012, eigen, between,Kendall1940, landau, Suchecki2013a}. This theoretically facilitates comparison between measures calculated on the same network, as well as comparison on the same measure across multiple networks. However some approaches to measuring hierarchy only provide a local measure of importance or position in the hierarchy for each node in the network \cite{key}. For these measures, one can calculate a Gini coefficient \cite{Yitzhaki1979} from the individual level scores and use these coefficients as a proxy for a global measure. 
 
 In this section, we introduce and describe ten candidate measures of network hierarchy that have been previously used in the networks literature. It is important to note that most of the measures we consider are only defined for directed networks, and thus for the remained of this paper we assume all networks under consideration are directed. We begin by introducing some terminology that will be common across all measures. For a given network $G=(V,E)$, let $V=\{v_i\}_{i=1}^N$ be the set of $N$ vertices (nodes) associated with $G$, and $E=\{e_j\}_{j=1}^M$ be the set of $M$ edges associated with $G$. Furthermore, for a given edge $e_j$, let $e_j^{(s)} \in 1:N$ be the index of the sender of the edge and $e_j^{(r)} \in 1:N$ be the index of the recipient. 
 
 One other important point is that most measures of network hierarchy are meant to be applied to networks where the edge sets capture relations other than ``has power over''. In this special case, it is theoretically easier to construct a measure of network hierarchy since the network must be directed and acyclic (preventing circular chains of command). However, obtaining such information is usually impossible in most cases (with military personell networks being an obvious exception). Furthermore, if the researcher has collected such an edge-set, then the need for summary measures of the ``hierarchical-ness'' of the network is likely obviated, as deeper insights could be gained from applying inferential network analysis tools to the raw network. Therefore, we focus or attention on the measurement of hierarchy on networks where edges are not explicitly power relations.
 
 \subsection{Analytical Measures of Hierarchy}
-The most basic measures of hierarchy or differential importance of a nodes in a network can all be derived from basic node-level measures of network centrality \cite{Wasserman1994}. To aggregate from these node-level measures up to a singel measure on a network, one can calculate $C$, the centralization of the network. For given local measures $\mathbf{c} = \{c_i\}_{i=1}^N$, the corresponding centralization measure is defined as: 
-\begin{align}
-	C = \sum_{i=1}^{N}{(\max\{c_{i}\}-c_{i})}
-\end{align}
-Centralization captures the degree of inequality in the distribution of a given centrality measure over the network. In general, we should then expect that networks that are more centralized are also likely to be more hierarchical. However, this measure attains its maximal value for any centrality measure when one node has a maximal value of the given centrality measure and all the rest of the nodes have the minimal possible value. This will tend to give star networks maximal centralization scores. This implicit assumption in measurement is important to consider when evaluating the validity of centralization based measures of hierarchy. The four centrality measures we consider are: degree centrality, closeness centrality, betweenness centrality, and eigenvector centrality. 
+The most basic measures of hierarchy or differential importance of a nodes in a network can all be derived from basic node-level measures of network centrality \cite{Wasserman1994}. To aggregate from the node-level measures up to a single measure on a network, one can calculate $C$, the centralization of the network. Centralization captures the degree of inequality in the distribution of a given centrality measure over the network. In general, we should then expect that networks that are more centralized are also likely to be more hierarchical. However, this measure attains its maximal value for any centrality measure when one node has a maximal value of the given centrality measure and all the rest of the nodes have the minimal possible value. This will tend to give star networks maximal centralization scores. This implicit assumption in measurement is important to consider when evaluating the validity of centralization based measures of hierarchy. The four centrality measures we consider are: degree centrality, closeness centrality, betweenness centrality, and eigenvector centrality. 
 
 The \textbf{degree centrality} of node $v_{i}$ is simply the number of outgoing or incoming edges incident to it. Formally, this can be calculated as:
 \begin{align}
-	\text{indegree centrality}_i = \text{In}_i&= \sum_{j=1}^M \mathbbm{1}(e_j^{(r)} = i) \\
-	\text{outdegree centrality}_i  = \text{Out}_i &= \sum_{j=1}^M \mathbbm{1}(e_j^{(s)} = i) 
+	\text{in-degree centrality}_i = \text{In}_i&= \sum_{j=1}^M \mathbbm{1}(e_j^{(r)} = i) \\
+	\text{out-degree centrality}_i  = \text{Out}_i &= \sum_{j=1}^M \mathbbm{1}(e_j^{(s)} = i) 
 \end{align}
-Degree centrality captures the number of friends or connections a node has, and intuitively, we should expect more powerful nodes will have more incoming and outgoing connections. However, degree centrality does not account for the identity of a node's alters. This can lead to difficulties when it is used to asses a node's position in a social hierarchy. For example, in a large company, we might expect that an administrative assistant may have a higher degree centrality than the CEO of a company if the edges being measured are work-related interaction. Furthermore, if there are many administrative assistants at the bottom of the power structure in an organization we might qualitatively consider to be extremely hierarchically structured, the degree centralization of the interaction network might be lower than in a comparably sized ``organizationally flat" organization where a handfull of people serve as coordinators. Thus we must take great care in interpreting this statistic, depending on the type of edges it is defined over. 
-
+Degree centrality captures the number of friends or connections a node has, and intuitively, we should expect more powerful nodes will have more incoming and outgoing connections. However, degree centrality does not account for the identity of a node's alters. This can lead to difficulties when it is used to asses a node's position in a social hierarchy. For example, in a large company, we might expect that an administrative assistant may have a higher degree centrality than the CEO of a company if the edges being measured are work-related interaction. Furthermore, if there are many administrative assistants at the bottom of the power structure in an organization we might qualitatively consider to be extremely hierarchically structured, the degree centralization of the interaction network might be lower than in a comparably sized ``organizationally flat" organization where a handfull of people serve as coordinators. Thus we must take great care in interpreting this statistic, depending on the type of edges it is defined over. For given node-level in-degree or out-degree centrality measures $\mathbf{c} = \{c_i\}_{i=1}^N$, the corresponding in-degree or out-degree centralization measure is defined as: 
+\begin{align}
+	\text{Degree Centralization} = \frac{\sum_{i=1}^{N}{(\max\{c_{i}\}-c_{i})}}{(N-1)(N-2)}
+\end{align}
+where $(N-1)(N-2)$ normalizes the measure for the size of the network.
 
 The \textbf{betweenness centrality} of node $v_{i}$ is a measure of the amount of influence a node has on the information transversed through it \cite{between}. Define $D_{i,j}$ as the number of shortest paths in $G$ between $v_{i}$ and $v_{j}$, and $D_{i,j}(k)$ as the number of these shortest paths that pass through $v_{k},$ then the betweenness centrality of node $k$ is:
 \begin{align}
-	\sum_{i\neq k\neq j}{(\frac{D_{i,j}(k)}{D_{i,j}})}
+	\text{betweenness centrality}_i = \sum_{i\neq k\neq j}{(\frac{D_{i,j}(k)}{D_{i,j}})}
 \end{align}
-Betweenness centrality captures how in-the-middle-of-things a node is and when edges involve sharing information, how important the node is to information flowing quickly across the network, Intuitively, we should expect the nodes with higher betweenness centrality will be more powerful, and that greater inequality on this measure should signal a greater degree of hierarchical structure in a network. Similarly, the \textbf{closeness centrality} of node $v_{i}$ is a measure of how few intermediate edges a given node must traverse to reach all other nodes in the network. Define $d(i,j)$ as the length of the shortest path between $v_{i}$ and $v_{j}$, then closeness centrality of node $i$ is: 
+Betweenness centrality captures how in-the-middle-of-things a node is and when edges involve sharing information, how important the node is to information flowing quickly across the network, Intuitively, we should expect the nodes with higher betweenness centrality will be more powerful, and that greater inequality on this measure should signal a greater degree of hierarchical structure in a network. For given node-level betweenness centrality measures $\mathbf{c} = \{c_i\}_{i=1}^N$, the betweenness centralization measure is defined as: 
 \begin{align}
-	\sum_{i\neq j}{(\frac{1}{d(i,j)})}
+	\text{Betweenness Centralization} = \frac{\sum_{i=1}^{N}{(\max\{c_{i}\}-c_{i})}}{(N-1)^2(N-2)}
 \end{align}
-Again, intuitively, powerful members of a hierarchy will tend to be able to reach others in the network more easily, and inequality in this measure (as captured by the closeness centralization of the network) should theoretically signal the degree of hierarchy in the network.
+where $(N-1)^2(N-2)$ normalizes the measure for the size of the network. Similarly, the \textbf{closeness centrality} of node $v_{i}$ is a measure of how few intermediate edges a given node must traverse to reach all other nodes in the network. Define $d(i,j)$ as the length of the shortest path between $v_{i}$ and $v_{j}$, then closeness centrality of node $i$ is: 
+\begin{align}
+	\text{closeness centrality}_i = \sum_{i\neq j}{(\frac{1}{d(i,j)})}
+\end{align}
+Again, intuitively, powerful members of a hierarchy will tend to be able to reach others in the network more easily, and inequality in this measure (as captured by the closeness centralization of the network) should theoretically signal the degree of hierarchy in the network. For given node-level closeness centrality measures $\mathbf{c} = \{c_i\}_{i=1}^N$, the closeness centralization measure is defined as: 
+\begin{align}
+	\text{Closeness Centralization} = \frac{\sum_{i=1}^{N}{(\max\{c_{i}\}-c_{i})}}{\frac{(N-1)(N-2)}{(2N-3)}}
+\end{align}
+where $\frac{(N-1)(N-2)}{(2N-3)}$ normalizes the measure for the size of the network.
 
 The last of the classical centrality based measures is \textbf{eigenvector centrality}, which is meant to capture the degree to which a node is connected to other well connected nodes \cite{eigen}. Let the adjacency matrix of the network be defined as $\mathbf{A}$ and the vector of local eigenvector centrality scores for each node be defined as $\mathbf{w}=\{w({v_{1}}),...,w(v_{V})\}$. Then to calculate the eigenvalue centralities $\mathbf{w}$, one must solve the following eigenvector equation: 
 \begin{align}
 	\mathbf{A}  \mathbf{w}=  \mathbf{\lambda} \mathbf{w}
 \end{align}
-where $\mathbf{\lambda}$ is a vector of positive eigenvalues. The challenge is to find the \emph{dominant eigenvector}, as only the largest eigenvalue results in the desired centrality measure for each node. Intuitively, higher eigenvector centrality should be associated with greater social or organizational importance. Interestingly, the eigenvector centralization of a network can still be large even if there are a relatively large proportion of higher degree nodes, as long as the edges are organized such that only a few nodes are connected to all of these higher degree nodes.
+where $\mathbf{\lambda}$ is a vector of positive eigenvalues. The challenge is to find the \emph{dominant eigenvector}, as only the largest eigenvalue results in the desired centrality measure for each node. Intuitively, higher eigenvector centrality should be associated with greater social or organizational importance. For given node-level eigenvector centrality measures $\mathbf{c} = \{c_i\}_{i=1}^N$, the eigenvector centralization measure is defined as: 
+\begin{align}
+	\text{Eigenvector Centralization} = \frac{\sum_{i=1}^{N}{(\max\{c_{i}\}-c_{i})}}{(N-1)}
+\end{align}
+where $(N-1)$ normalizes the measure for the size of the network. Interestingly, the eigenvector centralization of a network can still be large even if there are a relatively large proportion of higher degree nodes, as long as the edges are organized such that only a few nodes are connected to all of these higher degree nodes.
 
-\textbf{Landau's} $\mathbf{h}$ is used to compare a directed network to a perfect linear hierarchy (a strict dominance-ordering of nodes) \cite{landau, animals}. This measure is defined as follows:
+
+\textbf{Landau's} $\mathbf{h}$ and \textbf{Kendall's} $\mathbf{K}$ are two closely related measures of hierarchy that operate on a \emph{dominance} network -- a transformation of the weighted sociomatrix of a given network \cite{animals}. Intuitively, this \emph{dominance} network is meant to capture dominance-subordination relationships (between animals). The $[i,j]$ entry of the corresponding sociomatrix is coded as $1$ if $i$ is dominant over $j$, $0.5$ if $i$ and $j$ are equals, and $0$ if $j$ is dominant over $i$. If the underlying network does not capture dominance relationships, then an weighted network can be transformed into a \emph{dominance} network by assigning a value of $1$ in the $[i,j]$ entry of of the corresponding sociomatrix if the $[i,j]$ entry of the original sociomatrix is greater than the $[j,i]$ entry of the original sociomatrix, $0.5$ in the $[i,j]$ entry of of the corresponding sociomatrix if the $[i,j]$ entry of the original sociomatrix is equal to the $[j,i]$ entry of the original sociomatrix, and zero otherwise. 
+
+\textbf{Landau's} $\mathbf{h}$ is used to compare a directed network to a perfect linear hierarchy (a strict dominance-ordering of nodes) \cite{landau, Shizuka2012}. This measure is defined as follows:
 \begin{align}
 	h=\frac{12}{N^3-N}\sum_{i=1}^{N}{\left[\text{Out}_i-\frac{N-1}{2}\right]^{2}}
 \end{align}
-where $h \in [0,1]$. Note that Landau's $h$ does not provide an individual level metric of importance or relative power. This measure was specifically designed to operate on networks of ``has power over'' edges, and thus may be difficult to interpret when the network is not explicitly defined on power relations. Because of a preference for chain-like structures, this measure will likely provide poor performance when edges measure social relations. \textbf{Kendall's} $\mathbf{K}$  is also designed to compare a directed network to a perfect linear hierarchy \cite{kendall}. As noted in \cite{animals}, it often gives an identical value to Landau's $h$, but is theoretically distinct. Begin by defining the number of \emph{cyclic triads} ($CyT$) in the network as:
+where $h \in [0,1]$. Note that Landau's $h$ does not provide an individual level metric of importance or relative power. This measure was specifically designed to operate on networks of ``has power over'' edges, and thus may be difficult to interpret when the network is not explicitly defined on power relations. Because of a preference for chain-like structures, this measure will likely provide poor performance when edges measure social relations. \textbf{Kendall's} $\mathbf{K}$  is also designed to compare a directed network to a perfect linear hierarchy \cite{Kendall1940}. As noted in \cite{Shizuka2012}, it often gives an identical value to Landau's $h$, but is theoretically distinct. Begin by defining the number of \emph{cyclic triads} ($CyT$) in the network as:
 \begin{align}
 	CyT=\frac{N(N-1)(2N-1)}{12}-\frac{1}{2}\sum{\text{Out}_i^2}
 \end{align}
@@ -279,22 +293,22 @@ Kendal's $K \in [0,1]$ is also only defined as a global measure, and no individu
 \end{align}
 In words, it is half of the \emph{average absolute difference} of all pairs of entries in the vector, divided by the average, which acts as a normalizing constant. We take the Gini coefficient of the $M$-reach degree and $M$-reach closeness values for each node in the network and treat this as our global measure of network hierarchy. Intuitively, this measure is capturing the degree of inequality in access to other nodes in the network. We should expect that a higher degree of inequality in this metric would be associated with a more hierarchical network. One potential shortcoming of these measures is that they only account for out-degree, when incoming ties may be a better signal of power relations in many real-world social networks.
 
-\textbf{Global reaching centrality (GRC)}  is a generalization of $M$-reach degree centrality measure \cite{GRC}, and was designed specifically to measure on any network. When the network is unweighted and directed, let $C_R(i)$ be the local $M$-reach degree centrality of node $i$, then the global reaching centrality of the network can be defined as:
+\textbf{Global reaching centrality (GRC)}  is a generalization of $M$-reach degree centrality measure \cite{Mones2012}, and was designed specifically to measure on any network. When the network is unweighted and directed, let $C_R(i)$ be the local $M$-reach degree centrality of node $i$, then the global reaching centrality of the network can be defined as:
 \begin{align}
 	\label{eq:GRC}
 	GRC=\frac{\sum_{i=1}^N{\left[\max(C_R)-C_R(i)\right]}}{N-1}
 \end{align}
-When the graph is weighted and directed, the authors in \cite{GRC} propose an alternative formulation of $C_R(i)$:
+When the graph is weighted and directed, the authors in \cite{Mones2012} propose an alternative formulation of $C_R(i)$:
 \begin{align}
 	C_{R}^{'}(i)=\frac{1}{N-1}\sum_{j: 0<d^{out}_{(i,j)}<\infty}{( \frac{\sum_{k=1}^{d^{out}(i,j)} {w_{i}^{(k)} (j) } }{d^{out}(i,j)} )}
 \end{align}
-where $d^{out}_{i,j}$ is the (directed) path length from node $i$ to node $j$, and $w^{(k)}_{i}$ is the weight of the $k$th edge along this path. This alternative formulation can then be plugged into equation \ref{eq:GRC} to calculate the GRC for a weighted,directed network. Finally, when the network is unweighted and undirected, the authors in \cite{GRC} propose an additional alternative formulation of $C_R(i)$:
+where $d^{out}_{i,j}$ is the (directed) path length from node $i$ to node $j$, and $w^{(k)}_{i}$ is the weight of the $k$th edge along this path. This alternative formulation can then be plugged into equation \ref{eq:GRC} to calculate the GRC for a weighted,directed network. Finally, when the network is unweighted and undirected, the authors in \cite{Mones2012} propose an additional alternative formulation of $C_R(i)$:
 \begin{align}
 	C_{R}^{''}(i)=\frac{1}{N-1}\sum_{j:0<d(i,j)<\infty}{\frac{1}{d(i,j)}}
 \end{align}
 where $d_{i,j}$ is the (undirected) path length from node $i$ to node $j$. The intuition of for the interpretation of GRC as a measure of network hierarchy is almost identical to the interpretation of the Gini coefficient of the $M$-reach degree and $M$-reach closeness values for a network, with only difference being the way the individual measures are aggregated, and its extension to weighted and undirected networks. Again, a potential major shortcoming is that this measure only makes theoretical sense when the outgoing edges in the network signal a power relation where the sender has power over the recipient. 
 
-The last measure we consider, \textbf{rooted depth} \cite{depth},  is only defined for networks where a root (a node that has only incoming edges) exists. Let $N_{r}$ be the number of node-root pairs in the network. Then the rooted depth of the network can be defined as:
+The last measure we consider, \textbf{rooted depth} \cite{Suchecki2013a},  is only defined for networks where a root (a node that has only incoming edges) exists. Let $N_{r}$ be the number of node-root pairs in the network. Then the rooted depth of the network can be defined as:
 \begin{align}
 	D=\frac{1}{N_{r}}\sum_{i=1}^{N_r}{l_{ri}}
 \end{align}
@@ -310,7 +324,7 @@ To begin to understand how these measures are related, we each of these ten meas
 \end{center}
 \end{figure}
 
-Perhaps surprisingly, the rest of the correlations depicted in Figure \ref{fig:measure correlations} are quite small and statistically insignificant, indicating that if all of these measures are valid, they are capturing different dimensions of hierarchy in a network. Figure \ref{fig:pairs plots} provides a full set of pairs plots between all measures, with points for each network colored by the type of network. This finding suggests that either there are multiple dimensions to hierarchy in a network \cite{Corominas-Murtra2013}, some of these measures do not measure hierarchy, or some combination of both. To investigate this finding further, we perform several statistical and qualitative comparisons between these measures in Section \ref{sec:analysis}.
+Perhaps surprisingly, the rest of the correlations depicted in Figure \ref{fig:measure correlations} are quite small and statistically insignificant, indicating that if all of these measures are valid, they are capturing different dimensions of hierarchy in a network. This finding suggests that either there are multiple dimensions to hierarchy in a network \cite{Corominas-Murtra2013}, some of these measures do not measure hierarchy, or some combination of both. To investigate this finding further, we perform several statistical and qualitative comparisons between these measures in Section \ref{sec:analysis}.
 
 % \subsection{Statistical Measures of Network Hierarchy}
 %
@@ -460,6 +474,8 @@ Before fitting any of the hierarchy measures on these real datasets, we want to 
 \section{Analysis}
 \label{sec:analysis}
 
+
+\subsection{Principle Components Analysis}
 PCA component eigenvalues are illustrated in Figure \ref{fig:PCA variacnes}. A graphical comparison of components one and two is provided in \ref{fig:1 and 2}. A graphical comparison of components one and three is provided in \ref{fig:1 and 3}. A graphical comparison of components two and three is provided in \ref{fig:2 and 3}.
 
 
@@ -493,8 +509,29 @@ PCA component eigenvalues are illustrated in Figure \ref{fig:PCA variacnes}. A g
 \end{figure}
 
 
+
+\subsection{Simulation Study}
+\label{sec:simulated figures}
+
+\begin{figure}
+	\begin{center}
+		\caption{\label{fig::Simulated Parameters} All figures show the average normalized global measure (denoted by the symbol in the bottom right key) by parameter value. The top left plot is for BA networks. The top right is for TR netwroks. The bottom left is for ER networks.}
+		\includegraphics[width = 0.70\textwidth]{./images/Norm_Pars.pdf}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+	\caption{\label{fig::Simulated Size} All figures show the average normalized global measure (denoted by the symbol in the bottom right key) by pnumber of nodes. The top left plot is for BA networks. The top right is for TR netwroks. The bottom left is for ER networks.}
+	\includegraphics[width = 0.70\textwidth]{./images/Norm_Size.pdf}
+	\end{center}
+\end{figure}
+
+
 % latex table generated in R 3.2.2 by xtable 1.8-0 package
 % Fri Dec 11 16:43:36 2015
+
+\subsection{Ground Truth Rankings}
 \begin{table}[ht]
 \centering
 \begin{tabular}{rr}
@@ -520,9 +557,13 @@ degree\_centrality & 0.75 \\
 
 
 \section{Conclusions}
+test
 
-\bibliographystyle{elsarticle-num}
-\bibliography{library}
+%\bibliographystyle{elsarticle-num}
+%\bibliographystyle{plain}
+\clearpage
+\bibliography{library,AddCitesHere}
+
 
 %% Authors are advised to use a BibTeX database file for their reference list.
 %% The provided style file elsarticle-num.bst formats references in the required Procedia style
@@ -530,207 +571,207 @@ degree\_centrality & 0.75 \\
 %% For references without a BibTeX database:
 
 % \begin{thebibliography}{00}
-\begin{thebibliography}{9}
-	\bibitem{key} 
-	An,W. (2015),
-	``Multilevel Meta Network Analysis with Application to Studying Network Dynamics of Network Interventions." \textit{Social Networks} 43: 48-56.
-	
-	\bibitem{eigen} 
-	Bonacich, P. (1972),
-	``Factoring and Weighting Approaches to Status Scores and Clique Identification." 
-	\textit{Journal of Mathematical Sociology} 2: 113-120.
-	
-	\bibitem{monks}
-	Breiger, R., Boorman, S., and Arabie, P. (1975),
-	``An algorithm for clustering relational data with applications to social network analysis and comparison with multidimensional scaling."
-	\textit{Journal of Mathematical Psychology} 12.
-	
-	\bibitem{libi}
-	Brozovsky, L. and Petricek, V. (2007),
-	``Recommender system for online dating service."
-	\textit{Proc. Znalosti} 29-40.
-	
-	\bibitem{docs}
-	Coleman, J., Katz, E., and Menzel, H. (1957),
-	``The diffusion of an innovation among physicians."
-	\textit{Sociometry} 253-270.
-	
-	\bibitem{HS}
-	Coleman, J. (1973),
-	``Introduction to mathematical sociology."
-	\textit{London Free Press Glencoe}.
-	
-	\bibitem{Corominas-Murtra2013}
-	Corominas-Murtra, B., Goni, J., Sole, R. V, \& Rodríguez-Caso, C. (2013). ``On the origins of hierarchy in complex networks''. \emph{Proceedings of the National Academy of Sciences of the United States of America}, 110(33), 13316–21. \href{http://doi.org/10.1073/pnas.1300832110}{http://doi.org/10.1073/pnas.1300832110}
-	
-	\bibitem{between} 
-	Freeman, L. (1977),
-	``A set of Measures of Centrality Based on Betweenness." 
-	\textit{Sociometry} 40: 1, 35-41.
-	
-	\bibitem{Res}
-	Freeman, L., Webster, C., and Kirke, D. (1998),
-	``Exploring social structure using dynamic three--dimensional color images."
-	\textit{Social Networks} 20: 2, 109-118.
-	
-	\bibitem{friendster}
-	Friendster network dataset - KONECT, May 2015.
-	
-	\bibitem{URV}
-	Guimera, R., Danon, L., Diaz-Guilera, A., Giralt, F., and Arenas, A. (2003),
-	``Self--similar community structure in a network of human interactions."
-	\textit{Phys. Rev. E.} 68: 6.
-	
-	\bibitem{online} 
-	Gupte, M., Shankar, P., Li, J., Muthukrishnan, S., and Iftode, L. (2011),
-	``Finding Hierarchy in Directed Online Social Networks." 
-	\textit{International World Wide Web Conference Committee (IW3C2)}.
-	
-	\bibitem{Digg}
-	Hogg, T. and Lerman, K. (2012),
-	``Social dynamics of Digg."
-	\textit{EPJ Data Science} 1, 5.
-	
-	\bibitem{kendall} 
-	Kendall, M. and Babington Smith B. (1940),
-	``On the Method of Paired Comparisons." 
-	\textit{Biometrika} 31: 324-345.
-	
-	\bibitem{landau} 
-	Landau, H. G. (1951),
-	``On Dominance Relations and the Structure of Animal Societies:  Effect of inherent characteristics." 
-	\textit{Bulletin of Mathematical Biology} 13: 245-262.
-
-	\bibitem{EU}
-	Leskovec, J., Kleinber, J., and Faloutsos, C. (2007),
-	``Graph Evolution: Densification and Shrinking Diameters."
-	\textit{ACM Transactions on Knowledge Discovery from Data (ACM TKDD)} 1: 1.
-
-	\bibitem{livejournal}
-	Leskovec, J., Lang, K., Dasgupta, A., and Mahoney, M. (2009),
-	``Community Structure in Large Networks: Natural Cluster Sizes and the Absence of Large Well-Defined Clusters."
-	\textit{Internet Mathematics} 6: 1, 29-123.
-
-	\bibitem{wiki}
-	Leskovec, J., Huttenlocher, D., and Kleinberg, J. (2010),
-	``Predicting Positive and Negative Links in Online Social Networks."
-	
-	\bibitem{linux}
-	Linux kernel mailing list replies network dataset - KONECT, May 2015.
-
-	\bibitem{Liu12}
-	Liu, Y., Slotine, J., and Barab{\'a}si, A (2012),
-	``Control centrality and hierarchical structure in complex networks."
-	\textit{Plos ONE:} 7: 9.
-	
-	\bibitem{mann}
-	Mann, Michael. (1986), ``Chapter 1: Societies as organized power networks."
-	\textit{The Sources of Social Power, Volume 1, A history of power from the beginning to AD 1760}. Cambridge University Press: 1-33.
-	
-	\bibitem{facebook}
-	McAuley, J. and Leskovec, J. (2012),
-	``Learning to Discover Social Circles in Ego Networks."	\textit{NIPS}.
-	
-	\bibitem{manufacturing}
-	Michalski, R., Palus, S., and Kazienko, P. (2011),
-	``Matching organizational structure and social network extracted from email communication."
-	Lecture Notes in Business Information Processing: 87, 196-206.
-	
-	\bibitem{youtube}
-	Mislove, A., Marcon, M., Gummadi, K., Druschel, P., and Bhattacharjee, B. (2007),
-	``Measurement and analysis of online social networks."
-	\textit{Proc. Internet Measurement Conference}.
-	
-	\bibitem{GRC} 
-	Mones, E., Vicsek, L., and Vicsek, T. (2012),
-	``Hierarchy Measure for Complex Networks." 
-	\textit{Plos ONE} 7: 3, 1-10.	
-	
-	\bibitem{AdHealth}
-	Moody, J. (2001),
-	``Peer influence groups: Identifying dense clusters in large networks."
-	\textit{Social Networks} 23: 4, 261-283.
-	
-	\bibitem{irvine}
-	Opsahl, T. and Panzarasa, P. (2009),
-	``Clustering in weighted networks."
-	\textit{Social Networks} 31: 2, 155-163.
-	
-	\bibitem{cite}
-	Prosper loans network dataset - KONECT, May 2015.
-	
-	\bibitem{epinions}
-	Richardson, M., Agrawal, R., and Domingos, P. (2003),
-	``Trust Management for the Semantic Web." \textit{ISWC}.
-	
-	\bibitem{Taro}
-	Schwimmer, E. (1973),
-	``Exchange in the Social Structure of the Orokaiva: Traditional and Emergent Ideologies in the Northern District of Papua." \textit{St. Martin's Press}.
-	
-	\bibitem{animals} 
-	Shizuka, D. and McDonald, D. B. (2012),
-	``A social network perspective on measurements of dominance hierarchies." 
-	\textit{Animal Behavior} 83: 925-934.
-	
-	\bibitem{depth} 
-	Suchecki, K. and Holyst, J. (2013),
-	``Hierarchy depth in directed networks." 
-	\textit{Physica A} arXiv:1303-2085.
-	
-	\bibitem{pokec}
-	Takac, L. and Zabovsky, M. (2012),
-	``Data Analysis in Public Social Networks."
-	International Scientific Conference \& International Workshop Present Day Trends of Innovations, Lomza, Poland.
-	
-	\bibitem{Dutch}
-	Van de Bunt, G., Van Deuijn, M., and Snijders, T. (1999),
-	``Friendship networks through time: An actor-oriented dynamic statistical network model."
-	\textit{Computational and Mathematical Organization Theory} 5: 2, 167-192.
-	
-	\bibitem{Wasserman1994}
-	Wasserman, S., \& Faust, K. (1994). ``Social Network Analysis: Methods and Applications''. (M. Granovetter, Ed.)\emph{Social Networks (Vol. 8)}. Cambridge University Press. \href{http://doi.org/10.2307/2077235}{http://doi.org/10.2307/2077235}
-	
-	\bibitem{sevies}
-	Watts, D. and Strogatz, S. (1998),
-	``Collective dynamics of `small world' networks."
-	\textit{Nature} 393: 1, 440-442.
-	
-	\bibitem{wiki2}
-	West, R., Paskov, H., Leskovec, J., and Potts, C. (2014),
-	``Exploiting Social Network Structure for Person-to-Person Sentiment Analysis."
-	\textit{Transactions of the Association for Computational Linguistics} 2: 297-310.
-	
-	\bibitem{Yitzhaki1979}
-	Yitzhaki, S.. (1979), ``Relative deprivation and the Gini coefficient." \emph{The quarterly journal of economics} 321-324.
-
-	
-
-
-    
-    
-    
-\end{thebibliography}
-%% \bibitem must have the following form:
-%%   \bibitem{key}...
-%%
+% \begin{thebibliography}{00}
+% 	\bibitem{key}
+% 	An,W. (2015),
+% 	``Multilevel Meta Network Analysis with Application to Studying Network Dynamics of Network Interventions." \textit{Social Networks} 43: 48-56.
+%
+% 	\bibitem{eigen}
+% 	Bonacich, P. (1972),
+% 	``Factoring and Weighting Approaches to Status Scores and Clique Identification."
+% 	\textit{Journal of Mathematical Sociology} 2: 113-120.
+%
+% 	\bibitem{monks}
+% 	Breiger, R., Boorman, S., and Arabie, P. (1975),
+% 	``An algorithm for clustering relational data with applications to social network analysis and comparison with multidimensional scaling."
+% 	\textit{Journal of Mathematical Psychology} 12.
+%
+% 	\bibitem{libi}
+% 	Brozovsky, L. and Petricek, V. (2007),
+% 	``Recommender system for online dating service."
+% 	\textit{Proc. Znalosti} 29-40.
+%
+% 	\bibitem{docs}
+% 	Coleman, J., Katz, E., and Menzel, H. (1957),
+% 	``The diffusion of an innovation among physicians."
+% 	\textit{Sociometry} 253-270.
+%
+% 	\bibitem{HS}
+% 	Coleman, J. (1973),
+% 	``Introduction to mathematical sociology."
+% 	\textit{London Free Press Glencoe}.
+%
+% 	% \bibitem{Corominas-Murtra2013}
+% 	% Corominas-Murtra, B., Goni, J., Sole, R. V, \& Rodríguez-Caso, C. (2013). ``On the origins of hierarchy in complex networks''. \emph{Proceedings of the National Academy of Sciences of the United States of America}, 110(33), 13316–21. \href{http://doi.org/10.1073/pnas.1300832110}{http://doi.org/10.1073/pnas.1300832110}
+%
+% 	\bibitem{between}
+% 	Freeman, L. (1977),
+% 	``A set of Measures of Centrality Based on Betweenness."
+% 	\textit{Sociometry} 40: 1, 35-41.
+%
+% 	\bibitem{Res}
+% 	Freeman, L., Webster, C., and Kirke, D. (1998),
+% 	``Exploring social structure using dynamic three--dimensional color images."
+% 	\textit{Social Networks} 20: 2, 109-118.
+%
+% 	\bibitem{friendster}
+% 	Friendster network dataset - KONECT, May 2015.
+%
+% 	\bibitem{URV}
+% 	Guimera, R., Danon, L., Diaz-Guilera, A., Giralt, F., and Arenas, A. (2003),
+% 	``Self--similar community structure in a network of human interactions."
+% 	\textit{Phys. Rev. E.} 68: 6.
+%
+% 	\bibitem{online}
+% 	Gupte, M., Shankar, P., Li, J., Muthukrishnan, S., and Iftode, L. (2011),
+% 	``Finding Hierarchy in Directed Online Social Networks."
+% 	\textit{International World Wide Web Conference Committee (IW3C2)}.
+%
+% 	\bibitem{Digg}
+% 	Hogg, T. and Lerman, K. (2012),
+% 	``Social dynamics of Digg."
+% 	\textit{EPJ Data Science} 1, 5.
+%
+% 	\bibitem{kendall}
+% 	Kendall, M. and Babington Smith B. (1940),
+% 	``On the Method of Paired Comparisons."
+% 	\textit{Biometrika} 31: 324-345.
+%
+% 	\bibitem{landau}
+% 	Landau, H. G. (1951),
+% 	``On Dominance Relations and the Structure of Animal Societies:  Effect of inherent characteristics."
+% 	\textit{Bulletin of Mathematical Biology} 13: 245-262.
+%
+% 	\bibitem{EU}
+% 	Leskovec, J., Kleinber, J., and Faloutsos, C. (2007),
+% 	``Graph Evolution: Densification and Shrinking Diameters."
+% 	\textit{ACM Transactions on Knowledge Discovery from Data (ACM TKDD)} 1: 1.
+%
+% 	\bibitem{livejournal}
+% 	Leskovec, J., Lang, K., Dasgupta, A., and Mahoney, M. (2009),
+% 	``Community Structure in Large Networks: Natural Cluster Sizes and the Absence of Large Well-Defined Clusters."
+% 	\textit{Internet Mathematics} 6: 1, 29-123.
+%
+% 	\bibitem{wiki}
+% 	Leskovec, J., Huttenlocher, D., and Kleinberg, J. (2010),
+% 	``Predicting Positive and Negative Links in Online Social Networks."
+%
+% 	\bibitem{linux}
+% 	Linux kernel mailing list replies network dataset - KONECT, May 2015.
+%
+% 	\bibitem{Liu12}
+% 	Liu, Y., Slotine, J., and Barab{\'a}si, A (2012),
+% 	``Control centrality and hierarchical structure in complex networks."
+% 	\textit{Plos ONE:} 7: 9.
+%
+% 	\bibitem{mann}
+% 	Mann, Michael. (1986), ``Chapter 1: Societies as organized power networks."
+% 	\textit{The Sources of Social Power, Volume 1, A history of power from the beginning to AD 1760}. Cambridge University Press: 1-33.
+%
+% 	\bibitem{facebook}
+% 	McAuley, J. and Leskovec, J. (2012),
+% 	``Learning to Discover Social Circles in Ego Networks."	\textit{NIPS}.
+%
+% 	\bibitem{manufacturing}
+% 	Michalski, R., Palus, S., and Kazienko, P. (2011),
+% 	``Matching organizational structure and social network extracted from email communication."
+% 	Lecture Notes in Business Information Processing: 87, 196-206.
+%
+% 	\bibitem{youtube}
+% 	Mislove, A., Marcon, M., Gummadi, K., Druschel, P., and Bhattacharjee, B. (2007),
+% 	``Measurement and analysis of online social networks."
+% 	\textit{Proc. Internet Measurement Conference}.
+% 	%
+% 	% \bibitem{GRC}
+% 	% Mones, E., Vicsek, L., and Vicsek, T. (2012),
+% 	% ``Hierarchy Measure for Complex Networks."
+% 	% \textit{Plos ONE} 7: 3, 1-10.
+%
+% 	\bibitem{AdHealth}
+% 	Moody, J. (2001),
+% 	``Peer influence groups: Identifying dense clusters in large networks."
+% 	\textit{Social Networks} 23: 4, 261-283.
+%
+% 	\bibitem{irvine}
+% 	Opsahl, T. and Panzarasa, P. (2009),
+% 	``Clustering in weighted networks."
+% 	\textit{Social Networks} 31: 2, 155-163.
+%
+% 	\bibitem{cite}
+% 	Prosper loans network dataset - KONECT, May 2015.
+%
+% 	\bibitem{epinions}
+% 	Richardson, M., Agrawal, R., and Domingos, P. (2003),
+% 	``Trust Management for the Semantic Web." \textit{ISWC}.
+%
+% 	\bibitem{Taro}
+% 	Schwimmer, E. (1973),
+% 	``Exchange in the Social Structure of the Orokaiva: Traditional and Emergent Ideologies in the Northern District of Papua." \textit{St. Martin's Press}.
+%
+% 	% \bibitem{animals}
+% % 	Shizuka, D. and McDonald, D. B. (2012),
+% % 	``A social network perspective on measurements of dominance hierarchies."
+% % 	\textit{Animal Behavior} 83: 925-934.
+%
+% 	% \bibitem{depth}
+% 	% Suchecki, K. and Holyst, J. (2013),
+% 	% ``Hierarchy depth in directed networks."
+% 	% \textit{Physica A} arXiv:1303-2085.
+%
+% 	\bibitem{pokec}
+% 	Takac, L. and Zabovsky, M. (2012),
+% 	``Data Analysis in Public Social Networks."
+% 	International Scientific Conference \& International Workshop Present Day Trends of Innovations, Lomza, Poland.
+%
+% 	\bibitem{Dutch}
+% 	Van de Bunt, G., Van Deuijn, M., and Snijders, T. (1999),
+% 	``Friendship networks through time: An actor-oriented dynamic statistical network model."
+% 	\textit{Computational and Mathematical Organization Theory} 5: 2, 167-192.
+%
+% 	% \bibitem{Wasserman1994}
+% 	% Wasserman, S., \& Faust, K. (1994). ``Social Network Analysis: Methods and Applications''. (M. Granovetter, Ed.)\emph{Social Networks (Vol. 8)}. Cambridge University Press. \href{http://doi.org/10.2307/2077235}{http://doi.org/10.2307/2077235}
+%
+% 	\bibitem{sevies}
+% 	Watts, D. and Strogatz, S. (1998),
+% 	``Collective dynamics of `small world' networks."
+% 	\textit{Nature} 393: 1, 440-442.
+%
+% 	\bibitem{wiki2}
+% 	West, R., Paskov, H., Leskovec, J., and Potts, C. (2014),
+% 	``Exploiting Social Network Structure for Person-to-Person Sentiment Analysis."
+% 	\textit{Transactions of the Association for Computational Linguistics} 2: 297-310.
+%
+% 	\bibitem{Yitzhaki1979}
+% 	Yitzhaki, S.. (1979), ``Relative deprivation and the Gini coefficient." \emph{The quarterly journal of economics} 321-324.
+%
+%
+%
+%
+%
+%
+%
+% \end{thebibliography}
+% \bibitem must have the following form:
+%   \bibitem{key}...
+%
 
 % \bibitem{}
 
 % \end{thebibliography}
 
-\newpage
+\clearpage
 \appendix
 
 
-\section{Measure Pairs Plots}
-\label{sec:pairs plots}
-
-\begin{figure}[htp]
-\begin{center}
-	\caption{\label{fig:pairs plots} Pairs plots between nine network hierarchy measures calculated on 136 networks. Points are colored according to network type, with the following color codings: \textbf{affect} = black,         \textbf{co-membership} = yellow,  \textbf{communication} = red, \textbf{bill cosponsorship} = orange, \textbf{friendship} = green,  \textbf{interaction} = blue, \textbf{terrorism} = pink, \textbf{trade} = maroon, and all networks for which the type was \textbf{unknown} were collored light brown.}
-		\includegraphics[width = 0.98\textwidth]{./images/Global_Measure_Pairs_Plots.pdf}
-\end{center}
-\end{figure}
+% \section{Measure Pairs Plots}
+% \label{sec:pairs plots}
+%
+% \begin{figure}[htp]
+% \begin{center}
+% 	\caption{\label{fig:pairs plots} Pairs plots between nine network hierarchy measures calculated on 136 networks. Points are colored according to network type, with the following color codings: \textbf{affect} = black,         \textbf{co-membership} = yellow,  \textbf{communication} = red, \textbf{bill cosponsorship} = orange, \textbf{friendship} = green,  \textbf{interaction} = blue, \textbf{terrorism} = pink, \textbf{trade} = maroon, and all networks for which the type was \textbf{unknown} were collored light brown.}
+% 		\includegraphics[width = 0.98\textwidth]{./images/Global_Measure_Pairs_Plots.pdf}
+% \end{center}
+% \end{figure}
 
 
 \section{Dataset References}
@@ -739,82 +780,70 @@ degree\_centrality & 0.75 \\
 \begin{enumerate}
 
 
-    	
+
     	\item Adolescent Health: survey asked students to list 5 male and female friends. \cite{AdHealth}
-    	
+
     	\item Residence Hall: friendships between 217 students in Australian National University. \cite{Res}
-    	
+
     	\item Taro Exchange: gift--giving relationships between households in a Papaun village. \cite{Taro}
-    	
+
     	\item Highschool: friendship relationship between boys at a small Indiana high school in 1957-1958. \cite{HS}
-    	
+
     	\item Dutch College: friendships between 32 university freshmen. \cite{Dutch}
-    	
+
     	\item Monks: preference ratings between monks in a cloister during a crisis. \cite{monks}
-    	
+
     	\item Physicians: innovation spread between 246 physicians in Illinois. \cite{docs}
-    	
+
     	\item Seventh graders: activity specific proximity rankings for 29 middle school students in Victoria \cite{sevies}.
-    
+
     \item Prosper loans: loans between users of prosper.com \cite{prosper}.
-    
+
     \item Libimseti.cz: likes between users on a Czech dataing site \cite{libi}.
-    
+
     %\item Friendster: friendship adds on the online site Friendster \cite{friendster}.
-    
+
     \item Digg: friendships on Digg \cite{digg}.
-    
+
     \item Youtube: connections between Youtube users \cite{youtube}.
-    
+
     \item Epinions: who--trusts--whom between users of epinions \cite{epinions}.
-  
+
     \item EU emails: emails for 18 months from a major European research institution \cite{EU}.
-    
+
     \item Facebook: friends lists from FAcebook, generated through a Facebook app survey \cite{facebook}.
-    
+
     \item Google Plus: friends between users who selected to ``share circles'' on Google Plus \cite{facebook}.
-    
+
     \item Linx kernel mailing list: communication network for the linux kernel mailing list, where each edge is a reply from a user to another \cite{linux}.
 
     \item Livejournal: map of an online community friendships of Livejournal users \cite{livejournal}.
 
     \item Manufacturing: communication network between employess of a mid--size manufacturing firm \cite{manufacturing}.
-    
+
     \item Pokec: Friendship networks in the Pokec online social network, popular in Slovakia \cite{pokec}.
-    
+
     \item Slashdot: tagging between users in slashdot for 2008 and 2009 \cite{livejournal}.
-    
+
     \item Twitter: circles between twitter users \cite{facebook}.
-    
+
     \item UC Irvine: messages sent between students on an online community at UC Irvine \cite{irvine}.
- 
+
     \item U. Rovira i Virgili: email communication network from University Rovira i Virgili in Tarragona \cite{URV}.
 
     %\item Wikipedia Talk: network of discussions between all users from the beginning of Wikipedia to January 2008 \cite{wiki}.
 
     %\item Wikipedia Votes: data from administrator elections \cite{wiki}.
-    
+
     %\item Wikipedia Requests for Adminship: requests from 2003 through 2013 \cite{wiki2}.
 
     %\item Friendster: network for online social site Friendster \cite{friendster}.
 
 \end{enumerate}
 
-\section{Simulated Data Figures}
-\label{sec:simulated figures}
-\vspace{-1cm}
-\begin{figure}[ht]
-	\begin{center}
-		\caption{\label{fig::Simulated Parameters} All figures show the average normalized global measure (denoted by the symbol in the bottom right key) by parameter value. The top left plot is for BA networks. The top right is for TR netwroks. The bottom left is for ER networks.}
-		\includegraphics[width = 0.60\textwidth]{./images/Norm_Pars.pdf}
-	\vspace{-5cm}
-	\caption{\label{fig::Simulated Size} All figures show the average normalized global measure (denoted by the symbol in the bottom right key) by pnumber of nodes. The top left plot is for BA networks. The top right is for TR netwroks. The bottom left is for ER networks.}
-	\includegraphics[width = 0.60\textwidth]{./images/Norm_Size.pdf}
-	\end{center}
-\end{figure}
+
+
 \end{document}
-
-
 
 %%
 %% End of file `ecrc-template.tex'. 

@@ -1,0 +1,78 @@
+This is BibTeX, Version 0.99d (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: ./SN_Submission.aux
+The style file: elsarticle-num.bst
+Database file #1: library.bib
+Database file #2: AddCitesHere.bib
+Warning--I didn't find a database entry for "mann"
+Warning--I didn't find a database entry for "eigen"
+Warning--I didn't find a database entry for "between"
+Warning--I didn't find a database entry for "landau"
+Warning--I didn't find a database entry for "key"
+Warning--I didn't find a database entry for "Yitzhaki1979"
+Warning--I didn't find a database entry for "animals"
+Warning--I didn't find a database entry for "AdHealth"
+Warning--I didn't find a database entry for "Res"
+Warning--I didn't find a database entry for "Taro"
+Warning--I didn't find a database entry for "HS"
+Warning--I didn't find a database entry for "Dutch"
+Warning--I didn't find a database entry for "monks"
+Warning--I didn't find a database entry for "docs"
+Warning--I didn't find a database entry for "sevies"
+Warning--I didn't find a database entry for "prosper"
+Warning--I didn't find a database entry for "libi"
+Warning--I didn't find a database entry for "digg"
+Warning--I didn't find a database entry for "youtube"
+Warning--I didn't find a database entry for "epinions"
+Warning--I didn't find a database entry for "EU"
+Warning--I didn't find a database entry for "facebook"
+Warning--I didn't find a database entry for "linux"
+Warning--I didn't find a database entry for "livejournal"
+Warning--I didn't find a database entry for "manufacturing"
+Warning--I didn't find a database entry for "pokec"
+Warning--I didn't find a database entry for "irvine"
+Warning--I didn't find a database entry for "URV"
+Warning--can't use both author and editor fields in Wasserman1994
+Warning--can't use both volume and number fields in Wasserman1994
+You've used 6 entries,
+            2937 wiz_defined-function locations,
+            766 strings with 6859 characters,
+and the built_in function-call counts, 2004 in all, are:
+= -- 203
+> -- 51
+< -- 1
++ -- 21
+- -- 15
+* -- 191
+:= -- 286
+add.period$ -- 10
+call.type$ -- 6
+change.case$ -- 5
+chr.to.int$ -- 0
+cite$ -- 8
+duplicate$ -- 58
+empty$ -- 218
+format.name$ -- 21
+if$ -- 501
+int.to.chr$ -- 0
+int.to.str$ -- 6
+missing$ -- 7
+newline$ -- 36
+num.names$ -- 6
+pop$ -- 37
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 104
+stack$ -- 0
+substring$ -- 96
+swap$ -- 24
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 2
+while$ -- 13
+width$ -- 7
+write$ -- 69
+(There were 30 warnings)
