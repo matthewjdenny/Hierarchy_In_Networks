@@ -4,7 +4,7 @@ calculate_analytical_hierarhy_measures <- function(sociomatrix,
                                                    mode = "directed"){
     #statistics using igraph
     require(igraph)
-    adjacency <- sociomatrix
+    adjacency <- as.matrix(sociomatrix)
     sociomatrix <- graph.adjacency(sociomatrix, mode = mode, weighted = TRUE)
 
     isDirected <- FALSE
