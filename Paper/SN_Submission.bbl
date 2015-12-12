@@ -1,0 +1,54 @@
+\begin{thebibliography}{1}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\expandafter\ifx\csname href\endcsname\relax
+  \def\href#1#2{#2} \def\path#1{#1}\fi
+
+\bibitem{Mones2012}
+E.~Mones, L.~Vicsek, T.~Vicsek,
+  \href{http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=3314676{\&}tool=pmcentrez{\&}rendertype=abstract}{{Hierarchy
+  measure for complex networks.}}, PloS one 7~(3) (2012) e33799.
+\newblock \href {http://dx.doi.org/10.1371/journal.pone.0033799}
+  {\path{doi:10.1371/journal.pone.0033799}}.
+\newline\urlprefix\url{http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=3314676{\&}tool=pmcentrez{\&}rendertype=abstract}
+
+\bibitem{Shizuka2012}
+D.~Shizuka, D.~B. McDonald,
+  \href{http://dx.doi.org/10.1016/j.anbehav.2012.01.011}{{A social network
+  perspective on measurements of dominance hierarchies}}, Animal Behaviour
+  83~(4) (2012) 925--934.
+\newblock \href {http://dx.doi.org/10.1016/j.anbehav.2012.01.011}
+  {\path{doi:10.1016/j.anbehav.2012.01.011}}.
+\newline\urlprefix\url{http://dx.doi.org/10.1016/j.anbehav.2012.01.011}
+
+\bibitem{Kendall1940}
+M.~G. Kendall, B.~B. Smith, \href{http://www.jstor.org/stable/2332613}{{On the
+  Method of Paired Comparisons}}, Biometrika 31~(3/4) (1940) 324--345.
+\newline\urlprefix\url{http://www.jstor.org/stable/2332613}
+
+\bibitem{Suchecki2013a}
+K.~Suchecki, J.~Holyst, \href{http://arxiv.org/abs/1303.2085}{{Hierarchy depth
+  in directed networks}}, arXiv preprint arXiv:1303.2085\href
+  {http://arxiv.org/abs/arXiv:1303.2085v1} {\path{arXiv:arXiv:1303.2085v1}}.
+\newline\urlprefix\url{http://arxiv.org/abs/1303.2085}
+
+\bibitem{Wasserman1994}
+S.~Wasserman, K.~Faust, \href{http://www.amazon.com/dp/0521387078}{{Social
+  Network Analysis: Methods and Applications}}, Vol.~8 of Structural analysis
+  in the social sciences, 8, Cambridge University Press, 1994.
+\newblock \href {http://dx.doi.org/10.2307/2077235}
+  {\path{doi:10.2307/2077235}}.
+\newline\urlprefix\url{http://www.amazon.com/dp/0521387078}
+
+\bibitem{Corominas-Murtra2013}
+B.~Corominas-Murtra, J.~Go{\~{n}}i, R.~V. Sol{\'{e}}, C.~Rodr{\'{\i}}guez-Caso,
+  \href{http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=3746874{\&}tool=pmcentrez{\&}rendertype=abstract}{{On
+  the origins of hierarchy in complex networks.}}, Proceedings of the National
+  Academy of Sciences of the United States of America 110~(33) (2013)
+  13316--21.
+\newblock \href {http://dx.doi.org/10.1073/pnas.1300832110}
+  {\path{doi:10.1073/pnas.1300832110}}.
+\newline\urlprefix\url{http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=3746874{\&}tool=pmcentrez{\&}rendertype=abstract}
+
+\end{thebibliography}
