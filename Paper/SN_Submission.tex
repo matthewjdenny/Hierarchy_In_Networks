@@ -485,11 +485,13 @@ Before fitting any of the hierarchy measures on these real datasets, we want to 
 \label{sec:analysis}
 
 
-\subsection{Principle Components Analysis}
-PCA component eigenvalues are illustrated in Figure \ref{fig:PCA variacnes}. A graphical comparison of components one and two is provided in \ref{fig:1 and 2}. A graphical comparison of components one and three is provided in \ref{fig:1 and 3}. A graphical comparison of components two and three is provided in \ref{fig:2 and 3}.
+\subsection{Principal Components Analysis}
+In order to find patterns in the various measures of hierarchy presented above, we rely on Principal Components Analysis (PCA). PCA is a dimension reduction technique commonly used in the social sciences. This works by finding the eigenvalues and eigenvectors of a set of variables, such that the components identified by the model maximize the variance accounted for. For the purposes of this analysis, we have 11 hierarchy measures calculated across the XXX networks described above. PCA allows us to detect the patterns behind this 11-dimension data, and constructs principal components such that most of the variance in the 11 dimension problem can be accounted by a fewer number of components.
+
+Of course, there will be as many principal components as there are dimensions in the original data. PCA component eigenvalues are illustrated in Figure \ref{fig:PCA variacnes}. As is clear from this figure, while there are nominally 11 principal components, a vast majority of the variance present in the original problem is captured by the first four principal components. This four dimensional problem is much easier to interpret than the original 11D problem. A graphical comparison of components one and two is provided in \ref{fig:1 and 2}. A graphical comparison of components one and three is provided in \ref{fig:1 and 3}. A graphical comparison of components two and three is provided in \ref{fig:2 and 3}. A graphical comparison of components one and four, two and four, and three and four are included in \ref{fig:1 and 4}, \ref{fig:2 and 4}, and \ref{fig:3 and 4}, respectively.
 
 \begin{table}[!htbp] \centering 
-  \caption{PCA Rotation for Components with Eigenvalues above 1} 
+  \caption{\label{tab: PCA rotation} PCA Rotation for Components with Eigenvalues above 1} 
   \label{} 
 \begin{tabular}{@{\extracolsep{5pt}} ccccc} 
 \\[-1.8ex]\hline \\[-1.8ex] 
@@ -510,6 +512,15 @@ triangle\_transitivity & $0.273$ & $$-$0.397$ & $$-$0.237$ & $$-$0.127$ \\
 \end{tabular} 
 \end{table} 
 
+\ref{tab: PCA rotation} presents the rotations, or factor loadings, which describe to what extent the original variable relates to the principal components. The first principal component, which accounts for XX\% of the variance, is most highly correlated with M--Reach Degree, M--Reach Closeness, and GRC. It is not surprising that these three measures load together, as GRC relies on M--Reach Closeness, which in turn relies on M--Reach Degree. As discussed in the description of the measures, this family of hierarchy measures describes how many nodes in a dominance network can be reaced from a given node. In other words, these measures describe a type of hierarchy in which diffusion of authority is recognized by higher values. This corresponds closely to Mann's ``diffusion'' type described in the introduction; a type of power that varies according to how many subordinates can be immediately reached by a dominant actor.
+
+Second, the third principal component is heavily loaded on degree and closeness centrality. As discussed in the analytical measures of hierarchy section, the former measures the number of connections for a given node, while the latter measures how easy it is to reach each node in the network from a given node. Returning to Mann's typology, this seems to measure a distinct concept from his two dimensions of hierarchy: diffusion (described by the first principal component) and authoritative. Instead, it seems to measure the extensiveness of a hierarchy. In other words, we could expect that networks which have a higher value on principal component 3 to have a deeper and more extensive hierarchical system, irrespective of the type of hierarchy they represent.
+
+Finally, principal components 2 and 4 eschew a clear explanation and mapping on to Mann's typology. Components 2 and 4 are similar in that landau and kendall load about evenly betwen the two. Component 2 is more heavily loaded on krackhardt and triangle transitivity, whereas component 4 is loaded heavily on Eigenvector centrality. Landau's h and Kendall's K are indicative of Mann's authoritative type of power, in that each measures the treeness of a network, with the highest value representing a perfect linear hierarchy. In social terms, this could be understood as a military type of hierarchy, where there are clear and rigid layers of authority. 
+
+Component 2 loads more heaviliy on Krackhardt's hierarchy score and Triangle Transitivity. The former measures the extent that dyads are not reciprocal, while the latter has a very substantively similar interpretation to Landau's h and Kendall's K, because it was intended to be an improvement on those two measures. The concept of unreciprocated dyadic relationships matches closely onto Mann's conception of authoritative hierarchies, as these are clear dominant--subordinate relationships. Therefore, we argue that component 2 most closely maps to the authoritative type of hierarchy discussed by Mann.
+
+Component 4 differs from Component 2 in that it loads heavily on eigenvector centralization, rather than triangle transitivity or Krackhardt's hierarchy score. Eigenvector centralization describes how well a node is connected to other well--connected nodes. A network with a high degree of eigenvector centralization is one in which a small cotiere of well--connected nodes, exhibit control over a system. This is a slight deviation from the authoritative power type described by Mann. To put this into social terms, while Component 4 would describe a military system, Component 2 might describe an oligarchical system, which is comprised of both explicit dominant--subordinate relationships (captured by Kendall's K and Landau's h), but a group of individuals at the top, rather than a perfect tree which extends from the lowest rung to the highest rung.
 
 \begin{figure}
 \begin{center}
