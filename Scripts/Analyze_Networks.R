@@ -89,7 +89,7 @@ multi_plot(data = global_measures,
 average_rank <- apply(data_list$leadership_ranking_scores,2,mean)
 xtable(as.data.frame(average_rank))
 
-multi_plot(data = data_list$leadership_ranking_scores,
+multi_plot(data = data_list$leadership_ranking_scores[,1:7],
            pdf_name = "./Output/Measure_Scores",
            output_pdf = T)
 
