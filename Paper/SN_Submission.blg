@@ -4,6 +4,10 @@ The top-level auxiliary file: ./SN_Submission.aux
 The style file: elsarticle-num.bst
 Database file #1: library.bib
 Database file #2: AddCitesHere.bib
+Repeated entry---line 1 of file AddCitesHere.bib
+ : @article{Kendall1940
+ :                     ,
+I'm skipping whatever remains of this entry
 Warning--I didn't find a database entry for "mann"
 Warning--I didn't find a database entry for "eigen"
 Warning--I didn't find a database entry for "between"
@@ -11,68 +15,47 @@ Warning--I didn't find a database entry for "landau"
 Warning--I didn't find a database entry for "key"
 Warning--I didn't find a database entry for "Yitzhaki1979"
 Warning--I didn't find a database entry for "animals"
-Warning--I didn't find a database entry for "AdHealth"
-Warning--I didn't find a database entry for "Res"
-Warning--I didn't find a database entry for "Taro"
-Warning--I didn't find a database entry for "HS"
-Warning--I didn't find a database entry for "Dutch"
-Warning--I didn't find a database entry for "monks"
-Warning--I didn't find a database entry for "docs"
-Warning--I didn't find a database entry for "sevies"
-Warning--I didn't find a database entry for "prosper"
-Warning--I didn't find a database entry for "libi"
-Warning--I didn't find a database entry for "digg"
-Warning--I didn't find a database entry for "youtube"
-Warning--I didn't find a database entry for "epinions"
-Warning--I didn't find a database entry for "EU"
-Warning--I didn't find a database entry for "facebook"
-Warning--I didn't find a database entry for "linux"
-Warning--I didn't find a database entry for "livejournal"
-Warning--I didn't find a database entry for "manufacturing"
-Warning--I didn't find a database entry for "pokec"
-Warning--I didn't find a database entry for "irvine"
-Warning--I didn't find a database entry for "URV"
 Warning--can't use both author and editor fields in Wasserman1994
 Warning--can't use both volume and number fields in Wasserman1994
-You've used 6 entries,
+You've used 7 entries,
             2937 wiz_defined-function locations,
-            766 strings with 6859 characters,
-and the built_in function-call counts, 2004 in all, are:
-= -- 203
-> -- 51
+            745 strings with 7018 characters,
+and the built_in function-call counts, 2210 in all, are:
+= -- 222
+> -- 55
 < -- 1
-+ -- 21
-- -- 15
-* -- 191
-:= -- 286
-add.period$ -- 10
-call.type$ -- 6
-change.case$ -- 5
++ -- 23
+- -- 16
+* -- 200
+:= -- 313
+add.period$ -- 11
+call.type$ -- 7
+change.case$ -- 6
 chr.to.int$ -- 0
-cite$ -- 8
-duplicate$ -- 58
-empty$ -- 218
-format.name$ -- 21
-if$ -- 501
+cite$ -- 9
+duplicate$ -- 66
+empty$ -- 248
+format.name$ -- 22
+if$ -- 560
 int.to.chr$ -- 0
-int.to.str$ -- 6
+int.to.str$ -- 7
 missing$ -- 7
-newline$ -- 36
-num.names$ -- 6
-pop$ -- 37
+newline$ -- 40
+num.names$ -- 7
+pop$ -- 47
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 104
+skip$ -- 118
 stack$ -- 0
 substring$ -- 96
-swap$ -- 24
+swap$ -- 26
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 2
-while$ -- 13
-width$ -- 7
-write$ -- 69
-(There were 30 warnings)
+while$ -- 14
+width$ -- 8
+write$ -- 77
+(There was 1 error message)
