@@ -199,7 +199,7 @@ Hierarchy \sep Network \sep Power
 \section{Introduction}
 \label{sec:introduction}
 
-Hierarchy is an important feature of many organizations, such as firms, social clubs, and military units. Formally, we can define a hierarchy as a system where people or groups are ranked according to status or authority. Yet it is difficult to operationalize this definition for measurement and comparison. There has been a great deal of research on power and status in groups and organizations, but most of this research relies on measurements defined over domain specific rankings, such as job titles. At the same time, networks scholars have defined a number of broadly applicable hierarchy metrics based on network structure, but these metrics are not necessarily grounded in meaningful sociological concepts of status and authority. Contrastingly, social theorists like Michael Mann have noted the messiness of society and that a network-oriented perspective of the ``sociospatial and organizational model [of a network]" can explicate the ``sources of social power," \cite{mann} but they have generally not delved into the methodologies through which to fully explore such power dynamics. In this paper, we seek to bring together these two areas of research, and to develop a framework for measuring hierarchy in social networks that is both generally applicable and exhibits a high degree of construct validity.
+Hierarchy is an important feature of many organizations, such as firms, social clubs, and military units. Formally, we can define a hierarchy as a system where people or groups are ranked according to status or authority. Yet it is difficult to operationalize this definition for measurement and comparison. There has been a great deal of research on power and status in groups and organizations, but most of this research relies on measurements defined over domain specific rankings, such as job titles. At the same time, networks scholars have defined a number of broadly applicable hierarchy metrics based on network structure, but these metrics are not necessarily grounded in meaningful sociological concepts of status and authority. Contrastingly, social theorists like Michael Mann have noted the messiness of society and that a network-oriented perspective of the ``sociospatial and organizational model [of a network]" can explicate the ``sources of social power," \cite{mann1986sources} but they have generally not delved into the methodologies through which to fully explore such power dynamics. In this paper, we seek to bring together these two areas of research, and to develop a framework for measuring hierarchy in social networks that is both generally applicable and exhibits a high degree of construct validity.
 
 
 % \subsection{Problem Statement}
@@ -229,7 +229,7 @@ When we understand societal processes and institutions under a theoretical frame
 Another potential definition, also implied, is hierarchy means the mechanisms of collective actions (i.e., the ability of different nodes to connect with one another) hinges on a small number.
 
 \section{Measuring Hierarchy}
-A number of analytical measures of hierarchy have been proposed for directed networks. Most proposed measures return a scalar value that is meant to capture the ``hierarchical-ness'' of a given network \cite{Mones2012, Shizuka2012, bonacich1972factoring, between,Kendall1940, landau, Suchecki2013a}. This theoretically facilitates comparison between measures calculated on the same network, as well as comparison on the same measure across multiple networks. However some approaches to measuring hierarchy only provide a local measure of importance or position in the hierarchy for each node in the network \cite{an2015multilevel}. For these measures, one can calculate a Gini coefficient \cite{Yitzhaki1979} from the individual level scores and use these coefficients as a proxy for a global measure. 
+A number of analytical measures of hierarchy have been proposed for directed networks. Most proposed measures return a scalar value that is meant to capture the ``hierarchical-ness'' of a given network \cite{Mones2012, Shizuka2012, bonacich1972factoring, freeman1977set ,Kendall1940, landau1951dominance, Suchecki2013a}. This theoretically facilitates comparison between measures calculated on the same network, as well as comparison on the same measure across multiple networks. However some approaches to measuring hierarchy only provide a local measure of importance or position in the hierarchy for each node in the network \cite{an2015multilevel}. For these measures, one can calculate a Gini coefficient \cite{yitzhaki1979relative} from the individual level scores and use these coefficients as a proxy for a global measure. 
 
 In this section, we introduce and describe twelve candidate measures of network hierarchy that have been previously used in the networks literature. It is important to note that most of the measures we consider are only defined for directed networks, and thus for the remained of this paper we assume all networks under consideration are directed. We begin by introducing some terminology that will be common across all measures. For a given network $G=(V,E)$, let $V=\{v_i\}_{i=1}^N$ be the set of $N$ vertices (nodes) associated with $G$, and $E=\{e_j\}_{j=1}^M$ be the set of $M$ edges associated with $G$. Furthermore, for a given edge $e_j$, let $e_j^{(s)} \in 1:N$ be the index of the sender of the edge and $e_j^{(r)} \in 1:N$ be the index of the recipient. 
 
@@ -249,7 +249,7 @@ Degree centrality captures the number of friends or connections a node has, and 
 \end{align}
 where $(N-1)(N-2)$ normalizes the measure for the size of the network.
 
-The \textbf{betweenness centrality} of node $v_{i}$ is a measure of the amount of influence a node has on the information transversed through it \cite{between}. Define $D_{i,j}$ as the number of shortest paths in $G$ between $v_{i}$ and $v_{j}$, and $D_{i,j}(k)$ as the number of these shortest paths that pass through $v_{k},$ then the betweenness centrality of node $k$ is:
+The \textbf{betweenness centrality} of node $v_{i}$ is a measure of the amount of influence a node has on the information transversed through it \cite{freeman1977set}. Define $D_{i,j}$ as the number of shortest paths in $G$ between $v_{i}$ and $v_{j}$, and $D_{i,j}(k)$ as the number of these shortest paths that pass through $v_{k},$ then the betweenness centrality of node $k$ is:
 \begin{align}
 	\text{betweenness centrality}_i = \sum_{i\neq k\neq j}{(\frac{D_{i,j}(k)}{D_{i,j}})}
 \end{align}
@@ -278,9 +278,9 @@ where $\mathbf{\lambda}$ is a vector of positive eigenvalues. The challenge is t
 where $(N-1)$ normalizes the measure for the size of the network. Interestingly, the eigenvector centralization of a network can still be large even if there are a relatively large proportion of higher degree nodes, as long as the edges are organized such that only a few nodes are connected to all of these higher degree nodes.
 
 
-\textbf{Landau's} $\mathbf{h}$ and \textbf{Kendall's} $\mathbf{K}$ are two closely related measures of hierarchy that operate on a \emph{dominance} network -- a transformation of the weighted sociomatrix of a given network \cite{animals}. Intuitively, this \emph{dominance} network is meant to capture dominance-subordination relationships (between animals). The $[i,j]$ entry of the corresponding sociomatrix is coded as $1$ if $i$ is dominant over $j$, $0.5$ if $i$ and $j$ are equals, and $0$ if $j$ is dominant over $i$. If the underlying network does not capture dominance relationships, then an weighted network can be transformed into a \emph{dominance} network by assigning a value of $1$ in the $[i,j]$ entry of of the corresponding sociomatrix if the $[i,j]$ entry of the original sociomatrix is greater than the $[j,i]$ entry of the original sociomatrix, $0.5$ in the $[i,j]$ entry of of the corresponding sociomatrix if the $[i,j]$ entry of the original sociomatrix is equal to the $[j,i]$ entry of the original sociomatrix, and zero otherwise. 
+\textbf{Landau's} $\mathbf{h}$ and \textbf{Kendall's} $\mathbf{K}$ are two closely related measures of hierarchy that operate on a \emph{dominance} network -- a transformation of the weighted sociomatrix of a given network \cite{Shizuka2012}. Intuitively, this \emph{dominance} network is meant to capture dominance-subordination relationships (between animals). The $[i,j]$ entry of the corresponding sociomatrix is coded as $1$ if $i$ is dominant over $j$, $0.5$ if $i$ and $j$ are equals, and $0$ if $j$ is dominant over $i$. If the underlying network does not capture dominance relationships, then an weighted network can be transformed into a \emph{dominance} network by assigning a value of $1$ in the $[i,j]$ entry of of the corresponding sociomatrix if the $[i,j]$ entry of the original sociomatrix is greater than the $[j,i]$ entry of the original sociomatrix, $0.5$ in the $[i,j]$ entry of of the corresponding sociomatrix if the $[i,j]$ entry of the original sociomatrix is equal to the $[j,i]$ entry of the original sociomatrix, and zero otherwise. 
 
-\textbf{Landau's} $\mathbf{h}$ is used to compare a directed network to a perfect linear hierarchy (a strict dominance-ordering of nodes) \cite{landau, Shizuka2012}. This measure is defined as follows:
+\textbf{Landau's} $\mathbf{h}$ is used to compare a directed network to a perfect linear hierarchy (a strict dominance-ordering of nodes) \cite{landau1951dominance, Shizuka2012}. This measure is defined as follows:
 \begin{align}
 	h=\frac{12}{N^3-N}\sum_{i=1}^{N}{\left[\text{Out}_i-\frac{N-1}{2}\right]^{2}}
 \end{align}
@@ -311,7 +311,7 @@ The authors show that in a random network $P_t = 0.75$ in expectation so they no
 \end{align}
 where $t_{tri} \in [-3,1]$ can be negative if there is a particularly high proportion of cyclic triads in the network. This is likely a better measure of hierarchy than Landau's $h$ and Kendal's $K$ when the network is weighted or ties do not represent dominance relationships. However, if there are violations of a linear hierarchy that involve larger cycles (spanning more than three nodes) this measure will fail to pick them up, so care should be used in interpreting this measure for complex networks.
 
-\textbf{$\mathbf{M}$-reach degree} was developed to identify `key' players in a network \cite{an2015multilevel}.  It is defined as a measure for each node $v_{i}$ as the number of alters that are reachable from $v_{i}.$ If $G$ is directed then the reachable alters must lie along an outgoing path from $v_{i}$. A closely related measure, \textbf{$\mathbf{M}$-reach closeness} is defined as the M-reach degree of a node, but with the contribution of each alter $j$ that is reachable, weighted by the inverse of the shortest path length between $i$ and $j$. Both of these measures are only defined for individual nodes, so to calculate a global measure for a network, we take the Gini coefficient of the measures calculated for each node $i$. The Gini  coefficient \cite{Yitzhaki1979} is a measure of inequality originally developed to measure income inequality in a society. For a vector of values $x : \{x_i\}_{i=1}^{N}$ the Gini coefficient $G$ of that vector is:
+\textbf{$\mathbf{M}$-reach degree} was developed to identify `key' players in a network \cite{an2015multilevel}.  It is defined as a measure for each node $v_{i}$ as the number of alters that are reachable from $v_{i}.$ If $G$ is directed then the reachable alters must lie along an outgoing path from $v_{i}$. A closely related measure, \textbf{$\mathbf{M}$-reach closeness} is defined as the M-reach degree of a node, but with the contribution of each alter $j$ that is reachable, weighted by the inverse of the shortest path length between $i$ and $j$. Both of these measures are only defined for individual nodes, so to calculate a global measure for a network, we take the Gini coefficient of the measures calculated for each node $i$. The Gini  coefficient \cite{yitzhaki1979relative} is a measure of inequality originally developed to measure income inequality in a society. For a vector of values $x : \{x_i\}_{i=1}^{N}$ the Gini coefficient $G$ of that vector is:
 \begin{align}
 	G = \frac{\displaystyle{\sum_i \sum_j \left| x_i - x_j \right|}}{\displaystyle{2 \sum_i \sum_j x_i}}
 \end{align}
@@ -513,11 +513,7 @@ test
 
 % \begin{thebibliography}{00}
 % \begin{thebibliography}{00}
-%
-% 	\bibitem{eigen}
-% 	Bonacich, P. (1972),
-% 	``Factoring and Weighting Approaches to Status Scores and Clique Identification."
-% 	\textit{Journal of Mathematical Sociology} 2: 113-120.
+
 %
 % 	\bibitem{monks}
 % 	Breiger, R., Boorman, S., and Arabie, P. (1975),
@@ -542,11 +538,6 @@ test
 % 	% \bibitem{Corominas-Murtra2013}
 % 	% Corominas-Murtra, B., Goni, J., Sole, R. V, \& Rodríguez-Caso, C. (2013). ``On the origins of hierarchy in complex networks''. \emph{Proceedings of the National Academy of Sciences of the United States of America}, 110(33), 13316–21. \href{http://doi.org/10.1073/pnas.1300832110}{http://doi.org/10.1073/pnas.1300832110}
 %
-% 	\bibitem{between}
-% 	Freeman, L. (1977),
-% 	``A set of Measures of Centrality Based on Betweenness."
-% 	\textit{Sociometry} 40: 1, 35-41.
-%
 % 	\bibitem{Res}
 % 	Freeman, L., Webster, C., and Kirke, D. (1998),
 % 	``Exploring social structure using dynamic three--dimensional color images."
@@ -569,11 +560,7 @@ test
 % 	Hogg, T. and Lerman, K. (2012),
 % 	``Social dynamics of Digg."
 % 	\textit{EPJ Data Science} 1, 5.
-%
-% 	\bibitem{kendall}
-% 	Kendall, M. and Babington Smith B. (1940),
-% 	``On the Method of Paired Comparisons."
-% 	\textit{Biometrika} 31: 324-345.
+
 %
 % 	\bibitem{landau}
 % 	Landau, H. G. (1951),
@@ -645,11 +632,6 @@ test
 % 	\bibitem{Taro}
 % 	Schwimmer, E. (1973),
 % 	``Exchange in the Social Structure of the Orokaiva: Traditional and Emergent Ideologies in the Northern District of Papua." \textit{St. Martin's Press}.
-%
-% 	% \bibitem{animals}
-% % 	Shizuka, D. and McDonald, D. B. (2012),
-% % 	``A social network perspective on measurements of dominance hierarchies."
-% % 	\textit{Animal Behavior} 83: 925-934.
 %
 % 	% \bibitem{depth}
 % 	% Suchecki, K. and Holyst, J. (2013),

@@ -5,6 +5,10 @@
 \expandafter\ifx\csname href\endcsname\relax
   \def\href#1#2{#2} \def\path#1{#1}\fi
 
+\bibitem{mann1986sources}
+M.~Mann, The sources of social power, vol. 1, a history of power from the
+  beginning to ad 1760 (1986).
+
 \bibitem{smith2005networks}
 L.~Smith-Doerr, W.~W. Powell, Networks and economic life, The Handbook of
   Economic Sociology 2 (2005) 379--402.
@@ -36,10 +40,6 @@ M.~S. Mizruchi, What do interlocks do? an analysis, critique, and assessment of
   research on interlocking directorates, Annual Review of Sociology (1996)
   271--298.
 
-\bibitem{mann1986sources}
-M.~Mann, The sources of social power, vol. 1, a history of power from the
-  beginning to ad 1760 (1986).
-
 \bibitem{schroeder2007mann}
 R.~Schroeder, Michael mann, Key Sociological Thinkers, edited by Rob Stones
   (2007) 338--354.
@@ -65,6 +65,31 @@ D.~Shizuka, D.~B. McDonald,
 P.~Bonacich, Factoring and weighting approaches to status scores and clique
   identification, Journal of Mathematical Sociology 2~(1) (1972) 113--120.
 
+\bibitem{an2015multilevel}
+W.~An, Multilevel meta network analysis with application to studying network
+  dynamics of network interventions, Social Networks 43 (2015) 48--56.
+
+\bibitem{yitzhaki1979relative}
+S.~Yitzhaki, Relative deprivation and the gini coefficient, The quarterly
+  journal of economics (1979) 321--324.
+
+\bibitem{Wasserman1994}
+S.~Wasserman, K.~Faust, \href{http://www.amazon.com/dp/0521387078}{{Social
+  Network Analysis: Methods and Applications}}, Vol.~8 of Structural analysis
+  in the social sciences, 8, Cambridge University Press, 1994.
+\newblock \href {http://dx.doi.org/10.2307/2077235}
+  {\path{doi:10.2307/2077235}}.
+\newline\urlprefix\url{http://www.amazon.com/dp/0521387078}
+
+\bibitem{freeman1977set}
+L.~C. Freeman, A set of measures of centrality based on betweenness, Sociometry
+  (1977) 35--41.
+
+\bibitem{landau1951dominance}
+H.~G. Landau, On dominance relations and the structure of animal societies: I.
+  effect of inherent characteristics, The bulletin of mathematical biophysics
+  13~(1) (1951) 1--19.
+
 \bibitem{Kendall1940}
 M.~G. Kendall, B.~B. Smith, \href{http://www.jstor.org/stable/2332613}{{On the
   Method of Paired Comparisons}}, Biometrika 31~(3/4) (1940) 324--345.
@@ -75,18 +100,6 @@ K.~Suchecki, J.~Holyst, \href{http://arxiv.org/abs/1303.2085}{{Hierarchy depth
   in directed networks}}, arXiv preprint arXiv:1303.2085\href
   {http://arxiv.org/abs/arXiv:1303.2085v1} {\path{arXiv:arXiv:1303.2085v1}}.
 \newline\urlprefix\url{http://arxiv.org/abs/1303.2085}
-
-\bibitem{an2015multilevel}
-W.~An, Multilevel meta network analysis with application to studying network
-  dynamics of network interventions, Social Networks 43 (2015) 48--56.
-
-\bibitem{Wasserman1994}
-S.~Wasserman, K.~Faust, \href{http://www.amazon.com/dp/0521387078}{{Social
-  Network Analysis: Methods and Applications}}, Vol.~8 of Structural analysis
-  in the social sciences, 8, Cambridge University Press, 1994.
-\newblock \href {http://dx.doi.org/10.2307/2077235}
-  {\path{doi:10.2307/2077235}}.
-\newline\urlprefix\url{http://www.amazon.com/dp/0521387078}
 
 \bibitem{Krackhardt1994}
 D.~Krackhardt,

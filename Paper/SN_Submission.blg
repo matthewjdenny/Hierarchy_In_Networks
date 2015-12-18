@@ -2,6 +2,10 @@ This is BibTeX, Version 0.99d (TeX Live 2015)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: ./SN_Submission.aux
 The style file: elsarticle-num.bst
+White space in argument---line 47 of file ./SN_Submission.aux
+ : \citation{Mones2012,Shizuka2012,bonacich1972factoring,freeman1977set
+ :                                                                      ,Kendall1940,landau1951dominance,Suchecki2013a}
+I'm skipping whatever remains of this command
 Database file #1: library.bib
 Database file #2: AddCitesHere.bib
 Repeated entry---line 1 of file AddCitesHere.bib
@@ -12,52 +16,47 @@ Repeated entry---line 65 of file AddCitesHere.bib
  : @article{granovetter1973strength
  :                                 ,
 I'm skipping whatever remains of this entry
-Warning--I didn't find a database entry for "mann"
-Warning--I didn't find a database entry for "between"
-Warning--I didn't find a database entry for "landau"
-Warning--I didn't find a database entry for "Yitzhaki1979"
-Warning--I didn't find a database entry for "animals"
 Warning--can't use both author and editor fields in Wasserman1994
 Warning--can't use both volume and number fields in Wasserman1994
-You've used 18 entries,
+You've used 21 entries,
             2937 wiz_defined-function locations,
-            809 strings with 8613 characters,
-and the built_in function-call counts, 4938 in all, are:
-= -- 488
-> -- 102
+            823 strings with 8986 characters,
+and the built_in function-call counts, 5662 in all, are:
+= -- 560
+> -- 114
 < -- 2
-+ -- 46
-- -- 28
-* -- 366
-:= -- 666
-add.period$ -- 22
-call.type$ -- 18
-change.case$ -- 16
++ -- 52
+- -- 31
+* -- 413
+:= -- 761
+add.period$ -- 25
+call.type$ -- 21
+change.case$ -- 19
 chr.to.int$ -- 0
-cite$ -- 20
-duplicate$ -- 143
-empty$ -- 585
-format.name$ -- 35
-if$ -- 1269
+cite$ -- 23
+duplicate$ -- 164
+empty$ -- 672
+format.name$ -- 38
+if$ -- 1455
 int.to.chr$ -- 0
-int.to.str$ -- 18
-missing$ -- 18
-newline$ -- 73
-num.names$ -- 18
-pop$ -- 115
+int.to.str$ -- 21
+missing$ -- 21
+newline$ -- 82
+num.names$ -- 21
+pop$ -- 131
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 300
+skip$ -- 349
 stack$ -- 0
-substring$ -- 327
-swap$ -- 37
+substring$ -- 387
+swap$ -- 40
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 2
-while$ -- 43
-width$ -- 20
-write$ -- 158
-(There were 2 error messages)
+while$ -- 52
+width$ -- 23
+write$ -- 180
+(There were 3 error messages)
