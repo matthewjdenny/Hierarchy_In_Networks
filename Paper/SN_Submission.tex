@@ -345,7 +345,7 @@ Perhaps surprisingly, most of the rest of the correlations depicted in Figure \r
 \label{sec:data}
 The data used in this study comprise 136 social networks, collected from three primary sources. The first of these is a set of seventeen email communication networks among department managers in North Carolina county governments. These data were collected as part of a field experiment described in Ben Aaron et al. (forthcoming), and comprise all department manager to department manager email communications over a three month period in 2013. In total, these networks include 17,863 emails sent between 362 department managers. The second set of networks record cosponsorship patterns in the United States Senate between 1973 and 2009. There are a total of eighteen networks, each recording the number of times Senator $i$ cosponsors (officially records support for) a piece of legislation sponsored by (introduced by) legislator $j$ during a two year session of Congress. The third primary source from which we obtain network data is the UCI-Net online network data repository\footnote{Data are freely available online here: \href{https://sites.google.com/site/ucinetsoftware/datasets}{https://sites.google.com/site/ucinetsoftware/datasets}}. We were able to obtain a total of 101 network datasets from this website, comprising a wide range of social, communication, and economic networks. Links to source data, and references for all networks used in this study will be made available in an appendix\footnote{We did not had time to compile this appendix before the end of the semester, but it will be included in the fina version of the paper.}.
 
-Theoretically, we might expect different types of networks (social, information, biological, etc.) to display distinct relational structures, and perhaps exhibit common hierarchical structures. We therefore decided to hand code each of the 136 networks in our sample into one of eight categories. Descriptive statistics for each of the nine types of networks we consider in this study are provided in Table \ref{tab:descriptive stats by type}.  
+Theoretically, we might expect different types of networks (social, information, biological, etc.) to display distinct relational structures, and perhaps exhibit common hierarchical structures. We therefore decided to hand code each of the 136 networks in our sample into one of eight broad categories. Descriptive statistics for networks in each of these categories are provided in Table \ref{tab:descriptive stats by type}. We can see that most networks have between twenty five and forty nodes on average, with the notable exception being the cosponsorship networks, which average roughly one hundred nodes. Note that the networks classified as \emph{unknown} have yet to be categorized due to the difficulty in navigating the UCI-Net data archives, but will be classified into one of the eight categories before publication. 
 %A list of references for the network datasets used in this study can be found in \ref{sec:dataset references}.
 
 % latex table generated in R 3.2.2 by xtable 1.8-0 package
@@ -357,7 +357,7 @@ Theoretically, we might expect different types of networks (social, information,
   \toprule
  \textbf{Type} & \textbf{\# of Networks} & \textbf{Nodes} & \textbf{Edges} & \textbf{Density} & \textbf{Clustering Coefficient} \\ 
   \midrule
-\emph{communication} & 20 & 25.40 & 1764.25 & 2.87 & 0.55 \\ 
+  \emph{communication} & 20 & 25.40 & 1764.25 & 2.87 & 0.55 \\ 
   \emph{cosponsorship} & 18 & 101.22 & 13358.89 & 1.32 & 0.79 \\ 
   \emph{co-membership} & 2 & 21.50 & 22.50 & 0.05 & 0.07 \\ 
   \emph{interaction} & 40 & 23.07 & 1944.95 & 1.99 & 0.59 \\ 
@@ -392,34 +392,34 @@ Of course, there will be as many principal components as there are dimensions in
 \begin{table}[!htbp] \centering 
   \caption{\label{tab: PCA rotation} PCA Rotation for Components with Eigenvalues above 1} 
   \label{} 
-\begin{tabular}{@{\extracolsep{5pt}} ccccc} 
+\begin{tabular}{@{\extracolsep{5pt}} lcccc} 
 \\[-1.8ex]\hline \\[-1.8ex] 
- & PC1 & PC2 & PC3 & PC4 \\ 
+ & P.C. 1 & P.C. 2 & P.C. 3 & P.C. 4 \\ 
 \hline \\[-1.8ex] 
-degree\_centralization & $$-$0.017$ & $0.062$ & $$-$0.522$ & $0.222$ \\ 
-closeness\_centralization & $$-$0.130$ & $$-$0.056$ & $$-$0.606$ & $$-$0.107$ \\ 
-betweenness\_centralization & $$-$0.009$ & $0.437$ & $$-$0.292$ & $0.387$ \\ 
-eigenvector\_centralization & $0.166$ & $0.040$ & $$-$0.239$ & $0.466$ \\ 
-landau & $0.130$ & $0.454$ & $$-$0.126$ & $$-$0.481$ \\ 
-kendall & $0.171$ & $0.506$ & $$-$0.098$ & $$-$0.395$ \\ 
+degree centralization & $$-$0.017$ & $0.062$ & $$-$0.522$ & $0.222$ \\ 
+closeness centralization & $$-$0.130$ & $$-$0.056$ & $$-$0.606$ & $$-$0.107$ \\ 
+betweenness centralization & $$-$0.009$ & $0.437$ & $$-$0.292$ & $0.387$ \\ 
+eigenvector centralization & $0.166$ & $0.040$ & $$-$0.239$ & $0.466$ \\ 
+Landau's $h$ & $0.130$ & $0.454$ & $$-$0.126$ & $$-$0.481$ \\ 
+Kendall's $K$ & $0.171$ & $0.506$ & $$-$0.098$ & $$-$0.395$ \\ 
 GRC & $0.501$ & $$-$0.109$ & $$-$0.085$ & $$-$0.088$ \\ 
-m\_close & $0.539$ & $0.011$ & $0.045$ & $0.151$ \\ 
-m\_degree & $0.538$ & $$-$0.036$ & $0.087$ & $0.044$ \\ 
-krackhardt & $$-$0.055$ & $$-$0.408$ & $$-$0.346$ & $$-$0.370$ \\ 
-triangle\_transitivity & $0.273$ & $$-$0.397$ & $$-$0.237$ & $$-$0.127$ \\ 
+$m$-closeness & $0.539$ & $0.011$ & $0.045$ & $0.151$ \\ 
+$m$-degree & $0.538$ & $$-$0.036$ & $0.087$ & $0.044$ \\ 
+Krackhardt & $$-$0.055$ & $$-$0.408$ & $$-$0.346$ & $$-$0.370$ \\ 
+Triangle Transitivity & $0.273$ & $$-$0.397$ & $$-$0.237$ & $$-$0.127$ \\ 
 \hline \\[-1.8ex] 
 \end{tabular} 
 \end{table} 
 
-\ref{tab: PCA rotation} presents the rotations, or factor loadings, which describe to what extent the original variable relates to the principal components. The first principal component, which accounts for XX\% of the variance, is most highly correlated with M--Reach Degree, M--Reach Closeness, and GRC. It is not surprising that these three measures load together, as GRC relies on M--Reach Closeness, which in turn relies on M--Reach Degree. As discussed in the description of the measures, this family of hierarchy measures describes how many nodes in a dominance network can be reaced from a given node. In other words, these measures describe a type of hierarchy in which diffusion of authority is recognized by higher values. This corresponds closely to Mann's ``diffusion'' type described in the introduction; a type of power that varies according to how many subordinates can be immediately reached by a dominant actor.
+Table \ref{tab: PCA rotation} presents the rotations, or factor loadings, which describe to what extent the original variable relates to the principal components. The first principal component, which accounts for XX\% of the variance, is most highly correlated with M--Reach Degree, M--Reach Closeness, and GRC. It is not surprising that these three measures load together, as GRC relies on M--Reach Closeness, which in turn relies on M--Reach Degree. As discussed in the description of the measures, this family of hierarchy measures describes how many nodes in a dominance network can be reached from a given node. In other words, these measures describe a type of hierarchy in which diffusion of authority is recognized by higher values. This corresponds closely to Mann's ``diffusion'' type described in the introduction; a type of power that varies according to how many subordinates can be immediately reached by a dominant actor.
 
 Second, the third principal component is heavily loaded on degree and closeness centrality. As discussed in the analytical measures of hierarchy section, the former measures the number of connections for a given node, while the latter measures how easy it is to reach each node in the network from a given node. Returning to Mann's typology, this seems to measure a distinct concept from his two dimensions of hierarchy: diffusion (described by the first principal component) and authoritative. Instead, it seems to measure the extensiveness of a hierarchy. In other words, we could expect that networks which have a higher value on principal component 3 to have a deeper and more extensive hierarchical system, irrespective of the type of hierarchy they represent.
 
-Finally, principal components 2 and 4 eschew a clear explanation and mapping on to Mann's typology. Components 2 and 4 are similar in that landau and kendall load about evenly betwen the two. Component 2 is more heavily loaded on krackhardt and triangle transitivity, whereas component 4 is loaded heavily on Eigenvector centrality. Landau's h and Kendall's K are indicative of Mann's authoritative type of power, in that each measures the treeness of a network, with the highest value representing a perfect linear hierarchy. In social terms, this could be understood as a military type of hierarchy, where there are clear and rigid layers of authority. 
+Finally, principal components 2 and 4 eschew a clear explanation and mapping on to Mann's typology. Components 2 and 4 are similar in that landau and kendall load about evenly between the two. Component 2 is more heavily loaded on Krackhardt and triangle transitivity, whereas component 4 is loaded heavily on Eigenvector centrality. Landau's h and Kendall's K are indicative of Mann's authoritative type of power, in that each measures the treeness of a network, with the highest value representing a perfect linear hierarchy. In social terms, this could be understood as a military type of hierarchy, where there are clear and rigid layers of authority. 
 
-Component 2 loads more heaviliy on Krackhardt's hierarchy score and Triangle Transitivity. The former measures the extent that dyads are not reciprocal, while the latter has a very substantively similar interpretation to Landau's h and Kendall's K, because it was intended to be an improvement on those two measures. The concept of unreciprocated dyadic relationships matches closely onto Mann's conception of authoritative hierarchies, as these are clear dominant--subordinate relationships. Therefore, we argue that component 2 most closely maps to the authoritative type of hierarchy discussed by Mann.
+Component 2 loads more heavily on Krackhardt's hierarchy score and Triangle Transitivity. The former measures the extent that dyads are not reciprocal, while the latter has a very substantively similar interpretation to Landau's h and Kendall's K, because it was intended to be an improvement on those two measures. The concept of unreciprocated dyadic relationships matches closely onto Mann's conception of authoritative hierarchies, as these are clear dominant--subordinate relationships. Therefore, we argue that component 2 most closely maps to the authoritative type of hierarchy discussed by Mann.
 
-Component 4 differs from Component 2 in that it loads heavily on eigenvector centralization, rather than triangle transitivity or Krackhardt's hierarchy score. Eigenvector centralization describes how well a node is connected to other well--connected nodes. A network with a high degree of eigenvector centralization is one in which a small cotiere of well--connected nodes, exhibit control over a system. This is a slight deviation from the authoritative power type described by Mann. To put this into social terms, while Component 4 would describe a military system, Component 2 might describe an oligarchical system, which is comprised of both explicit dominant--subordinate relationships (captured by Kendall's K and Landau's h), but a group of individuals at the top, rather than a perfect tree which extends from the lowest rung to the highest rung.
+Component 4 differs from Component 2 in that it loads heavily on eigenvector centralization, rather than triangle transitivity or Krackhardt's hierarchy score. Eigenvector centralization describes how well a node is connected to other well--connected nodes. A network with a high degree of eigenvector centralization is one in which a small coterie of well--connected nodes, exhibit control over a system. This is a slight deviation from the authoritative power type described by Mann. To put this into social terms, while Component 4 would describe a military system, Component 2 might describe an oligarchical system, which is comprised of both explicit dominant--subordinate relationships (captured by Kendall's K and Landau's h), but a group of individuals at the top, rather than a perfect tree which extends from the lowest rung to the highest rung.
 
 \begin{figure}
 \begin{center}
@@ -495,18 +495,18 @@ Component 4 differs from Component 2 in that it loads heavily on eigenvector cen
 \subsection{Ground Truth Rankings}
 \begin{table}[ht]
 \centering
-\begin{tabular}{rr}
+\begin{tabular}{lr}
   \hline
- & average\_rank \\ 
+ & Average Rank \\ 
   \hline
-degree\_centrality & 0.75 \\ 
-  closeness\_centrality & 0.82 \\ 
-  betweenness\_centrality & 0.78 \\ 
-  eigenvector\_centrality & 0.78 \\ 
-  m\_degree & 0.81 \\ 
-  m\_close & 0.63 \\ 
+Degree Centrality & 0.75 \\ 
+  Closeness Centrality & 0.82 \\ 
+  Betweenness Centrality & 0.78 \\ 
+  Eigenvector Centrality & 0.78 \\ 
+  $m$-degree & 0.81 \\ 
+  $m$-close & 0.63 \\ 
   GRC & 0.36 \\ 
-  D\_root & 0.86 \\ 
+  D-root & 0.86 \\ 
    \hline
 \end{tabular}
 \end{table}
