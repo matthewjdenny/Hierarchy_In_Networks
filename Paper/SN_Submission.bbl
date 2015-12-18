@@ -61,6 +61,10 @@ D.~Shizuka, D.~B. McDonald,
   {\path{doi:10.1016/j.anbehav.2012.01.011}}.
 \newline\urlprefix\url{http://dx.doi.org/10.1016/j.anbehav.2012.01.011}
 
+\bibitem{bonacich1972factoring}
+P.~Bonacich, Factoring and weighting approaches to status scores and clique
+  identification, Journal of Mathematical Sociology 2~(1) (1972) 113--120.
+
 \bibitem{Kendall1940}
 M.~G. Kendall, B.~B. Smith, \href{http://www.jstor.org/stable/2332613}{{On the
   Method of Paired Comparisons}}, Biometrika 31~(3/4) (1940) 324--345.
@@ -71,6 +75,10 @@ K.~Suchecki, J.~Holyst, \href{http://arxiv.org/abs/1303.2085}{{Hierarchy depth
   in directed networks}}, arXiv preprint arXiv:1303.2085\href
   {http://arxiv.org/abs/arXiv:1303.2085v1} {\path{arXiv:arXiv:1303.2085v1}}.
 \newline\urlprefix\url{http://arxiv.org/abs/1303.2085}
+
+\bibitem{an2015multilevel}
+W.~An, Multilevel meta network analysis with application to studying network
+  dynamics of network interventions, Social Networks 43 (2015) 48--56.
 
 \bibitem{Wasserman1994}
 S.~Wasserman, K.~Faust, \href{http://www.amazon.com/dp/0521387078}{{Social

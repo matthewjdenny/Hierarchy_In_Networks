@@ -13,53 +13,51 @@ Repeated entry---line 65 of file AddCitesHere.bib
  :                                 ,
 I'm skipping whatever remains of this entry
 Warning--I didn't find a database entry for "mann"
-Warning--I didn't find a database entry for "eigen"
 Warning--I didn't find a database entry for "between"
 Warning--I didn't find a database entry for "landau"
-Warning--I didn't find a database entry for "key"
 Warning--I didn't find a database entry for "Yitzhaki1979"
 Warning--I didn't find a database entry for "animals"
 Warning--can't use both author and editor fields in Wasserman1994
 Warning--can't use both volume and number fields in Wasserman1994
-You've used 16 entries,
+You've used 18 entries,
             2937 wiz_defined-function locations,
-            798 strings with 8317 characters,
-and the built_in function-call counts, 4419 in all, are:
-= -- 432
-> -- 94
+            809 strings with 8613 characters,
+and the built_in function-call counts, 4938 in all, are:
+= -- 488
+> -- 102
 < -- 2
-+ -- 42
-- -- 26
-* -- 331
-:= -- 596
-add.period$ -- 20
-call.type$ -- 16
-change.case$ -- 14
++ -- 46
+- -- 28
+* -- 366
+:= -- 666
+add.period$ -- 22
+call.type$ -- 18
+change.case$ -- 16
 chr.to.int$ -- 0
-cite$ -- 18
-duplicate$ -- 129
-empty$ -- 524
-format.name$ -- 33
-if$ -- 1134
+cite$ -- 20
+duplicate$ -- 143
+empty$ -- 585
+format.name$ -- 35
+if$ -- 1269
 int.to.chr$ -- 0
-int.to.str$ -- 16
-missing$ -- 16
-newline$ -- 67
-num.names$ -- 16
-pop$ -- 107
+int.to.str$ -- 18
+missing$ -- 18
+newline$ -- 73
+num.names$ -- 18
+pop$ -- 115
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 266
+skip$ -- 300
 stack$ -- 0
-substring$ -- 283
-swap$ -- 35
+substring$ -- 327
+swap$ -- 37
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 2
-while$ -- 37
-width$ -- 18
-write$ -- 142
+while$ -- 43
+width$ -- 20
+write$ -- 158
 (There were 2 error messages)

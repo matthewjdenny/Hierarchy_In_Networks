@@ -229,7 +229,7 @@ When we understand societal processes and institutions under a theoretical frame
 Another potential definition, also implied, is hierarchy means the mechanisms of collective actions (i.e., the ability of different nodes to connect with one another) hinges on a small number.
 
 \section{Measuring Hierarchy}
-A number of analytical measures of hierarchy have been proposed for directed networks. Most proposed measures return a scalar value that is meant to capture the ``hierarchical-ness'' of a given network \cite{Mones2012, Shizuka2012, eigen, between,Kendall1940, landau, Suchecki2013a}. This theoretically facilitates comparison between measures calculated on the same network, as well as comparison on the same measure across multiple networks. However some approaches to measuring hierarchy only provide a local measure of importance or position in the hierarchy for each node in the network \cite{key}. For these measures, one can calculate a Gini coefficient \cite{Yitzhaki1979} from the individual level scores and use these coefficients as a proxy for a global measure. 
+A number of analytical measures of hierarchy have been proposed for directed networks. Most proposed measures return a scalar value that is meant to capture the ``hierarchical-ness'' of a given network \cite{Mones2012, Shizuka2012, bonacich1972factoring, between,Kendall1940, landau, Suchecki2013a}. This theoretically facilitates comparison between measures calculated on the same network, as well as comparison on the same measure across multiple networks. However some approaches to measuring hierarchy only provide a local measure of importance or position in the hierarchy for each node in the network \cite{an2015multilevel}. For these measures, one can calculate a Gini coefficient \cite{Yitzhaki1979} from the individual level scores and use these coefficients as a proxy for a global measure. 
 
 In this section, we introduce and describe twelve candidate measures of network hierarchy that have been previously used in the networks literature. It is important to note that most of the measures we consider are only defined for directed networks, and thus for the remained of this paper we assume all networks under consideration are directed. We begin by introducing some terminology that will be common across all measures. For a given network $G=(V,E)$, let $V=\{v_i\}_{i=1}^N$ be the set of $N$ vertices (nodes) associated with $G$, and $E=\{e_j\}_{j=1}^M$ be the set of $M$ edges associated with $G$. Furthermore, for a given edge $e_j$, let $e_j^{(s)} \in 1:N$ be the index of the sender of the edge and $e_j^{(r)} \in 1:N$ be the index of the recipient. 
 
@@ -267,7 +267,7 @@ Again, intuitively, powerful members of a hierarchy will tend to be able to reac
 \end{align}
 where $\frac{(N-1)(N-2)}{(2N-3)}$ normalizes the measure for the size of the network.
 
-The last of the classical centrality based measures is \textbf{eigenvector centrality}, which is meant to capture the degree to which a node is connected to other well connected nodes \cite{eigen}. Let the adjacency matrix of the network be defined as $\mathbf{A}$ and the vector of local eigenvector centrality scores for each node be defined as $\mathbf{w}=\{w({v_{1}}),...,w(v_{V})\}$. Then to calculate the eigenvalue centralities $\mathbf{w}$, one must solve the following eigenvector equation: 
+The last of the classical centrality based measures is \textbf{eigenvector centrality}, which is meant to capture the degree to which a node is connected to other well connected nodes \cite{bonacich1972factoring}. Let the adjacency matrix of the network be defined as $\mathbf{A}$ and the vector of local eigenvector centrality scores for each node be defined as $\mathbf{w}=\{w({v_{1}}),...,w(v_{V})\}$. Then to calculate the eigenvalue centralities $\mathbf{w}$, one must solve the following eigenvector equation: 
 \begin{align}
 	\mathbf{A}  \mathbf{w}=  \mathbf{\lambda} \mathbf{w}
 \end{align}
@@ -311,7 +311,7 @@ The authors show that in a random network $P_t = 0.75$ in expectation so they no
 \end{align}
 where $t_{tri} \in [-3,1]$ can be negative if there is a particularly high proportion of cyclic triads in the network. This is likely a better measure of hierarchy than Landau's $h$ and Kendal's $K$ when the network is weighted or ties do not represent dominance relationships. However, if there are violations of a linear hierarchy that involve larger cycles (spanning more than three nodes) this measure will fail to pick them up, so care should be used in interpreting this measure for complex networks.
 
-\textbf{$\mathbf{M}$-reach degree} was developed to identify `key' players in a network \cite{key}.  It is defined as a measure for each node $v_{i}$ as the number of alters that are reachable from $v_{i}.$ If $G$ is directed then the reachable alters must lie along an outgoing path from $v_{i}$. A closely related measure, \textbf{$\mathbf{M}$-reach closeness} is defined as the M-reach degree of a node, but with the contribution of each alter $j$ that is reachable, weighted by the inverse of the shortest path length between $i$ and $j$. Both of these measures are only defined for individual nodes, so to calculate a global measure for a network, we take the Gini coefficient of the measures calculated for each node $i$. The Gini  coefficient \cite{Yitzhaki1979} is a measure of inequality originally developed to measure income inequality in a society. For a vector of values $x : \{x_i\}_{i=1}^{N}$ the Gini coefficient $G$ of that vector is:
+\textbf{$\mathbf{M}$-reach degree} was developed to identify `key' players in a network \cite{an2015multilevel}.  It is defined as a measure for each node $v_{i}$ as the number of alters that are reachable from $v_{i}.$ If $G$ is directed then the reachable alters must lie along an outgoing path from $v_{i}$. A closely related measure, \textbf{$\mathbf{M}$-reach closeness} is defined as the M-reach degree of a node, but with the contribution of each alter $j$ that is reachable, weighted by the inverse of the shortest path length between $i$ and $j$. Both of these measures are only defined for individual nodes, so to calculate a global measure for a network, we take the Gini coefficient of the measures calculated for each node $i$. The Gini  coefficient \cite{Yitzhaki1979} is a measure of inequality originally developed to measure income inequality in a society. For a vector of values $x : \{x_i\}_{i=1}^{N}$ the Gini coefficient $G$ of that vector is:
 \begin{align}
 	G = \frac{\displaystyle{\sum_i \sum_j \left| x_i - x_j \right|}}{\displaystyle{2 \sum_i \sum_j x_i}}
 \end{align}
@@ -425,7 +425,7 @@ Triangle Transitivity & $0.273$ & $$-$0.397$ & $$-$0.237$ & $$-$0.127$ \\
 \end{tabular} 
 \end{table} 
 
-Table \ref{tab: PCA rotation} presents the rotations, or factor loadings, which describe to what extent the original variable relates to the principal components. The first principal component, which accounts for XX\% of the variance, is most highly correlated with M--Reach Degree, M--Reach Closeness, and GRC. It is not surprising that these three measures load together, as GRC relies on M--Reach Closeness, which in turn relies on M--Reach Degree. As discussed in the description of the measures, this family of hierarchy measures describes how many nodes in a dominance network can be reached from a given node. In other words, these measures describe a type of hierarchy in which diffusion of authority is recognized by higher values. This corresponds closely to Mann's ``diffusion'' type described in the introduction; a type of power that varies according to how many subordinates can be immediately reached by a dominant actor.
+Table \ref{tab: PCA rotation} presents the rotations, or factor loadings, which describe to what extent the original variable relates to the principal components. The first principal component, which accounts for 27.9\% of the variance, is most highly correlated with M--Reach Degree, M--Reach Closeness, and GRC. It is not surprising that these three measures load together, as GRC relies on M--Reach Closeness, which in turn relies on M--Reach Degree. As discussed in the description of the measures, this family of hierarchy measures describes how many nodes in a dominance network can be reached from a given node. In other words, these measures describe a type of hierarchy in which diffusion of authority is recognized by higher values. This corresponds closely to Mann's ``diffusion'' type described in the introduction; a type of power that varies according to how many subordinates can be immediately reached by a dominant actor.
 
 Second, the third principal component is heavily loaded on degree and closeness centrality. As discussed in the analytical measures of hierarchy section, the former measures the number of connections for a given node, while the latter measures how easy it is to reach each node in the network from a given node. Returning to Mann's typology, this seems to measure a distinct concept from his two dimensions of hierarchy: diffusion (described by the first principal component) and authoritative. Instead, it seems to measure the extensiveness of a hierarchy. In other words, we could expect that networks which have a higher value on principal component 3 to have a deeper and more extensive hierarchical system, irrespective of the type of hierarchy they represent.
 
@@ -449,40 +449,6 @@ Component 4 differs from Component 2 in that it loads heavily on eigenvector cen
 \end{center}
 \end{figure}
 
-\begin{figure}
-\begin{center}
-	\caption{\label{fig:1 and 3} Principle components plot for components one and three.}
-		\includegraphics[width = 0.98\textwidth]{./images/Observed_PCA_Components1_3.pdf}
-\end{center}
-\end{figure}
-
-\begin{figure}
-\begin{center}
-	\caption{\label{fig:1 and 4} Principle components plot for components one and four.}
-		\includegraphics[width = 0.98\textwidth]{./images/Observed_PCA_Components1_4.pdf}
-\end{center}
-\end{figure}
-
-\begin{figure}
-\begin{center}
-	\caption{\label{fig:2 and 3} Principle components plot for components two and three.}
-		\includegraphics[width = 0.98\textwidth]{./images/Observed_PCA_Components2_3.pdf}
-\end{center}
-\end{figure}
-
-\begin{figure}
-\begin{center}
-	\caption{\label{fig:2 and 4} Principle components plot for components two and four.}
-		\includegraphics[width = 0.98\textwidth]{./images/Observed_PCA_Components2_4.pdf}
-\end{center}
-\end{figure}
-
-\begin{figure}
-\begin{center}
-	\caption{\label{fig:3 and 4} Principle components plot for components three and four.}
-		\includegraphics[width = 0.98\textwidth]{./images/Observed_PCA_Components3_4.pdf}
-\end{center}
-\end{figure}
 
 
 % \subsection{Simulation Study}
@@ -547,9 +513,6 @@ test
 
 % \begin{thebibliography}{00}
 % \begin{thebibliography}{00}
-% 	\bibitem{key}
-% 	An,W. (2015),
-% 	``Multilevel Meta Network Analysis with Application to Studying Network Dynamics of Network Interventions." \textit{Social Networks} 43: 48-56.
 %
 % 	\bibitem{eigen}
 % 	Bonacich, P. (1972),
@@ -734,8 +697,46 @@ test
 
 % \end{thebibliography}
 
-% \clearpage
-% \appendix
+\clearpage
+\appendix
+
+\section{PCA Plots}
+ \label{sec:PCA Plots}
+
+\begin{figure}
+\begin{center}
+	\caption{\label{fig:1 and 3} Principle components plot for components one and three.}
+		\includegraphics[width = 0.98\textwidth]{./images/Observed_PCA_Components1_3.pdf}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+	\caption{\label{fig:1 and 4} Principle components plot for components one and four.}
+		\includegraphics[width = 0.98\textwidth]{./images/Observed_PCA_Components1_4.pdf}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+	\caption{\label{fig:2 and 3} Principle components plot for components two and three.}
+		\includegraphics[width = 0.98\textwidth]{./images/Observed_PCA_Components2_3.pdf}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+	\caption{\label{fig:2 and 4} Principle components plot for components two and four.}
+		\includegraphics[width = 0.98\textwidth]{./images/Observed_PCA_Components2_4.pdf}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+	\caption{\label{fig:3 and 4} Principle components plot for components three and four.}
+		\includegraphics[width = 0.98\textwidth]{./images/Observed_PCA_Components3_4.pdf}
+\end{center}
+\end{figure}
 
 
 % \section{Measure Pairs Plots}
