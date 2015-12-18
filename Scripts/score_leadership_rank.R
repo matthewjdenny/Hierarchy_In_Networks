@@ -7,6 +7,7 @@ score_leadership_rank <- function(Network_Data,
         for(j in 1:ncol(leadership_ranks)){
             if(!is.null(Network_Data[[i]]$leadership)){
                 indexes <- which(Network_Data[[i]]$leadership == 1)
+                print(Measures[[i]]$local)
                 score <- mean(1:length(indexes)) - mean(Measures[[i]]$local[[j]]$rank[indexes])
                 leadership_ranks[i,j] <- (score/length(Network_Data[[i]]$leadership)) +1
             }

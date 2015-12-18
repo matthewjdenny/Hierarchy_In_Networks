@@ -473,12 +473,16 @@ Component 4 differs from Component 2 in that it loads heavily on eigenvector cen
 % Fri Dec 11 16:43:36 2015
 
 \subsection{Ground Truth Rankings}
+
+Seven of the twelve measures of hierarchy discussed above have a local analogue to the global measures we discuss in the previous sections.  To further understand the relative performance of these seven measures, we compare their ability to correctly recover the rank of the highest ranking manager in the seventeen county government email networks we analyze. Using our ground-truth knowledge of who should be be ranked at the top of the organizational hierarchy, Table \ref{tab:average local rankings} presents average ranking scores for each of the measures. These scores theoretically range between zero and one, with a score of one indicating that the measure ranks the county manager at the top of the hierarchy in every single county, and a score of zero indicating that the county manager was ranked at the bottom of the hierarchy in every single county. The measure with the best performance is closeness centrality (the local analogue to closeness centralization), which provided 82\% of optimal performance in ranking the county managers. This finding is not very surprising, because the county manager is the only member of the county government with incentives to interact with all of the other county managers directly. Generalized Reaching Centrality consistently provided the lowest performance across the board in this task, indicating it may not be a good measure for applications involving communication network data, but we generally see quite a bit of heterogeneity in the rankings across counties (see Figure \ref{fig:rankings each county}).  
+
 \begin{table}[ht]
 \centering
+\caption{\label{tab:average local rankings} Average Ranking index scores for each of the seven measures with a local analogue. A score closer to one indicates that a measure ranked the county manager in each county closer to the top of the hierarchy across the seventeen counties in our sample.}
 \begin{tabular}{lr}
-  \hline
- & Average Rank \\ 
-  \hline
+  \toprule
+ & Average Rank Score \\ 
+  \midrule
 Degree Centrality & 0.75 \\ 
   Closeness Centrality & 0.82 \\ 
   Betweenness Centrality & 0.78 \\ 
@@ -486,10 +490,14 @@ Degree Centrality & 0.75 \\
   $m$-degree & 0.81 \\ 
   $m$-close & 0.63 \\ 
   GRC & 0.36 \\ 
-  D-root & 0.86 \\ 
-   \hline
+   \bottomrule
 \end{tabular}
 \end{table}
+
+This application has a number of shortcomings, but it is comforting to see that many of the measures are able to accurately rank the county manager a high proportion of the time. One of the key issues with this approach is that we cannot compare four of the measures of hierarchy because they lack a local analogue. Therefore we cannot say whether closeness centralization is the best measure of hierarchy in organizational communication networks, because we lack a valid means of comparison. 
+
+
+
 
 % 	The analytical portion of the problem will be conducted in R, which is known by all members of the group. We will be using both statistical and mathematical methods of quantifying and/or measuring hierarchy. We will focus on methods that have already been developed, published, and implemented in R, or are can easily be implemented by one of the group members. If time permits, we may try to develop or suggest directions for future development of our own statistical models and/or mathematical measurements. Each member of the group will be responsible for at least one method.
 %
@@ -643,7 +651,7 @@ test
 \clearpage
 \appendix
 
-\section{PCA Plots}
+\section{Additional Plots}
  \label{sec:PCA Plots}
 
 \begin{figure}
@@ -681,6 +689,12 @@ test
 \end{center}
 \end{figure}
 
+\begin{figure}
+\begin{center}
+	\caption{\label{fig:rankings each county} Rankings scores for each county. The x-axis records how close to the top of the hierarchy a measure placed the county manager, with a higher score indicating better performance. Each column represents a different county.}
+		\includegraphics[width = 0.98\textwidth]{./images/Measure_Scores.pdf}
+\end{center}
+\end{figure}
 
 % \section{Measure Pairs Plots}
 % \label{sec:pairs plots}
