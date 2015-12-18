@@ -2,10 +2,6 @@ This is BibTeX, Version 0.99d (TeX Live 2015)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: ./SN_Submission.aux
 The style file: elsarticle-num.bst
-White space in argument---line 47 of file ./SN_Submission.aux
- : \citation{Mones2012,Shizuka2012,bonacich1972factoring,freeman1977set
- :                                                                      ,Kendall1940,landau1951dominance,Suchecki2013a}
-I'm skipping whatever remains of this command
 Database file #1: library.bib
 Database file #2: AddCitesHere.bib
 Repeated entry---line 1 of file AddCitesHere.bib
@@ -18,45 +14,45 @@ Repeated entry---line 65 of file AddCitesHere.bib
 I'm skipping whatever remains of this entry
 Warning--can't use both author and editor fields in Wasserman1994
 Warning--can't use both volume and number fields in Wasserman1994
-You've used 21 entries,
+You've used 19 entries,
             2937 wiz_defined-function locations,
-            823 strings with 8986 characters,
-and the built_in function-call counts, 5662 in all, are:
-= -- 560
-> -- 114
-< -- 2
-+ -- 52
-- -- 31
-* -- 413
-:= -- 761
-add.period$ -- 25
-call.type$ -- 21
-change.case$ -- 19
+            814 strings with 8756 characters,
+and the built_in function-call counts, 5198 in all, are:
+= -- 520
+> -- 106
+< -- 1
++ -- 48
+- -- 29
+* -- 389
+:= -- 705
+add.period$ -- 23
+call.type$ -- 19
+change.case$ -- 18
 chr.to.int$ -- 0
-cite$ -- 23
-duplicate$ -- 164
-empty$ -- 672
-format.name$ -- 38
-if$ -- 1455
+cite$ -- 21
+duplicate$ -- 150
+empty$ -- 607
+format.name$ -- 36
+if$ -- 1328
 int.to.chr$ -- 0
-int.to.str$ -- 21
-missing$ -- 21
-newline$ -- 82
-num.names$ -- 21
-pop$ -- 131
+int.to.str$ -- 19
+missing$ -- 18
+newline$ -- 76
+num.names$ -- 19
+pop$ -- 115
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 349
+skip$ -- 313
 stack$ -- 0
-substring$ -- 387
-swap$ -- 40
-text.length$ -- 2
+substring$ -- 362
+swap$ -- 38
+text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 2
-while$ -- 52
-width$ -- 23
-write$ -- 180
-(There were 3 error messages)
+while$ -- 48
+width$ -- 21
+write$ -- 165
+(There were 2 error messages)
