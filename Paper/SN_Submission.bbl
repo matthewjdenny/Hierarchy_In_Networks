@@ -1,9 +1,48 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 \expandafter\ifx\csname url\endcsname\relax
   \def\url#1{\texttt{#1}}\fi
 \expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
 \expandafter\ifx\csname href\endcsname\relax
   \def\href#1#2{#2} \def\path#1{#1}\fi
+
+\bibitem{smith2005networks}
+L.~Smith-Doerr, W.~W. Powell, Networks and economic life, The Handbook of
+  Economic Sociology 2 (2005) 379--402.
+
+\bibitem{white2007catnets}
+H.~White, Catnets, Contemporary Sociological Theory, edited by Craig Calhoun,
+  Joseph Gerteis, James Moody, Steven Pfaff, and Indermohan Virk (2007)
+  171--181.
+
+\bibitem{kluver2000dynamics}
+J.~Kl{\"u}ver, The dynamics and evolution of social systems: new foundations of
+  a mathematical sociology, Vol.~29, Springer Science \& Business Media, 2000.
+
+\bibitem{granovetter2007economic}
+M.~Granovetter, {Economic Embeddedness [1985]}, Contemporary Sociological
+  Theory, edited by Craig Calhoun, Joseph Gerteis, James Moody, Steven Pfaff,
+  and Indermohan Virk (2007) 162--170.
+
+\bibitem{granovetter1973strength}
+M.~S. Granovetter, {The strength of weak ties}, American journal of sociology
+  (1973) 1360--1380.
+
+\bibitem{bonacich1987power}
+P.~Bonacich, Power and centrality: A family of measures, American Journal of
+  Sociology (1987) 1170--1182.
+
+\bibitem{mizruchi1996interlocks}
+M.~S. Mizruchi, What do interlocks do? an analysis, critique, and assessment of
+  research on interlocking directorates, Annual Review of Sociology (1996)
+  271--298.
+
+\bibitem{mann1986sources}
+M.~Mann, The sources of social power, vol. 1, a history of power from the
+  beginning to ad 1760 (1986).
+
+\bibitem{schroeder2007mann}
+R.~Schroeder, Michael mann, Key Sociological Thinkers, edited by Rob Stones
+  (2007) 338--354.
 
 \bibitem{Mones2012}
 E.~Mones, L.~Vicsek, T.~Vicsek,
