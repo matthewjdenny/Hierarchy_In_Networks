@@ -166,15 +166,15 @@
 %% \address[label1]{<address>}
 %% \address[label2]{<address>}
 
-\author[au1]{Cynthia Cook\footnote{Authors listed in alphabetical order.}} 
-\author[au2]{Matthew J. Denny}
-\author[au3]{Mitchell Goist} 
-\author[au4]{Timmy Huynh}
+\author[au1]{Matthew J. Denny\footnote{Authors listed in alphabetical order.}} 
+\author[au2]{Mitchell Goist}
+\author[au3]{Cassie McMillan} 
+\author[au4]{Sayali Phadke}
 
-\address[au1]{Department of Statistics cmc496@psu.edu}
-\address[au2]{Department of Political Science, mdenny@psu.edu}
-\address[au3]{Department of Political Science mlg307@psu.edu}
-\address[au4]{Department of Sociology and Criminology, tnh133@psu.edu}
+\address[au1]{Department of Political Science, mdenny@psu.edu}
+\address[au2]{Department of Political Science mlg307@psu.edu}
+\address[au3]{Department of Sociology, clm453@psu.edu}
+\address[au4]{Department of Statistics, ssp5208@psu.edu}
 
 \begin{abstract}
 The measurement and characterization of power relations in social systems is a major challenge across the social and physical sciences. A number of studies have sought to introduce analytical measures of ``hierarchy'' in networks, yet these studies have been largely disconnected from social theories of power and hierarchy. In this study, we integrate these two traditions by linking theory and measurement. To do this, we conduct an empirical analysis of 136 social, organization, political, and economic networks. We find that the twelve analytical measures of network hierarchy we consider map onto a theoretical typology of hierarchical structures. Our results indicate that there is no one-size-fits-all measure of hierarchy, and that researchers can benefit from considering the appropriateness of applying a particular measure to their particular network.
@@ -398,18 +398,20 @@ Theoretically, we might expect different types of networks (social, information,
   \toprule
  \textbf{Type} & \textbf{\# of Networks} & \textbf{Nodes} & \textbf{Edges} & \textbf{Density} & \textbf{Clustering Coefficient} \\ 
   \midrule
-  \emph{communication} & 20 & 25.40 & 1764.25 & 2.87 & 0.55 \\ 
-  \emph{cosponsorship} & 18 & 101.22 & 13358.89 & 1.32 & 0.79 \\ 
-  \emph{co-membership} & 2 & 21.50 & 22.50 & 0.05 & 0.07 \\ 
-  \emph{interaction} & 40 & 23.07 & 1944.95 & 1.99 & 0.59 \\ 
-  \emph{unknown} & 33 & 38.70 & 445.36 & 0.38 & 0.43 \\ 
-  \emph{friendship} & 6 & 29.83 & 92.00 & 0.12 & 0.35 \\ 
-  \emph{affect} & 11 & 17.64 & 95.18 & 0.32 & 0.33 \\ 
-  \emph{terrorism} & 1 & 63.00 & 308.00 & 0.08 & 0.36 \\ 
-  \emph{trade} & 5 & 24.00 & 285.60 & 0.52 & 0.73 \\ 
+\emph{friendship} & 123.00 & 49.13 & 866.71 & 1.54 & 0.49 \\ 
+  \emph{association} & 29.00 & 56.59 & 4202.48 & 2.43 & 0.58 \\ 
+  \emph{exchange} & 17.00 & 48.53 & 1369.41 & 1.44 & 0.50 \\ 
+  \emph{support} & 75.00 & 71.21 & 4428.68 & 1.16 & 0.60 \\ 
+  \emph{ecological} & 11.00 & 33.64 & 349.65 & 0.30 & 0.61 \\ 
+  \emph{kinship} & 5.00 & 24.00 & 81.40 & 0.14 & 0.28 \\ 
+  \emph{perception} & 39.00 & 44.00 & 96.46 & 0.05 & 0.26 \\ 
+  \emph{transportation} & 2.00 & 1374.00 & 14826.50 & 0.01 & 0.21 \\ 
+  \emph{biological} & 3.00 & 790.33 & 3682.33 & 0.01 & 0.04 \\ 
    \bottomrule
 \end{tabular}
 \end{table}
+
+
 
 % Before fitting any of the hierarchy measures on these real datasets, we want to make sure that the measures are invariant to the size of the network. We simulate $7500$ Barbasi-Albert (BA), $6000$ Tree-Structured (TR), and $4500$ Erdos-Renyi (ER) datasets, where one third of each type has $50$ nodes, a third has $200$, and the last third has $500$. We are also curious to see how the hierarchy measures perform while altering the parameters of these datasets. For the BA datasets, we set the preferential treatment parameter to $p=0.5, 1, 2, 5, 10$. We set the number of children parameter in the TR datasets to be $c=2, 5, 10, 50$, and the probability of forming and edge in the ER datasets to $d=0.05, 0.1, 0.2$. Figures can be found in Appendix C, which illustrate our findings. For the BA networks, we notice that Kendall and Landau's measures do not change as $p$ increases. We note that all other measures except for degree and closeness decrease as $p$ increases. For TR networks,  
 	
