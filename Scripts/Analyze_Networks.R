@@ -9,11 +9,12 @@ rm(list = ls())
 
 # change your working directory to the "Hierarchy_In_Networks" folder location.
 # for me, this is:
-setwd("~/Dropbox/SoDa502/Hierarchy_In_Networks")
+setwd("~/Documents/Research/Hierarchy_In_Networks")
 
 # install and load functions (you will need the devtools pacakge to install two
 # of them, which are necessary for making the pca plots, for example).
 # devtools::install_github("vqv/ggbiplot")
+# install.packages(c("GGally","ineq","corrplot","keyplayer"))
 require(ggbiplot)
 require(igraph)
 require(stringr)
@@ -59,13 +60,37 @@ source('./Scripts/generate_tree_networks.R')
 ################################################################################
 
 # load data the observed network data
-load("./Data/Network_Data.Rdata")
+# load("./Data/Network_Data.Rdata") old version of data
+# new version with 305 networks and updated categories
+load("./Aggregate_Data/Sociomatrix_Data.Rdata")
+
+# put it in a format to work with our old functions
+Network_Data <- vector(mode = "list",
+                       length = length(sociomatrix_data_list))
+# loop through and populate
+for (i in 1:length(sociomatrix_data_list)) {
+    cur <- sociomatrix_data_list[[i]]
+    add <- list()
+    add$sociomatrix <- cur$network
+    if (cur$metadata$directed) {
+        add$mode <- "directed"
+    } else {
+        add$mode <- "undirected"
+    }
+    add$weighted <- cur$metadata$valued_edges
+    add$type <- cur$metadata$category
+    if (!is.null(cur$node_level_data)) {
+        add$node_level_data <- cur$node_level_data
+    }
+    Network_Data[[i]] <- add
+}
+names(Network_Data) <- names(sociomatrix_data_list)
 
 # remove networks the appear to be outliers so that they do not drive analysis.
-remove <- c("mb031s01nets2","drugnet","Terro_4275","drug_net_61","Koster_data8",
-            "CITIES","AOM_division_comembership","Freeman's_EIES3", "pv504",
-            "pv960", "Koster_data7")
-Network_Data  <- remove_rows(Network_Data, remove, TRUE)
+# remove <- c("mb031s01nets2","drugnet","Terro_4275","drug_net_61","Koster_data8",
+#             "CITIES","AOM_division_comembership","Freeman's_EIES3", "pv504",
+#             "pv960", "Koster_data7")
+# Network_Data  <- remove_rows(Network_Data, remove, TRUE)
 
 # generate local and global hierarchy measures for all networks and output them
 # into a list object
@@ -142,14 +167,21 @@ pca <- generate_pca_plots(global_measures,
 
 stargazer(pca$rotation[,1:4],style="asr")
 
+# remove observations that have NAN
+rem <- which(is.na(global_measures$triangle_transitivity))
+global_measures <- global_measures[-rem,]
+rem <- which(is.na(global_measures$m_close))
+global_measures <- global_measures[-rem,]
+
+
 # generate correlation plots of global measures against eachother
 M <- global_measures[,c(1:9,11,12)]
 cn <- as.character(sapply(colnames(M),replac))
 colnames(M) <- cn
 M <- cor(M)
 
-rem <- which(is.na(global_measures$triangle_transitivity))
-global_measures <- global_measures[-rem,]
+
+
 
 # first just plain correlation plot
 pdf(file = "./Output/Global_Measure_Correlations.pdf", height = 13, width = 13)
