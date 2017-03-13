@@ -9,7 +9,9 @@ rm(list = ls())
 
 # change your working directory to the "Hierarchy_In_Networks" folder location.
 # for me, this is:
-setwd("~/Documents/Research/Hierarchy_In_Networks")
+# setwd("~/Documents/Research/Hierarchy_In_Networks")
+setwd("/home/mitch/Dropbox/Projects/Work/soda502_hierarchy/Hierarchy_In_Networks")
+
 
 # install and load functions (you will need the devtools pacakge to install two
 # of them, which are necessary for making the pca plots, for example).
@@ -136,6 +138,13 @@ xtable(type_descriptive_statistics)
 
 
 # run pca analysis
+
+# remove D root (too many Nas)
+global_measures = global_measures[!names(global_measures) %in% c('D_root')]
+
+#drop NAs
+global_measures = global_measures[complete.cases(global_measures), ]
+
 generate_pca_plots(global_measures,
                    save_to_file = TRUE,
                    pca_choice1 = 1,

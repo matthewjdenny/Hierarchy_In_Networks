@@ -12,6 +12,10 @@ generate_pca_plots <- function(global_measures,
     rem <- which(is.na(global_measures$triangle_transitivity))
     global_measures <- global_measures[-rem,]
 
+    #remove rows with NA for m-closeness
+    rem <- which(is.na(global_measures$m_close))
+    global_measures <- global_measures[-rem,]
+
 
     if(length(which(is.na(global_measures$D_root))) > 0 & length(unique(global_measures$eigenvector_centralization)) > 1){
            # pca with all measures except D_root which was mostly NA.
